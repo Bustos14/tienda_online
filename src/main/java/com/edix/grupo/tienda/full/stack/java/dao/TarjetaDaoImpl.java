@@ -12,26 +12,46 @@ public class TarjetaDaoImpl implements TarjetaDao{
 	
 	@Override
 	public int nuevaTarjeta(TarjetaBancaria tarjeta) {
-		// TODO Auto-generated method stub
-		return 0;
+		int filas = 0;
+		try {
+			trepo.save(tarjeta);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return filas;
 	}
 
 	@Override
 	public int modificarTarjeta(TarjetaBancaria tarjeta) {
-		// TODO Auto-generated method stub
+		int filas = 0;
+		TarjetaBancaria mod = null;
+		try {
+			mod = trepo.getOne(tarjeta.getIdTarjetaBancaria());
+			mod = tarjeta;
+			trepo.save(mod);
+			filas = 1;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return 0;
 	}
 
 	@Override
-	public int eliminarTarjeta(TarjetaBancaria tarjeta) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int eliminarTarjeta(int idTarjeta) {
+		int filas = 0;
+		try {
+			trepo.deleteById(idTarjeta);
+			filas = 1;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return filas;
 	}
 
 	@Override
 	public TarjetaBancaria buscarUna(int idTarjeta) {
-		// TODO Auto-generated method stub
-		return null;
+		return trepo.findById(idTarjeta).orElse(null);
 	}
 
 }

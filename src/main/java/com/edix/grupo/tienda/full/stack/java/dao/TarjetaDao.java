@@ -6,7 +6,7 @@ public interface TarjetaDao {
 	
 	int nuevaTarjeta(TarjetaBancaria tarjeta);
 	int modificarTarjeta(TarjetaBancaria tarjeta);
-	int eliminarTarjeta(TarjetaBancaria tarjeta);
+	int eliminarTarjeta(int idTarjeta);
 	TarjetaBancaria buscarUna(int idTarjeta);
 	
 

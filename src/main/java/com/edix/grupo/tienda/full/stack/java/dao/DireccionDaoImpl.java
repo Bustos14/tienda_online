@@ -12,26 +12,46 @@ public class DireccionDaoImpl implements DireccionDao {
 	
 	@Override
 	public int nuevaDireccion(Direccione direccion) {
-		// TODO Auto-generated method stub
-		return 0;
+		int filas = 0;
+		try {
+			drepo.save(direccion);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return filas;
 	}
 
 	@Override
 	public int modificarDireccion(Direccione direccion) {
-		// TODO Auto-generated method stub
-		return 0;
+		int filas = 0;
+		Direccione mod = null;
+		try {
+			mod = drepo.getOne(direccion.getIdDireccion());
+			mod = direccion;
+			drepo.save(mod);
+			filas = 1;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return filas;
 	}
 
 	@Override
-	public int eliminarDireccion(Direccione direccion) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int eliminarDireccion(int idDireccion) {
+		int filas = 0;
+		try {
+			drepo.deleteById(idDireccion);
+			filas = 1;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return filas;
 	}
 
 	@Override
 	public Direccione buscarUna(int idDireccion) {
-		// TODO Auto-generated method stub
-		return null;
+		return drepo.findById(idDireccion).orElse(null);
 	}
 
 }

@@ -6,7 +6,7 @@ public interface DireccionDao {
 	
 	int nuevaDireccion(Direccione direccion);
 	int modificarDireccion(Direccione direccion);
-	int eliminarDireccion(Direccione direccion);
+	int eliminarDireccion(int idDireccion);
 	Direccione buscarUna(int idDireccion);
 
 }
