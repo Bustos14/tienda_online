@@ -9,7 +9,9 @@ CREATE TABLE roles (
     nombre VARCHAR(60)
 );
 
-# Creamos tabla usuarios con su clave foranea id_rol de la tabla roles
+# La restricción CHECK se escribe después del tipo de datos y asegura que el valor en el campo fecha_nacimiento 
+# cumpla con la condición especificada. La condición YEAR(fecha_nacimiento) < YEAR(CURDATE())-18 significa que 
+# el año de la fecha de nacimiento debe ser menor que el año actual menos 18 años.
 CREATE TABLE usuarios (
     id_usuario INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100),
@@ -37,7 +39,7 @@ CREATE TABLE direcciones (
 # 'usuarios' y la tabla 'direcciones', permitiendo al usuario que tenga varias direcciones y una direccion
 # esté asociada a varios usuarios.
 CREATE TABLE usuario_direccion (
-    id_usuario INT AUTO_INCREMENT,
+    id_usuario INT,
     id_direccion INT,
     PRIMARY KEY (id_usuario, id_direccion),
     FOREIGN KEY (id_usuario) REFERENCES usuarios (id_usuario),
@@ -59,7 +61,7 @@ CREATE TABLE tarjetas_bancarias (
 # Creamos tabla intermedia para poder hacer una relación de muchos a muchos, por lo que una tarjeta puede
 # tener muchos usuarios y un usuario puede tener muchas tarjetas
 CREATE TABLE usuarios_tarjetas_bancarias (
-  id_usuario INT NOT NULL AUTO_INCREMENT,
+  id_usuario INT NOT NULL,
   id_tarjeta_bancaria INT NOT NULL,
   PRIMARY KEY (id_usuario, id_tarjeta_bancaria),
   FOREIGN KEY (id_usuario) REFERENCES usuarios (id_usuario),
@@ -73,6 +75,7 @@ CREATE TABLE productos (
   descripcion VARCHAR(100),
   price DOUBLE NOT NULL,
   stock INT NOT NULL,
+  estado ENUM('Destacado', 'Oferta', 'Normal'),
   PRIMARY KEY (id_producto)
 );
 
@@ -82,10 +85,20 @@ CREATE TABLE pedidos (
   fecha_realizacion DATE,
   id_usuario INT,
   id_producto INT,
+  precioTotal DECIMAL(10,2) NOT NULL,
+  estado ENUM('Comprado', 'En el carrito'),
   FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario),
   FOREIGN KEY (id_producto) REFERENCES productos(id_producto)
 );
 
+CREATE TABLE aticulos_pedidos (
+  id_pedArticulo INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  id_pedido INT NOT NULL,
+  id_producto INT NOT NULL,
+  Cantidad INT NOT NULL,
+  FOREIGN KEY (id_pedido) REFERENCES pedidos(id_pedido),
+  FOREIGN KEY (id_producto) REFERENCES productos (id_producto)
+);
 
 # Hacemos insert para rellenar las tablas con algunos campos por defecto
 INSERT INTO usuarios (id_usuario, nombre, apellidos, fecha_nacimiento, email, contrasena)
@@ -99,31 +112,6 @@ VALUES (1, 'ROLE_CLIENTE');
 
 INSERT INTO roles (id_rol, nombre)
 VALUES (2, 'ROLE_ADMIN');
-
-INSERT INTO direcciones (id_direccion, codigo_postal, localidad, calle, numero)
-VALUES (1, '28000', 'Madrid', 'Calle Mayor', '1');
-
-INSERT INTO direcciones (id_direccion, codigo_postal, localidad, calle, numero, piso, letra)
-VALUES (2, '28001', 'Madrid', 'Calle de Alcalá', '20', '2', 'A');
-
-INSERT INTO tarjetas_bancarias (id_tarjeta_bancaria, numero_tarjeta, nombre_titular, fecha_caducidad, CVV)
-VALUES (1, '1234 5678 9012 3456', 'Juan Pérez', '2024-05-01', '123');
-
-INSERT INTO tarjetas_bancarias (id_tarjeta_bancaria, numero_tarjeta, nombre_titular, fecha_caducidad, CVV)
-VALUES (2, '2345 6789 0123 4567', 'María García', '2023-12-01', '456');
-
-INSERT INTO productos (id_producto, nombre, descripcion, price, stock) 
-VALUES (1, "producto 1", 'Esta es la descripción del producto 1', 2, 10);
-
-INSERT INTO productos (id_producto, nombre, descripcion, price, stock) 
-VALUES (2, "producto 2", 'Esta es la descripción del producto 2', 1.5, 10);
-
-INSERT INTO pedidos (id_pedido, fecha_realizacion,id_usuario, id_producto) 
-VALUES (1, '2023-12-01', 1, 1);
-
-INSERT INTO pedidos (id_pedido, fecha_realizacion,id_usuario, id_producto) 
-VALUES (2, '2023-12-01', 2, 2);
-
 commit;
 
 #Creamos usuario y le damos permisos
