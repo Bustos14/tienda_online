@@ -12,7 +12,7 @@ import java.util.Date;
 @Entity
 @Table(name="tarjetas_bancarias")
 @NamedQuery(name="TarjetasBancaria.findAll", query="SELECT t FROM TarjetasBancaria t")
-public class TarjetasBancaria implements Serializable {
+public class TarjetaBancaria implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -37,7 +37,7 @@ public class TarjetasBancaria implements Serializable {
 	@JoinColumn(name="id_usuario")
 	private Usuario usuario;
 
-	public TarjetasBancaria() {
+	public TarjetaBancaria() {
 	}
 
 	public int getIdTarjetaBancaria() {
