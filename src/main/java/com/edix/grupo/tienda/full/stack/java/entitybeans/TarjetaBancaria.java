@@ -11,7 +11,7 @@ import java.util.Date;
  */
 @Entity
 @Table(name="tarjetas_bancarias")
-@NamedQuery(name="TarjetasBancaria.findAll", query="SELECT t FROM TarjetasBancaria t")
+//@NamedQuery(name="TarjetasBancaria.findAll", query="SELECT t FROM TarjetasBancaria t")
 public class TarjetaBancaria implements Serializable {
 	private static final long serialVersionUID = 1L;
 
