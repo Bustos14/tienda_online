@@ -55,9 +55,12 @@ public class TarjetaController {
 	@PostMapping("/alta")
 	public String altaTarjeta(@ModelAttribute TarjetaBancaria tarjeta, RedirectAttributes attr) {
 		
-		tdao.nuevaTarjeta(tarjeta);
-		attr.addFlashAttribute("mensaje", "Tarjeta bancaria dada de alta");
-		
+		if(tdao.nuevaTarjeta(tarjeta) != 0) {
+			attr.addFlashAttribute("mensaje", "Tarjeta bancaria dada de alta");
+		} else {
+
+			attr.addFlashAttribute("mensaje", "Error al crear la tarjeta");
+		}		
 		
 		return "redirect:/tarjeta/alta";
 	}
@@ -69,20 +72,24 @@ public class TarjetaController {
 				
 		//Obtenemos la tarjeta existente
 		TarjetaBancaria tarjetaExistente = tdao.buscarUna(tarjeta.getIdTarjetaBancaria());
-		//Actualizamos los campos necesarios
-		tarjetaExistente.setNumeroTarjeta(tarjeta.getNumeroTarjeta());
-		tarjetaExistente.setNombreTitular(tarjeta.getNombreTitular());
-		tarjetaExistente.setFechaCaducidad(tarjeta.getFechaCaducidad());
-		tarjetaExistente.setCvv(tarjeta.getCvv());
-		tarjetaExistente.setUsuario(tarjeta.getUsuario());
 		
-		tdao.modificarTarjeta(tarjetaExistente);
+		if(tarjetaExistente == null) {
+			attr.addFlashAttribute("mensaje", "tarjeta no encontrada");
+		} else {			
+			//Actualizamos los campos necesarios
+			tarjetaExistente.setNumeroTarjeta(tarjeta.getNumeroTarjeta());
+			tarjetaExistente.setNombreTitular(tarjeta.getNombreTitular());
+			tarjetaExistente.setFechaCaducidad(tarjeta.getFechaCaducidad());
+			tarjetaExistente.setCvv(tarjeta.getCvv());
+			tarjetaExistente.setUsuario(tarjeta.getUsuario());
+			
+			tdao.modificarTarjeta(tarjetaExistente);
+			
+					
+			attr.addFlashAttribute("mensaje", "Tarjeta modificada con éxito");
 		
-				
-		attr.addFlashAttribute("mensaje", "Tarjeta modificada con éxito");
-		/*
-		 * Pendiente ver donde redirigir, de momento va a alta
-		 */
+		}
+	
 		return "redirect:/";
 	}
 	

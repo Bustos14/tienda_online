@@ -9,6 +9,7 @@
 </head>
 <body>
 
+	<h3>${mensaje }</h3>
 
 	<h1>Estas editando la direccion</h1>
 <div class="container">

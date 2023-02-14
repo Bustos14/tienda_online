@@ -54,9 +54,12 @@ public class DireccionController {
 	
 	@PostMapping("/alta")
 	public String altaDireccion(@ModelAttribute Direccione direccion, RedirectAttributes attr) {
-		
-		ddao.nuevaDireccion(direccion);
-		attr.addFlashAttribute("mensaje", "Dirección dada de alta");
+	
+		if(ddao.nuevaDireccion(direccion) != 0) {
+			attr.addFlashAttribute("mensaje", "Dirección dada de alta");			
+		} else {
+			attr.addFlashAttribute("mensaje", "Error al crear la direccion");
+		}
 		
 		return "redirect:/direccion/alta";
 	}
@@ -66,16 +69,22 @@ public class DireccionController {
 		//Obtenemos la direcció existente
 		Direccione direccionExistente = ddao.buscarUna(direccion.getIdDireccion());
 		
-		//Avtualizamos los campos necesarios
-		direccionExistente.setCodigoPostal(direccion.getCodigoPostal());
-		direccionExistente.setLetra(direccion.getLetra());
-		direccionExistente.setLocalidad(direccion.getLocalidad());
-		direccionExistente.setNumero(direccion.getNumero());
-		direccionExistente.setPiso(direccion.getPiso());
+		if(direccionExistente == null) {
+			attr.addFlashAttribute("mensaje", "Dirección no encontrada");
+		} else {
+
+			//Avtualizamos los campos necesarios
+			direccionExistente.setCodigoPostal(direccion.getCodigoPostal());
+			direccionExistente.setLetra(direccion.getLetra());
+			direccionExistente.setLocalidad(direccion.getLocalidad());
+			direccionExistente.setNumero(direccion.getNumero());
+			direccionExistente.setPiso(direccion.getPiso());
+			
+			ddao.modificarDireccion(direccionExistente);
+			
+			attr.addFlashAttribute("mensaje", "Direccion actualizada con éxito");
+		}
 		
-		ddao.modificarDireccion(direccionExistente);
-		
-		attr.addFlashAttribute("mensaje", "Direccion actualizada con éxito");
 		
 		return "redirect:/";
 	}
