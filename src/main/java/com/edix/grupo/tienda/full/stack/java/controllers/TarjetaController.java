@@ -44,14 +44,6 @@ public class TarjetaController {
 		return "editarTarjeta";
 	}
 	
-	@GetMapping("/eliminar/{id}")
-	public String irEliminarTarjeta(@PathVariable("id") int id, Model model) {
-		TarjetaBancaria tarjetaEditar = tdao.buscarUna(id);
-		
-		model.addAttribute("tarjetaBancaria", tarjetaEditar);
-		
-		return "eliminarTarjeta";
-	}
 	
 	@PostMapping("/alta")
 	public String altaTarjeta(@ModelAttribute TarjetaBancaria tarjeta, RedirectAttributes attr) {
@@ -88,7 +80,17 @@ public class TarjetaController {
 		return "redirect:/";
 	}
 	
-	@DeleteMapping("/eliminar/{id}")
+	@GetMapping("/eliminar/{id}")
+	public String eliminar(Model model,@PathVariable("id") int idTarjeta) {
+		int i = tdao.eliminarTarjeta(idTarjeta);
+		if(i == 0)
+			model.addAttribute("mensaje","producto no eliminado");
+		else {
+			tdao.eliminarTarjeta(idTarjeta);
+			model.addAttribute("mensaje","producto eliminado");
+		}
+		return "redirect:/";
+	}
 	
 	
 	
