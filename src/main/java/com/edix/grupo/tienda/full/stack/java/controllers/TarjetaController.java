@@ -41,6 +41,16 @@ public class TarjetaController {
 		return "editarTarjeta";
 	}
 	
+	@GetMapping("/verTarjeta/{id}")
+	public String irDetalleTarjeta(@PathVariable("id") int id, Model model) {
+		
+		TarjetaBancaria detalleTarjeta = tdao.buscarUna(id);
+		
+		model.addAttribute("tarjetaBancaria", detalleTarjeta);
+		
+		return "detalleTarjeta";
+	}
+	
 	
 	@PostMapping("/alta")
 	public String altaTarjeta(@ModelAttribute TarjetaBancaria tarjeta, RedirectAttributes attr) {

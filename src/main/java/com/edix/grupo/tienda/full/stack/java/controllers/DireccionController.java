@@ -42,6 +42,16 @@ public class DireccionController {
 		return "editarDireccion";
 	}
 	
+	@GetMapping("/verDireccion/{id}")
+	public String irDetalleTarjeta(@PathVariable("id") int id, Model model) {
+		
+		Direccione direccionDetalle = ddao.buscarUna(id);
+		
+		model.addAttribute("direccion", direccionDetalle);
+		
+		return "detalleDireccion";
+	}
+	
 	@PostMapping("/alta")
 	public String altaDireccion(@ModelAttribute Direccione direccion, RedirectAttributes attr) {
 		
