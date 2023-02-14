@@ -1,10 +1,12 @@
 package com.edix.grupo.tienda.full.stack.java.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.edix.grupo.tienda.full.stack.java.entitybeans.Direccione;
 import com.edix.grupo.tienda.full.stack.java.repository.DireccionRepository;
 
+@Repository
 public class DireccionDaoImpl implements DireccionDao {
 
 	@Autowired

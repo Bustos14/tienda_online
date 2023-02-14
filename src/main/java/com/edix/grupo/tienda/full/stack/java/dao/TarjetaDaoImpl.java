@@ -1,10 +1,12 @@
 package com.edix.grupo.tienda.full.stack.java.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.edix.grupo.tienda.full.stack.java.entitybeans.TarjetaBancaria;
 import com.edix.grupo.tienda.full.stack.java.repository.TarjetaRepository;
 
+@Repository
 public class TarjetaDaoImpl implements TarjetaDao{
 
 	@Autowired
