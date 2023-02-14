@@ -10,8 +10,9 @@
 <body>
 
 
-	<h1>Detalle de la tarjeta</h1>
+
 <div class="container">
+	<h1>Detalle de la tarjeta</h1>
 	<form action="/" method="get">
 		<div class="form-group">
 			<label for="idTarjetaBancaria">Id de la tarjeta:</label> <input

@@ -10,8 +10,8 @@
 <body>
 
 
-	<h1>Detalle de la direcció</h1>
 <div class="container">
+	<h1>Detalle de la direcció</h1>
 	<form action="/" method="get">
 	<div class="form-group">
 			<label for="idDireccion">Id de la direccion:</label> <input

@@ -9,10 +9,11 @@
 </head>
 <body>
 
+
+<div class="container">
 	<h3>Mensajes : ${mensaje }</h3>
 
 	<h1>Alta Direccion</h1>
-<div class="container">
 	<form action="/direccion/alta" method="post">
 		<div class="form-group">
 			<label for="localidad">Localidad:</label> <input type="text"

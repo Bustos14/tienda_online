@@ -9,10 +9,12 @@
 </head>
 <body>
 
+	
+<div class="container">
+
 	<h3>${mensaje }</h3>
 
 	<h1>Estas editando la direccion</h1>
-<div class="container">
 	<form action="/direccion/editar" method="post">
 	<div class="form-group">
 			<label for="idDireccion">Id de la direccion:</label> <input

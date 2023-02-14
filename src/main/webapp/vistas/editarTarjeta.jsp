@@ -10,8 +10,11 @@
 <body>
 
 
-	<h1>Estas editando la tarjeta</h1>
+	
 <div class="container">
+
+	<h1>Estas editando la tarjeta</h1>
+
 	<form action="/tarjeta/editar" method="post">
 		<div class="form-group">
 			<label for="idTarjetaBancaria">Id de la tarjeta:</label> <input

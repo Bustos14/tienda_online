@@ -9,10 +9,13 @@
 </head>
 <body>
 
+	
+<div class="container">
+	
 	<h3>Mensajes : ${mensaje }</h3>
 
 	<h1>Alta Tarjeta</h1>
-<div class="container">
+
 	<form action="/tarjeta/alta" method="post">
 		<div class="form-group">
 			<label for="numeroTarjeta">Número de tarjeta:</label> <input
