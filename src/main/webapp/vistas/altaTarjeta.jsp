@@ -9,6 +9,8 @@
 </head>
 <body>
 
+	<h3>Mensajes : ${mensaje }</h3>
+
 	<h1>Alta Tarjeta</h1>
 <div class="container">
 	<form action="/tarjeta/alta" method="post">

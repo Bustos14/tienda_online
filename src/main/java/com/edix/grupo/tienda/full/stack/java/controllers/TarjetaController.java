@@ -9,8 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -31,13 +31,13 @@ public class TarjetaController {
 	}
 	
 	@PostMapping("/alta")
-	public String altaTarjeta(TarjetaBancaria tarjeta, RedirectAttributes attr) {
+	public String altaTarjeta(@ModelAttribute TarjetaBancaria tarjeta, RedirectAttributes attr) {
 		
-		/*
-		 * Crear logica
-		 */
+		tdao.nuevaTarjeta(tarjeta);
+		attr.addFlashAttribute("mensaje", "Tarjeta bancaria dada de alta");
 		
-		return "/tarjeta/alta";
+		
+		return "redirect:/tarjeta/alta";
 	}
 	
 	
