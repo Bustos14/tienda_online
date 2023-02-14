@@ -81,10 +81,9 @@ public class TarjetaController {
 	public String eliminar(Model model,@PathVariable("id") int idTarjeta) {
 		int i = tdao.eliminarTarjeta(idTarjeta);
 		if(i == 0)
-			model.addAttribute("mensaje","producto no eliminado");
+			model.addAttribute("mensaje","tarjeta no eliminado");
 		else {
-			tdao.eliminarTarjeta(idTarjeta);
-			model.addAttribute("mensaje","producto eliminado");
+			model.addAttribute("mensaje","tarjeta eliminado");
 		}
 		return "redirect:/";
 	}
