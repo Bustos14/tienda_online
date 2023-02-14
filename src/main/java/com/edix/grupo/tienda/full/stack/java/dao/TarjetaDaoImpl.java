@@ -17,6 +17,7 @@ public class TarjetaDaoImpl implements TarjetaDao{
 		int filas = 0;
 		try {
 			trepo.save(tarjeta);
+			filas = 1;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
