@@ -35,7 +35,7 @@
 		</div>
 		<div class="form-group">
 			<label for="usuario">ID usuario:</label> <input type="number"
-				class="form-control" id="usuario" name="usuario">
+				class="form-control" id="usuario" name="usuario" value="1" readonly>
 		</div>
 		<button type="submit" class="btn btn-primary">Enviar</button>
 		<button type="reset" class="btn btn-secondary">Borrar</button>

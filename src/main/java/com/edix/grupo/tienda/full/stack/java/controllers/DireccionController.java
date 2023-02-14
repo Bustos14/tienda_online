@@ -50,6 +50,37 @@ public class DireccionController {
 		
 		return "redirect:/direccion/alta";
 	}
+	
+	@PostMapping("/editar")
+	public String editarDireccion(@ModelAttribute Direccione direccion, RedirectAttributes attr) {
+		//Obtenemos la direcció existente
+		Direccione direccionExistente = ddao.buscarUna(direccion.getIdDireccion());
+		
+		//Avtualizamos los campos necesarios
+		direccionExistente.setCodigoPostal(direccion.getCodigoPostal());
+		direccionExistente.setLetra(direccion.getLetra());
+		direccionExistente.setLocalidad(direccion.getLocalidad());
+		direccionExistente.setNumero(direccion.getNumero());
+		direccionExistente.setPiso(direccion.getPiso());
+		
+		ddao.modificarDireccion(direccionExistente);
+		
+		attr.addFlashAttribute("mensaje", "Direccion actualizada con éxito");
+		
+		return "redirect:/";
+	}
+	
+	@GetMapping("/eliminar/{id}")
+	public String eliminar(Model model,@PathVariable("id") int idDireccion) {
+		int i = ddao.eliminarDireccion(idDireccion);
+		if(i == 0)
+			model.addAttribute("mensaje","Direccion no eliminado");
+		else {
+			model.addAttribute("mensaje","Direccion eliminado");
+		}
+		return "redirect:/";
+	}
+	
 
 	//Método necesario para formatear fechas
 		@InitBinder

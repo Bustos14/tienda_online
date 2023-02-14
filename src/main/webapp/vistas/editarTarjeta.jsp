@@ -37,10 +37,6 @@
 			<label for="cvv">CVV:</label> <input type="number"
 				class="form-control" id="cvv" name="cvv" value="${tarjetaBancaria.cvv}" readonly>
 		</div>
-		<div class="form-group">
-			<label for="usuario">ID usuario:</label> <input type="number"
-				class="form-control" id="usuario" name="usuario" value="${tarjetaBancaria.usuario.idUsuario}">
-		</div>
 		<button type="submit" class="btn btn-primary">Actualizar</button>
 	</form>
 </div>

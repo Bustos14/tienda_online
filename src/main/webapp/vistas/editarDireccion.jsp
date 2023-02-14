@@ -10,15 +10,15 @@
 <body>
 
 
-	<h1>Estas editando la tarjeta</h1>
+	<h1>Estas editando la direccion</h1>
 <div class="container">
 	<form action="/direccion/editar" method="post">
-		<div class="form-group">
-			<label for="idDireccion">Id de la tarjeta:</label> <input
+	<div class="form-group">
+			<label for="idDireccion">Id de la direccion:</label> <input
 				type="text" class="form-control" id="idDireccion"
 				name="idDireccion" value="${direccion.idDireccion}" readonly>
-		</div>
-		<div class="form-group">
+		</div>	
+				<div class="form-group">
 			<label for="localidad">Localidad:</label> <input
 				type="text" class="form-control" id="localidad"
 				name="localidad" value="${direccion.localidad}">
@@ -30,16 +30,21 @@
 		</div>
 		<div class="form-group">
 			<label for="calle">Calle:</label> <input
-				type="date" class="form-control" id="calle"
+				type="text" class="form-control" id="calle"
 				name="calle" value="${direccion.calle}">
 		</div>
 		<div class="form-group">
-			<label for="numero">Numero:</label> <input type="number"
+			<label for="numero">Numero:</label> <input type="text"
 				class="form-control" id="numero" name="numero" value="${direccion.numero}">
 		</div>
 		<div class="form-group">
-			<label for="piso">ID usuario:</label> <input type="number"
+			<label for="piso">Piso:</label> <input type="text"
 				class="form-control" id="piso" name="piso" value="${direccion.piso}">
+		</div>
+		<div class="form-group">
+			<label for="letra">Letra:</label> <input
+				type="text" class="form-control" id="letra"
+				name="letra" value="${direccion.letra}">
 		</div>
 		<button type="submit" class="btn btn-primary">Actualizar</button>
 	</form>

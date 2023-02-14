@@ -56,10 +56,9 @@ public class TarjetaController {
 	
 	@PostMapping("/editar")
 	public String editarTarjeta(@ModelAttribute TarjetaBancaria tarjeta, RedirectAttributes attr) {
-		
+				
 		//Obtenemos la tarjeta existente
 		TarjetaBancaria tarjetaExistente = tdao.buscarUna(tarjeta.getIdTarjetaBancaria());
-		
 		//Actualizamos los campos necesarios
 		tarjetaExistente.setNumeroTarjeta(tarjeta.getNumeroTarjeta());
 		tarjetaExistente.setNombreTitular(tarjeta.getNombreTitular());
