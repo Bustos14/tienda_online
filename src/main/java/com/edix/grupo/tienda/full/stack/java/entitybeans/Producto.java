@@ -23,6 +23,16 @@ public class Producto implements Serializable {
 
 	private String nombre;
 
+	public Producto(int idProducto, String descripcion, String nombre, double price, int stock, String estado) {
+		super();
+		this.idProducto = idProducto;
+		this.descripcion = descripcion;
+		this.nombre = nombre;
+		this.price = price;
+		this.stock = stock;
+		this.estado = estado;
+	}
+
 	private double price;
 
 	private int stock;

@@ -14,12 +14,21 @@ public class ProductoDaoImpl implements ProductoDao{
 	private ProductoRepository prepo;
 	@Override
 	public int nuevoProducto(Producto producto) {
-		
+		try {
+				prepo.save(producto);
+				return 1;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return 0;
 	}
 
 	@Override
 	public int modificarProducto(Producto producto) {
+		if(prepo.findById(producto.getIdProducto())!=null) {
+			prepo.save(producto);
+			return 1;
+		}
 		return 0;
 	}
 

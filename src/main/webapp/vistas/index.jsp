@@ -18,7 +18,7 @@
 <a href ="/">Todos</a>
 <a href ="/destacados">Destacados</a>
 <a href ="/oferta">Oferta</a>
-<a href ="/oferta">Nuevo producto</a>
+<a href ="/altaProducto">Nuevo producto</a>
 </div>
 
 <br>
@@ -32,7 +32,7 @@
 	<td> ${ele.stock} </td>
 	<td>${ele.price} &euro; </td>
 	<td><a href="/detallesProducto/${ele.idProducto}">Detalle</a></td>
-	<td><a href="/detallesProducto/${ele.idProducto}">Modificar</a></td>
+	<td><a href="/modificarProducto/${ele.idProducto}">Modificar</a></td>
 	<td><a href="/eliminarProducto/${ele.idProducto}">Eliminar</a></td>
 	</tr>
 	</c:forEach>
