@@ -35,7 +35,7 @@ public class TarjetaDaoImpl implements TarjetaDao{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return 0;
+		return filas;
 	}
 
 	@Override

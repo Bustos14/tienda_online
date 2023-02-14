@@ -6,12 +6,17 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.edix.grupo.tienda.full.stack.java.dao.TarjetaDaoImpl;
@@ -30,6 +35,24 @@ public class TarjetaController {
 		return "altaTarjeta";
 	}
 	
+	@GetMapping("/editar/{id}")
+	public String irEditarTarjeta(@PathVariable("id") int id, Model model) {
+		TarjetaBancaria tarjetaEditar = tdao.buscarUna(id);
+		
+		model.addAttribute("tarjetaBancaria", tarjetaEditar);
+		
+		return "editarTarjeta";
+	}
+	
+	@GetMapping("/eliminar/{id}")
+	public String irEliminarTarjeta(@PathVariable("id") int id, Model model) {
+		TarjetaBancaria tarjetaEditar = tdao.buscarUna(id);
+		
+		model.addAttribute("tarjetaBancaria", tarjetaEditar);
+		
+		return "eliminarTarjeta";
+	}
+	
 	@PostMapping("/alta")
 	public String altaTarjeta(@ModelAttribute TarjetaBancaria tarjeta, RedirectAttributes attr) {
 		
@@ -39,6 +62,34 @@ public class TarjetaController {
 		
 		return "redirect:/tarjeta/alta";
 	}
+	
+	
+	
+	@PostMapping("/editar")
+	public String editarTarjeta(@ModelAttribute TarjetaBancaria tarjeta, RedirectAttributes attr) {
+		
+		//Obtenemos la tarjeta existente
+		TarjetaBancaria tarjetaExistente = tdao.buscarUna(tarjeta.getIdTarjetaBancaria());
+		
+		//Actualizamos los campos necesarios
+		tarjetaExistente.setNumeroTarjeta(tarjeta.getNumeroTarjeta());
+		tarjetaExistente.setNombreTitular(tarjeta.getNombreTitular());
+		tarjetaExistente.setFechaCaducidad(tarjeta.getFechaCaducidad());
+		tarjetaExistente.setCvv(tarjeta.getCvv());
+		tarjetaExistente.setUsuario(tarjeta.getUsuario());
+		
+		tdao.modificarTarjeta(tarjetaExistente);
+		
+				
+		attr.addFlashAttribute("mensaje", "Tarjeta modificada con éxito");
+		/*
+		 * Pendiente ver donde redirigir, de momento va a alta
+		 */
+		return "redirect:/";
+	}
+	
+	@DeleteMapping("/eliminar/{id}")
+	
 	
 	
 	//Método necesario para formatear fechas
