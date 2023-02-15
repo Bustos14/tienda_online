@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.edix.grupo.tienda.full.stack.java.dao.TarjetaDaoImpl;
-import com.edix.grupo.tienda.full.stack.java.entitybeans.TarjetaBancaria;
+import com.edix.grupo.tienda.full.stack.java.entitybeans.TarjetasBancaria;
 
 @Controller
 @RequestMapping("/tarjeta")
@@ -34,7 +34,7 @@ public class TarjetaController {
 	
 	@GetMapping("/editar/{id}")
 	public String irEditarTarjeta(@PathVariable("id") int id, Model model) {
-		TarjetaBancaria tarjetaEditar = tdao.buscarUna(id);
+		TarjetasBancaria tarjetaEditar = tdao.buscarUna(id);
 		
 		model.addAttribute("tarjetaBancaria", tarjetaEditar);
 		
@@ -44,7 +44,7 @@ public class TarjetaController {
 	@GetMapping("/verTarjeta/{id}")
 	public String irDetalleTarjeta(@PathVariable("id") int id, Model model) {
 		
-		TarjetaBancaria detalleTarjeta = tdao.buscarUna(id);
+		TarjetasBancaria detalleTarjeta = tdao.buscarUna(id);
 		
 		model.addAttribute("tarjetaBancaria", detalleTarjeta);
 		
@@ -53,7 +53,7 @@ public class TarjetaController {
 	
 	
 	@PostMapping("/alta")
-	public String altaTarjeta(@ModelAttribute TarjetaBancaria tarjeta, RedirectAttributes attr) {
+	public String altaTarjeta(@ModelAttribute TarjetasBancaria tarjeta, RedirectAttributes attr) {
 		
 		if(tdao.nuevaTarjeta(tarjeta) != 0) {
 			attr.addFlashAttribute("mensaje", "Tarjeta bancaria dada de alta");
@@ -68,10 +68,10 @@ public class TarjetaController {
 	
 	
 	@PostMapping("/editar")
-	public String editarTarjeta(@ModelAttribute TarjetaBancaria tarjeta, RedirectAttributes attr) {
+	public String editarTarjeta(@ModelAttribute TarjetasBancaria tarjeta, RedirectAttributes attr) {
 				
 		//Obtenemos la tarjeta existente
-		TarjetaBancaria tarjetaExistente = tdao.buscarUna(tarjeta.getIdTarjetaBancaria());
+		TarjetasBancaria tarjetaExistente = tdao.buscarUna(tarjeta.getIdTarjetaBancaria());
 		
 		if(tarjetaExistente == null) {
 			attr.addFlashAttribute("mensaje", "tarjeta no encontrada");

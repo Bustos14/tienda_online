@@ -36,7 +36,7 @@ public class Pedido implements Serializable {
 
 	//uni-directional many-to-one association to Usuario
 	@ManyToOne
-	@JoinColumn(name="id_usuario")
+	@JoinColumn(name="username")
 	private Usuario usuario;
 
 	public Pedido() {

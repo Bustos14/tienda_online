@@ -3,7 +3,7 @@ package com.edix.grupo.tienda.full.stack.java.dao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.edix.grupo.tienda.full.stack.java.entitybeans.TarjetaBancaria;
+import com.edix.grupo.tienda.full.stack.java.entitybeans.TarjetasBancaria;
 import com.edix.grupo.tienda.full.stack.java.repository.TarjetaRepository;
 
 @Repository
@@ -13,7 +13,7 @@ public class TarjetaDaoImpl implements TarjetaDao{
 	private TarjetaRepository trepo;
 	
 	@Override
-	public int nuevaTarjeta(TarjetaBancaria tarjeta) {
+	public int nuevaTarjeta(TarjetasBancaria tarjeta) {
 		int filas = 0;
 		try {
 			trepo.save(tarjeta);
@@ -25,9 +25,9 @@ public class TarjetaDaoImpl implements TarjetaDao{
 	}
 
 	@Override
-	public int modificarTarjeta(TarjetaBancaria tarjeta) {
+	public int modificarTarjeta(TarjetasBancaria tarjeta) {
 		int filas = 0;
-		TarjetaBancaria mod = null;
+		TarjetasBancaria mod = null;
 		try {
 			mod = trepo.getOne(tarjeta.getIdTarjetaBancaria());
 			mod = tarjeta;
@@ -53,7 +53,7 @@ public class TarjetaDaoImpl implements TarjetaDao{
 	}
 
 	@Override
-	public TarjetaBancaria buscarUna(int idTarjeta) {
+	public TarjetasBancaria buscarUna(int idTarjeta) {
 		return trepo.findById(idTarjeta).orElse(null);
 	}
 

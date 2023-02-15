@@ -11,8 +11,8 @@ import java.util.Date;
  */
 @Entity
 @Table(name="tarjetas_bancarias")
-//@NamedQuery(name="TarjetasBancaria.findAll", query="SELECT t FROM TarjetasBancaria t")
-public class TarjetaBancaria implements Serializable {
+@NamedQuery(name="TarjetasBancaria.findAll", query="SELECT t FROM TarjetasBancaria t")
+public class TarjetasBancaria implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -34,10 +34,10 @@ public class TarjetaBancaria implements Serializable {
 
 	//uni-directional many-to-one association to Usuario
 	@ManyToOne
-	@JoinColumn(name="id_usuario")
+	@JoinColumn(name="username")
 	private Usuario usuario;
 
-	public TarjetaBancaria() {
+	public TarjetasBancaria() {
 	}
 
 	public int getIdTarjetaBancaria() {

@@ -1,13 +1,13 @@
 package com.edix.grupo.tienda.full.stack.java.dao;
 
-import com.edix.grupo.tienda.full.stack.java.entitybeans.TarjetaBancaria;
+import com.edix.grupo.tienda.full.stack.java.entitybeans.TarjetasBancaria;
 
 public interface TarjetaDao {
 	
-	int nuevaTarjeta(TarjetaBancaria tarjeta);
-	int modificarTarjeta(TarjetaBancaria tarjeta);
+	int nuevaTarjeta(TarjetasBancaria tarjeta);
+	int modificarTarjeta(TarjetasBancaria tarjeta);
 	int eliminarTarjeta(int idTarjeta);
-	TarjetaBancaria buscarUna(int idTarjeta);
+	TarjetasBancaria buscarUna(int idTarjeta);
 	
 
 }

@@ -3,6 +3,7 @@ package com.edix.grupo.tienda.full.stack.java.entitybeans;
 import java.io.Serializable;
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -16,36 +17,72 @@ public class Usuario implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id_usuario")
-	private int idUsuario;
+	private String username;
 
 	private String apellidos;
 
 	private String contrasena;
 
-	private String email;
+	private byte enabled;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name="fecha_nacimiento")
 	private Date fechaNacimiento;
 
+	@Temporal(TemporalType.DATE)
+	@Column(name="fecha_registro")
+	private Date fechaRegistro;
+
 	private String nombre;
 
-	//uni-directional many-to-one association to Role
-	@ManyToOne
-	@JoinColumn(name="id_rol")
-	private Role role;
+	//uni-directional many-to-many association to Direccione
+	@ManyToMany
+	@JoinTable(
+		name="usuario_direccion"
+		, joinColumns={
+			@JoinColumn(name="username")
+			}
+		, inverseJoinColumns={
+			@JoinColumn(name="id_direccion")
+			}
+		)
+	private List<Direccione> direcciones;
+
+	//uni-directional many-to-many association to Role
+	@ManyToMany
+	@JoinTable(
+		name="usuario_rol"
+		, joinColumns={
+			@JoinColumn(name="username")
+			}
+		, inverseJoinColumns={
+			@JoinColumn(name="id_rol")
+			}
+		)
+	private List<Role> roles;
+
+	//uni-directional many-to-many association to TarjetasBancaria
+	@ManyToMany
+	@JoinTable(
+		name="usuarios_tarjetas_bancarias"
+		, joinColumns={
+			@JoinColumn(name="username")
+			}
+		, inverseJoinColumns={
+			@JoinColumn(name="id_tarjeta_bancaria")
+			}
+		)
+	private List<TarjetasBancaria> tarjetasBancarias;
 
 	public Usuario() {
 	}
 
-	public int getIdUsuario() {
-		return this.idUsuario;
+	public String getUsername() {
+		return this.username;
 	}
 
-	public void setIdUsuario(int idUsuario) {
-		this.idUsuario = idUsuario;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getApellidos() {
@@ -64,12 +101,12 @@ public class Usuario implements Serializable {
 		this.contrasena = contrasena;
 	}
 
-	public String getEmail() {
-		return this.email;
+	public byte getEnabled() {
+		return this.enabled;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setEnabled(byte enabled) {
+		this.enabled = enabled;
 	}
 
 	public Date getFechaNacimiento() {
@@ -80,6 +117,14 @@ public class Usuario implements Serializable {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 
+	public Date getFechaRegistro() {
+		return this.fechaRegistro;
+	}
+
+	public void setFechaRegistro(Date fechaRegistro) {
+		this.fechaRegistro = fechaRegistro;
+	}
+
 	public String getNombre() {
 		return this.nombre;
 	}
@@ -88,12 +133,28 @@ public class Usuario implements Serializable {
 		this.nombre = nombre;
 	}
 
-	public Role getRole() {
-		return this.role;
+	public List<Direccione> getDirecciones() {
+		return this.direcciones;
 	}
 
-	public void setRole(Role role) {
-		this.role = role;
+	public void setDirecciones(List<Direccione> direcciones) {
+		this.direcciones = direcciones;
+	}
+
+	public List<Role> getRoles() {
+		return this.roles;
+	}
+
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
+	}
+
+	public List<TarjetasBancaria> getTarjetasBancarias() {
+		return this.tarjetasBancarias;
+	}
+
+	public void setTarjetasBancarias(List<TarjetasBancaria> tarjetasBancarias) {
+		this.tarjetasBancarias = tarjetasBancarias;
 	}
 
 }

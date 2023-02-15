@@ -2,6 +2,7 @@ package com.edix.grupo.tienda.full.stack.java.entitybeans;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.util.List;
 
 
 /**
@@ -21,31 +22,28 @@ public class Producto implements Serializable {
 
 	private String descripcion;
 
-	private String nombre;
+	private String estado;
 
-	public Producto(int idProducto, String descripcion, String nombre, double price, int stock, String estado) {
-		super();
-		this.idProducto = idProducto;
-		this.descripcion = descripcion;
-		this.nombre = nombre;
-		this.price = price;
-		this.stock = stock;
-		this.estado = estado;
-	}
+	private String img;
+
+	private String nombre;
 
 	private double price;
 
 	private int stock;
-	
-	private String estado;
 
-	public String getEstado() {
-		return estado;
-	}
-
-	public void setEstado(String estado) {
-		this.estado = estado;
-	}
+	//uni-directional many-to-many association to Tipo
+	@ManyToMany
+	@JoinTable(
+		name="producto_tipo"
+		, joinColumns={
+			@JoinColumn(name="id_producto")
+			}
+		, inverseJoinColumns={
+			@JoinColumn(name="id_tipo")
+			}
+		)
+	private List<Tipo> tipos;
 
 	public Producto() {
 	}
@@ -64,6 +62,22 @@ public class Producto implements Serializable {
 
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
+	}
+
+	public String getEstado() {
+		return this.estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+
+	public String getImg() {
+		return this.img;
+	}
+
+	public void setImg(String img) {
+		this.img = img;
 	}
 
 	public String getNombre() {
@@ -88,6 +102,14 @@ public class Producto implements Serializable {
 
 	public void setStock(int stock) {
 		this.stock = stock;
+	}
+
+	public List<Tipo> getTipos() {
+		return this.tipos;
+	}
+
+	public void setTipos(List<Tipo> tipos) {
+		this.tipos = tipos;
 	}
 
 }

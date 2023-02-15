@@ -18,7 +18,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.edix.grupo.tienda.full.stack.java.dao.DireccionDaoImpl;
 import com.edix.grupo.tienda.full.stack.java.entitybeans.Direccione;
-import com.edix.grupo.tienda.full.stack.java.entitybeans.TarjetaBancaria;
 
 @Controller
 @RequestMapping("/direccion")
