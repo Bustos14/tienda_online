@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
@@ -22,9 +23,11 @@ import com.edix.grupo.tienda.full.stack.java.dao.TarjetaDaoImpl;
 import com.edix.grupo.tienda.full.stack.java.entitybeans.TarjetasBancaria;
 import com.edix.grupo.tienda.full.stack.java.entitybeans.Usuario;
 
+
 @Controller
 @RequestMapping("/tarjeta")
 public class TarjetaController {
+	
 	
 	@Autowired
 	private TarjetaDaoImpl tdao;
@@ -34,6 +37,8 @@ public class TarjetaController {
 		
 		return "altaTarjeta";
 	}
+	
+
 	
 	@GetMapping("/editar/{id}")
 	public String irEditarTarjeta(@PathVariable("id") int id, Model model) {
@@ -56,10 +61,8 @@ public class TarjetaController {
 	
 	
 	@PostMapping("/alta")
-	public String altaTarjeta(@ModelAttribute TarjetasBancaria tarjeta, RedirectAttributes attr, HttpSession sesion) {
+	public String altaTarjeta(@ModelAttribute TarjetasBancaria tarjeta, RedirectAttributes attr) {
 		
-		Usuario usuario = (Usuario) sesion.getAttribute("usuario");
-		tarjeta.setUsuario(usuario);
 		
 		if(tdao.nuevaTarjeta(tarjeta) != 0) {
 			attr.addFlashAttribute("mensaje", "Tarjeta bancaria dada de alta");
