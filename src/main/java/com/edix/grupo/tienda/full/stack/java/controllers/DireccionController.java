@@ -55,9 +55,9 @@ public class DireccionController {
 	public String altaDireccion(@ModelAttribute Direccione direccion, RedirectAttributes attr) {
 	
 		if(ddao.nuevaDireccion(direccion) != 0) {
-			attr.addFlashAttribute("mensaje", "Dirección dada de alta");			
+			attr.addFlashAttribute("mensaje", "Error al dar de alta direcicón");			
 		} else {
-			attr.addFlashAttribute("mensaje", "Error al crear la direccion");
+			attr.addFlashAttribute("mensaje", "Dirección dada de alta");
 		}
 		
 		return "redirect:/direccion/alta";
