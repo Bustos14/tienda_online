@@ -21,6 +21,6 @@
 	<td><c:out value="${producto.estado}" /></td>
 	</tr>
 	</table>
-	<a href="/"> Volver</a>
+		<a href="/" class="btn btn-primary"> Volver</a>
 </body>
 </html>

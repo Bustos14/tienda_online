@@ -50,6 +50,7 @@
 				name="letra" value="${direccion.letra}">
 		</div>
 		<button type="submit" class="btn btn-primary">Actualizar</button>
+		<a href="/" class="btn btn-primary"> Volver</a>
 	</form>
 </div>
 	

@@ -43,7 +43,8 @@
 			<Option value = "Destacado"> Destacado </option>
 		</Select>
 		</div>
-		<button type="submit" class="btn btn-primary">Actualizar</button>
+		<button type="submit" class="btn btn-primary">Actualizar</button>		
+		<a href="/" class="btn btn-primary"> Volver</a>
 	</form>
 </div>
 	
