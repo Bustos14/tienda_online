@@ -19,14 +19,9 @@
 <a href ="/destacados">Destacados</a>
 <a href ="/oferta">Oferta</a>
 <a href ="/altaProducto">Nuevo producto</a>
-<<<<<<< HEAD
 <a class="nav-link" href="/registro">Registrarse</a>
-<a class nav link"
-href
-logout ">Cerrar Sesión</ li
-=======
+<a class="nav-link" href="/logout ">Cerrar Sesión</a>
 <a href ="/registro">Registrate</a>
->>>>>>> d78a315b00437e4022de001a2f750b7f851f7c06
 </div>
 
 <br>

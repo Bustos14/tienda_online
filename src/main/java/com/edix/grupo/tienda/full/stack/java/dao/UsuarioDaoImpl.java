@@ -25,5 +25,14 @@ public class UsuarioDaoImpl implements UsuarioDao{
 		}
 		return false;
 	}
+	
+	@Override
+    public boolean modUsuario(Usuario usuario) {
+        if (findById(usuario.getUsername()) != null) {
+                urepo.save(usuario);
+                return true;
+        }
+        return false;
+    }
 
 }

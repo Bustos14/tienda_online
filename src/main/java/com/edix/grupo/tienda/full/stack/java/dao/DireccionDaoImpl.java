@@ -17,6 +17,7 @@ public class DireccionDaoImpl implements DireccionDao {
 		int filas = 0;
 		try {
 			drepo.save(direccion);
+			filas = 1;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

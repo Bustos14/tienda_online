@@ -6,4 +6,5 @@ public interface UsuarioDao {
 
 	Usuario findById(String username);
 	boolean registro(Usuario usuario);
+	boolean modUsuario(Usuario usuario);
 }

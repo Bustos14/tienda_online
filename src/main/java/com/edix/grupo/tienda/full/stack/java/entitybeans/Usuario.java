@@ -3,6 +3,8 @@ package com.edix.grupo.tienda.full.stack.java.entitybeans;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import org.springframework.ui.Model;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -151,6 +153,19 @@ public class Usuario implements Serializable {
 			roles = new ArrayList<>();
 		roles.add(rol);
 	}
+	
+	public void addTarjetA(TarjetasBancaria tarjeta) {
+		if(tarjetasBancarias == null)
+			tarjetasBancarias = new ArrayList<>();
+		tarjetasBancarias.add(tarjeta);
+	}
+	
+	public void addDireccion(Direccione direccion) {
+		if(direcciones == null)
+			direcciones = new ArrayList<>();
+		direcciones.add(direccion);
+	}
+	
 	public void setRoles(List<Role> roles) {
 		this.roles = roles;
 	}

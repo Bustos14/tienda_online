@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.edix.grupo.tienda.full.stack.java.dao.TarjetaDaoImpl;
+import com.edix.grupo.tienda.full.stack.java.dao.UsuarioDaoImpl;
 import com.edix.grupo.tienda.full.stack.java.entitybeans.TarjetasBancaria;
 import com.edix.grupo.tienda.full.stack.java.entitybeans.Usuario;
 
@@ -32,8 +33,12 @@ public class TarjetaController {
 	@Autowired
 	private TarjetaDaoImpl tdao;
 	
+	@Autowired
+	private UsuarioDaoImpl udao;
+	
 	@GetMapping("/alta")
-	public String irAltaTarjeta() {
+	public String irAltaTarjeta(Authentication auth, HttpSession sesion, Model model) {
+		
 		
 		return "altaTarjeta";
 	}
@@ -61,10 +66,15 @@ public class TarjetaController {
 	
 	
 	@PostMapping("/alta")
-	public String altaTarjeta(@ModelAttribute TarjetasBancaria tarjeta, RedirectAttributes attr) {
+	public String altaTarjeta(Authentication auth, HttpSession sesion,TarjetasBancaria tarjeta, RedirectAttributes attr) {
+		
+		Usuario usuario = udao.findById(auth.getName());	
 		
 		
 		if(tdao.nuevaTarjeta(tarjeta) != 0) {
+			
+			usuario.addTarjetA(tarjeta);
+			udao.modUsuario(usuario);
 			attr.addFlashAttribute("mensaje", "Tarjeta bancaria dada de alta");
 		} else {
 

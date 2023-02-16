@@ -2,6 +2,8 @@ package com.edix.grupo.tienda.full.stack.java.entitybeans;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import java.util.ArrayList;
 import java.util.Date;
 
 
@@ -36,7 +38,7 @@ public class TarjetasBancaria implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="username")
 	private Usuario usuario;
-
+	
 	public TarjetasBancaria() {
 	}
 

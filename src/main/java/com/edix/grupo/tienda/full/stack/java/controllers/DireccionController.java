@@ -3,8 +3,11 @@ package com.edix.grupo.tienda.full.stack.java.controllers;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
@@ -17,7 +20,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.edix.grupo.tienda.full.stack.java.dao.DireccionDaoImpl;
+import com.edix.grupo.tienda.full.stack.java.dao.UsuarioDaoImpl;
 import com.edix.grupo.tienda.full.stack.java.entitybeans.Direccione;
+import com.edix.grupo.tienda.full.stack.java.entitybeans.Usuario;
 
 @Controller
 @RequestMapping("/direccion")
@@ -26,8 +31,11 @@ public class DireccionController {
 	@Autowired
 	private DireccionDaoImpl ddao;
 	
+	@Autowired
+	private UsuarioDaoImpl udao;
+	
 	@GetMapping("/alta")
-	public String irAltaDireccion() {
+	public String irAltaDireccion(Authentication auth, HttpSession sesion, Model model) {
 		
 		return "altaDireccion";
 	}
@@ -35,6 +43,11 @@ public class DireccionController {
 	@GetMapping("/editar/{id}")
 	public String irEditarDirecceion(@PathVariable("id") int id, Model model) {
 		Direccione direccionEditar = ddao.buscarUna(id);
+		
+		if(direccionEditar == null) {
+			model.addAttribute("mensaje", "La tarjeta que deseaba editar no existe");
+			return "redirect:/";
+		}
 		
 		model.addAttribute("direccion", direccionEditar);
 		
@@ -52,12 +65,17 @@ public class DireccionController {
 	}
 	
 	@PostMapping("/alta")
-	public String altaDireccion(@ModelAttribute Direccione direccion, RedirectAttributes attr) {
+	public String altaDireccion(Authentication auth, HttpSession sesion, Direccione direccion, RedirectAttributes attr) {
+		
+		Usuario usuario = udao.findById(auth.getName());
 	
 		if(ddao.nuevaDireccion(direccion) != 0) {
-			attr.addFlashAttribute("mensaje", "Error al dar de alta direcicón");			
+			usuario.addDireccion(direccion);
+			udao.modUsuario(usuario);
+			
+			attr.addFlashAttribute("mensaje", "Dirección dada de alta");						
 		} else {
-			attr.addFlashAttribute("mensaje", "Dirección dada de alta");
+			attr.addFlashAttribute("mensaje", "Error al dar de alta direcicón");
 		}
 		
 		return "redirect:/direccion/alta";
