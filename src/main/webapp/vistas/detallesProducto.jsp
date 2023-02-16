@@ -9,6 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+
 <table border="2">
 	<tr>
 	<th>Nombre</th> <th> Descrip&oacurate;n </th> <th> Precio </th> <th> Stock </th> <th> Estado actual </th>
@@ -21,6 +22,10 @@
 	<td><c:out value="${producto.estado}" /></td>
 	</tr>
 	</table>
+		<img src="/recursos/${producto.img}"
+	alt="${producto.img}"
+	style="max-width:25%;">
 		<a href="/" class="btn btn-primary"> Volver</a>
+
 </body>
 </html>

@@ -97,8 +97,8 @@ public class ProductoController {
 	@PostMapping("/altaProducto")
 	public String altaProducto(@ModelAttribute Producto p, RedirectAttributes attr, @RequestParam("file") MultipartFile image) {
 		if(!image.isEmpty()) {
-			Path directorioImagenes = Paths.get("src//main//resources//static/images"); 
-			String rutaAbsoluta = directorioImagenes.toFile().getAbsolutePath();
+			//Path directorioImagenes = Paths.get("src//main//resources//static/images"); 
+			String rutaAbsoluta = "C:/Producto/recursos";
 			try {
 				byte[] bytesImg = image.getBytes();
 				Path rutaCompleta = Paths.get(rutaAbsoluta + "//" + image.getOriginalFilename());
