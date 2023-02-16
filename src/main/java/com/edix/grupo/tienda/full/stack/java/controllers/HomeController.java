@@ -38,11 +38,6 @@ public class HomeController {
 	private PasswordEncoder passwordEncoder;
 	@GetMapping("/")
 	public String inicio(Model model, HttpSession misesion, Authentication aut) {
-		System.out.println ("usuario : " + aut.getName());
-		Usuario usuario = udao.findById(aut.getName());
-		if (misesion.getAttribute ("usuario") == null) {
-			misesion.setAttribute("usuario",usuario);
-		}
 		List<Producto> listproductos= pdao.listadoProducto();
 		model.addAttribute("productos", listproductos);
 		return "index";

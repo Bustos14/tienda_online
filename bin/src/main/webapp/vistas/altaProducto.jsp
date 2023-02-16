@@ -27,7 +27,7 @@
 		</div>
 		<div class="form-group">
 			<label for="price">Precio:</label> <input
-				type="number" class="form-control" id="price" step="any"
+				type="number" class="form-control" id="price"
 				name="price">
 		</div>
 		<div class="form-group">
