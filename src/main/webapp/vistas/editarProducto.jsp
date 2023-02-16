@@ -29,7 +29,7 @@
 		</div>
 		<div class="form-group">
 			<label for="price">Precio:</label> <input
-				type="number" class="form-control" id="price"
+				type="number" class="form-control" id="price" step="any"
 				name="price" value="${productoEditable.price}">
 		</div>
 		<div class="form-group">
