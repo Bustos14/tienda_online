@@ -5,6 +5,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,7 +33,8 @@ public class ProductoController {
 		return "index";
 	}
 	@GetMapping("/oferta")
-	public String ofertas(Model model) {
+	public String ofertas(Model model, HttpSession misesion) {
+		System.out.println(misesion.getAttribute("usuario"));
 		List<Producto> listproductos= pdao.lProductoPorEstado("Oferta");
 		model.addAttribute("productos", listproductos);
 		return "index";

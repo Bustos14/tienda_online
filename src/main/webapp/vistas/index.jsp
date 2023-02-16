@@ -19,6 +19,10 @@
 <a href ="/destacados">Destacados</a>
 <a href ="/oferta">Oferta</a>
 <a href ="/altaProducto">Nuevo producto</a>
+<a class="nav-link" href="/registro">Registrarse</a>
+<a class nav link"
+href
+logout ">Cerrar Sesión</ li
 </div>
 
 <br>
