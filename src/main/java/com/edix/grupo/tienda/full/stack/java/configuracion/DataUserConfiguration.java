@@ -1,6 +1,6 @@
 
   package com.edix.grupo.tienda.full.stack.java.configuracion;
-  /*
+
 	import javax.sql.DataSource;
 
 	import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +22,8 @@
 		private DataSource dataSource;
 
 		
-		 * PENDIENTE DE MODIFICAR, ESTÁ CON LOS PARÁMETROS DE LA APLICACIÓN
-		 * 10_sboot_familias_jpa_security_1 , de Tomás
+		// * PENDIENTE DE MODIFICAR, ESTÁ CON LOS PARÁMETROS DE LA APLICACIÓN
+		// * 10_sboot_familias_jpa_security_1 , de Tomás
 
 		@Override
 		protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -41,7 +41,7 @@
 		.antMatchers("/rest/demo-bcrypt/**").permitAll()
   
 		// Las vistas públicas no requieren autenticación 
-		.antMatchers("/", "/login", "/logout", "/registro","/search", "/app/producto/verUno/**").permitAll() 
+		.antMatchers("/", "/login", "/logout", "/registro","/search", "/app/producto/verUno/**", "/altaProducto").permitAll() 
 		//  Las autorizaciones sobre urls para ROLES
 		.antMatchers("/app/producto/**").hasAnyAuthority("ROLE_GESTOR",  "ROLE_ADMINISTRADOR")
 		.antMatchers("/app/usuarios/**").hasAnyAuthority("ROLE_GESTOR","ROLE_ADMINISTRADOR")
@@ -62,4 +62,4 @@
 		}
 	}
 	
-	*/
+

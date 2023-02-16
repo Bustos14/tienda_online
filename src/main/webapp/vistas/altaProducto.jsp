@@ -12,7 +12,7 @@
 
 	<h1>Alta Producto</h1>
 <div class="container">
-	<form action="/altaProducto" method="post">
+	<form action="/altaProducto" method="post" enctype="multipart/form-data">
 		<div class="form-group">
 			<label for="nombre">Nombre del producto:</label> <input
 				type="text" class="form-control" id="nombre"
@@ -31,6 +31,10 @@
 		<div class="form-group">
 			<label for="stock">Stock:</label> <input type="number"
 				class="form-control" id="stock" name="stock">
+		</div>
+		<div class="form-group">
+			<label for="imagen">Imagen:</label> 
+			<input type="file" class="form-control" id="imagen" name="file">
 		</div>
 		<div class="form-group">
 		<Select id="estado" name="estado">

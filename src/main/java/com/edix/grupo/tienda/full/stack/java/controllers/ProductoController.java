@@ -1,5 +1,8 @@
 package com.edix.grupo.tienda.full.stack.java.controllers;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.edix.grupo.tienda.full.stack.java.dao.ProductoDao;
@@ -81,11 +86,27 @@ public class ProductoController {
 		return "altaProducto";
 	}
 	@PostMapping("/altaProducto")
-	public String altaProducto(@ModelAttribute Producto p, RedirectAttributes attr) {
-		if(pdao.nuevoProducto(p)==1) {
-			attr.addFlashAttribute("mensaje", "Producto añadido correctamente");
-			return "redirect:/";
+	public String altaProducto(@ModelAttribute Producto p, RedirectAttributes attr, @RequestParam("file") MultipartFile image) {
+		if(!image.isEmpty()) {
+			Path directorioImagenes = Paths.get("src//main//resources//static/images"); 
+			String rutaAbsoluta = directorioImagenes.toFile().getAbsolutePath();
+			try {
+				byte[] bytesImg = image.getBytes();
+				Path rutaCompleta = Paths.get(rutaAbsoluta + "//" + image.getOriginalFilename());
+				Files.write(rutaCompleta, bytesImg);
+				
+				p.setImg(image.getOriginalFilename());
+				if(pdao.nuevoProducto(p)==1) {
+					attr.addFlashAttribute("mensaje", "Producto añadido correctamente");
+					return "redirect:/";
+				}
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+
+			
 		}
+		
 		return "redirect:/altaProducto";
 		
 	}

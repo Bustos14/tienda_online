@@ -2,7 +2,6 @@ package com.edix.grupo.tienda.full.stack.java.entitybeans;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.List;
 
 
 /**
@@ -32,18 +31,10 @@ public class Producto implements Serializable {
 
 	private int stock;
 
-	//uni-directional many-to-many association to Tipo
-	@ManyToMany
-	@JoinTable(
-		name="producto_tipo"
-		, joinColumns={
-			@JoinColumn(name="id_producto")
-			}
-		, inverseJoinColumns={
-			@JoinColumn(name="id_tipo")
-			}
-		)
-	private List<Tipo> tipos;
+	//uni-directional many-to-one association to Tipo
+	@ManyToOne
+	@JoinColumn(name="id_tipo")
+	private Tipo tipo;
 
 	public Producto() {
 	}
@@ -104,12 +95,12 @@ public class Producto implements Serializable {
 		this.stock = stock;
 	}
 
-	public List<Tipo> getTipos() {
-		return this.tipos;
+	public Tipo getTipo() {
+		return this.tipo;
 	}
 
-	public void setTipos(List<Tipo> tipos) {
-		this.tipos = tipos;
+	public void setTipo(Tipo tipo) {
+		this.tipo = tipo;
 	}
 
 }
