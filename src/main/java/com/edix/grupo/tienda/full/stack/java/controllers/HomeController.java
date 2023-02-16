@@ -14,9 +14,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+<<<<<<< HEAD
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+=======
+<<<<<<< HEAD
+import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+=======
+>>>>>>> fb0d05d10416bae0b7f320cadfec4826f46f8c7d
+>>>>>>> d78a315b00437e4022de001a2f750b7f851f7c06
 
 import com.edix.grupo.tienda.full.stack.java.dao.ProductoDao;
 import com.edix.grupo.tienda.full.stack.java.dao.RolDao;
@@ -71,7 +80,12 @@ public class HomeController {
 	@GetMapping("/index")
 	public String procesarLogin(Authentication aut , Model model , HttpSession misesion ){
 	System.out.println ("usuario : " + aut.getName());
+<<<<<<< HEAD
 	Usuario usuario = udao.findById(aut.getName());
+=======
+	Usuario
+	usuario = udao.findById(aut.getName());
+>>>>>>> d78a315b00437e4022de001a2f750b7f851f7c06
 	if (misesion.getAttribute ("usuario") == null) {
 		misesion.setAttribute("usuario",usuario);
 	}

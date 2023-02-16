@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,16 +35,26 @@
 				class="form-control" id="stock" name="stock">
 		</div>
 		<div class="form-group">
-			<label for="imagen">Imagen:</label> 
-			<input type="file" class="form-control" id="imagen" name="file">
+		<label for="tipo">Tipo de producto:</label> 
+		<Select id="tipo" name="tipo">
+		<c:forEach var="ele" items="${tipos}">
+			<Option value = "${ele.idTipo}"> ${ele.nombreTipo} </option>
+			</c:forEach>
+		</Select>
 		</div>
 		<div class="form-group">
+		<label for="estado">Estado del producto:</label> 
 		<Select id="estado" name="estado">
 			<Option value = "Normal"> Normal </option>
 			<Option value = "Oferta"> Oferta </option>
 			<Option value = "Destacado"> Destacado </option>
 		</Select>
 		</div>
+			<div class="form-group">
+			<label for="imagen">Imagen:</label> 
+			<input type="file" class="form-control" id="imagen" name="file">
+		</div>
+
 		<button type="submit" class="btn btn-primary">Enviar</button>
 		<button type="reset" class="btn btn-secondary">Borrar</button>
 	</form>
