@@ -19,6 +19,7 @@
 <a href ="/destacados">Destacados</a>
 <a href ="/oferta">Oferta</a>
 <a href ="/altaProducto">Nuevo producto</a>
+<a href ="/registro">Registrate</a>
 </div>
 
 <br>

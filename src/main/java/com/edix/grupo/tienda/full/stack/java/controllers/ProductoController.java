@@ -17,13 +17,17 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.edix.grupo.tienda.full.stack.java.dao.ProductoDao;
+import com.edix.grupo.tienda.full.stack.java.dao.TipoDao;
 import com.edix.grupo.tienda.full.stack.java.entitybeans.Producto;
+import com.edix.grupo.tienda.full.stack.java.entitybeans.Tipo;
 
 @Controller
 public class ProductoController {
 	
 	@Autowired
 	private ProductoDao pdao;
+	@Autowired
+	private TipoDao tdao;
 	@GetMapping("/destacados")
 	public String destacados(Model model) {
 		List<Producto> listproductos= pdao.lProductoPorEstado("Destacado");
@@ -82,7 +86,9 @@ public class ProductoController {
 				
 	}
 	@GetMapping("/altaProducto")
-	public String altaProducto() {
+	public String altaProducto(Model model) {
+		List<Tipo> tList = tdao.todoTipo();
+		model.addAttribute("tipos", tList);
 		return "altaProducto";
 	}
 	@PostMapping("/altaProducto")

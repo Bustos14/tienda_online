@@ -2,6 +2,8 @@ package com.edix.grupo.tienda.full.stack.java.entitybeans;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -23,7 +25,7 @@ public class Usuario implements Serializable {
 
 	private String contrasena;
 
-	private byte enabled;
+	private boolean enabled;
 
 	@Temporal(TemporalType.DATE)
 	@Column(name="fecha_nacimiento")
@@ -101,11 +103,11 @@ public class Usuario implements Serializable {
 		this.contrasena = contrasena;
 	}
 
-	public byte getEnabled() {
+	public boolean getEnabled() {
 		return this.enabled;
 	}
 
-	public void setEnabled(byte enabled) {
+	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
 	}
 
@@ -144,7 +146,11 @@ public class Usuario implements Serializable {
 	public List<Role> getRoles() {
 		return this.roles;
 	}
-
+	public void addRol(Role rol) {
+		if (roles == null)
+			roles = new ArrayList<>();
+		roles.add(rol);
+	}
 	public void setRoles(List<Role> roles) {
 		this.roles = roles;
 	}
