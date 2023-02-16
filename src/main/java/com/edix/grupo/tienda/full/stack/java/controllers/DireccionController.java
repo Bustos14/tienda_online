@@ -68,9 +68,7 @@ public class DireccionController {
 		//Obtenemos la direcció existente
 		Direccione direccionExistente = ddao.buscarUna(direccion.getIdDireccion());
 		
-		if(direccionExistente == null) {
-			attr.addFlashAttribute("mensaje", "Dirección no encontrada");
-		} else {
+		
 
 			//Avtualizamos los campos necesarios
 			direccionExistente.setCodigoPostal(direccion.getCodigoPostal());
@@ -79,11 +77,14 @@ public class DireccionController {
 			direccionExistente.setNumero(direccion.getNumero());
 			direccionExistente.setPiso(direccion.getPiso());
 			
-			ddao.modificarDireccion(direccionExistente);
+			
+			if(ddao.modificarDireccion(direccionExistente) == 1) {
 			
 			attr.addFlashAttribute("mensaje", "Direccion actualizada con éxito");
-		}
-		
+			return "redirect:/";
+			}
+			
+			attr.addFlashAttribute("mensaje", "Dirección imposible de actualizar");
 		
 		return "redirect:/";
 	}
