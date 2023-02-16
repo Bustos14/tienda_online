@@ -3,6 +3,8 @@ package com.edix.grupo.tienda.full.stack.java.controllers;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -18,6 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.edix.grupo.tienda.full.stack.java.dao.TarjetaDaoImpl;
 import com.edix.grupo.tienda.full.stack.java.entitybeans.TarjetasBancaria;
+import com.edix.grupo.tienda.full.stack.java.entitybeans.Usuario;
 
 @Controller
 @RequestMapping("/tarjeta")
@@ -53,7 +56,10 @@ public class TarjetaController {
 	
 	
 	@PostMapping("/alta")
-	public String altaTarjeta(@ModelAttribute TarjetasBancaria tarjeta, RedirectAttributes attr) {
+	public String altaTarjeta(@ModelAttribute TarjetasBancaria tarjeta, RedirectAttributes attr, HttpSession sesion) {
+		
+		Usuario usuario = (Usuario) sesion.getAttribute("usuario");
+		tarjeta.setUsuario(usuario);
 		
 		if(tdao.nuevaTarjeta(tarjeta) != 0) {
 			attr.addFlashAttribute("mensaje", "Tarjeta bancaria dada de alta");
