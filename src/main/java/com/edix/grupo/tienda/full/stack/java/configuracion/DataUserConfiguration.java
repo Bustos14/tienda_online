@@ -1,6 +1,8 @@
 
-  package com.edix.grupo.tienda.full.stack.java.configuracion;
 
+
+  package com.edix.grupo.tienda.full.stack.java.configuracion;
+  
 	import javax.sql.DataSource;
 
 	import org.springframework.beans.factory.annotation.Autowired;
@@ -21,35 +23,48 @@
 		@Autowired
 		private DataSource dataSource;
 
-		
-		// * PENDIENTE DE MODIFICAR, ESTÁ CON LOS PARÁMETROS DE LA APLICACIÓN
-		// * 10_sboot_familias_jpa_security_1 , de Tomás
 
 		@Override
 		protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 			auth.jdbcAuthentication().dataSource(dataSource)
-					.usersByUsernameQuery("select username, password, enabled from Usuarios where username=?")
-					.authoritiesByUsernameQuery("select u.username, p.nombre from Usuario_Perfiles up "
-							+ "inner join Usuarios u on u.username = up.username "
-							+ "inner join Perfiles p on p.id_perfil = up.id_Perfil " + "where u.username = ?");
-		}
+			.usersByUsernameQuery("select username, contrasena, enabled from Usuarios where username=?")
+			.authoritiesByUsernameQuery("select u.username, p.nombre from Usuario_Rol ur inner join Usuarios u on u.username = ur.username " +
+			"inner join Roles p on p.id_rol = ur.id_rol " +  "where u.username = ?");
+			}
 
 	@Override protected void configure(HttpSecurity http) throws Exception { 
-		http .csrf().disable() .authorizeRequests() 
+		http .csrf().disable() 
+		.authorizeRequests() 
 		// Los directorios estáticos no requieren autenticacion 
 		.antMatchers("/bootstrap/**", "/images/**", "/css/**", "js/**").permitAll()
 		.antMatchers("/rest/demo-bcrypt/**").permitAll()
   
 		// Las vistas públicas no requieren autenticación 
-		.antMatchers("/", "/login", "/logout", "/registro","/search", "/app/producto/verUno/**", "/altaProducto").permitAll() 
+		.antMatchers("/", "/login", "/logout", "/registro","/search", "/detallesProducto/**").permitAll()
+		
 		//  Las autorizaciones sobre urls para ROLES
-		.antMatchers("/app/producto/**").hasAnyAuthority("ROLE_GESTOR",  "ROLE_ADMINISTRADOR")
-		.antMatchers("/app/usuarios/**").hasAnyAuthority("ROLE_GESTOR","ROLE_ADMINISTRADOR")
-		.antMatchers("/app/perfiles/**").hasAnyAuthority("ROLE_ADMINISTRADOR")
-		.antMatchers("/app/tipos/**").hasAnyAuthority("ROLE_GESTOR")
+			.antMatchers("/destacados").hasAnyAuthority("ROLE_CLIENTE",  "ROLE_ADMIN")
+			.antMatchers("/oferta").hasAnyAuthority("ROLE_CLIENTE","ROLE_ADMIN")
+			.antMatchers("/eliminarProducto/**").hasAnyAuthority("ROLE_ADMIN")
+			.antMatchers("/modificarProducto/**").hasAnyAuthority("ROLE_ADMIN")
+			.antMatchers("/modificarProducto").hasAnyAuthority("ROLE_ADMIN")
+			.antMatchers("/altaProducto").hasAnyAuthority("ROLE_ADMIN")
+			.antMatchers("/app/tipos/**").hasAnyAuthority("ROLE_CLIENTE")
+			.antMatchers("/tarjeta/alta").hasAnyAuthority("ROLE_CLIENTE")
+			.antMatchers("/tarjeta/verTarjeta/**").hasAnyAuthority("ROLE_CLIENTE")
+			.antMatchers("/tarjeta/editar").hasAnyAuthority("ROLE_CLIENTE")
+			.antMatchers("/tarjeta/editar/**").hasAnyAuthority("ROLE_CLIENTE")
+			.antMatchers("/tarjeta/eliminar/**").hasAnyAuthority("ROLE_CLIENTE")
+			.antMatchers("/direccion/alta").hasAnyAuthority("ROLE_CLIENTE")
+			.antMatchers("/direccion/alta").hasAnyAuthority("ROLE_CLIENTE")
+			.antMatchers("/direccion/verDireccion/**").hasAnyAuthority("ROLE_CLIENTE")
+			.antMatchers("/direccion/editar").hasAnyAuthority("ROLE_CLIENTE")
+			.antMatchers("/direccion/editar/**").hasAnyAuthority("ROLE_CLIENTE")
+			.antMatchers("/direccion/eliminar/**").hasAnyAuthority("ROLE_CLIENTE")
   
 	  // Todas las demás URLs de la Aplicación requieren autenticación
-	  .anyRequest().authenticated()   // El formulario de Login no requiere autenticacion 
+	  .anyRequest().authenticated()   
+	  // El formulario de Login no requiere autenticacion 
 	  .and().formLogin().permitAll() 
 	  // El formulario de logout no requiere autenticacion  
 	  .and().logout().permitAll();
@@ -60,6 +75,5 @@
 		public PasswordEncoder passwordEncoder() {
 			return new BCryptPasswordEncoder();
 		}
+		
 	}
-	
-
