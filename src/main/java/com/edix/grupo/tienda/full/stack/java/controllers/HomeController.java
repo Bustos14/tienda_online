@@ -66,7 +66,13 @@ public class HomeController {
 		 		return "/registroUsuario";
 		 		
 		 	}
+<<<<<<< Updated upstream
 			
+=======
+		}else {
+			model.addAttribute("mensaje", "Debe ser mayor de edad");
+			return "/registroUsuario";
+>>>>>>> Stashed changes
 		}
 		
 		return "/";

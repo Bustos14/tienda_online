@@ -13,9 +13,18 @@
 <body>
 <br>
 <jsp:include page="inicio.jsp"></jsp:include>
-
 <br>
-
+<section class="bg-darker bg-size-cover bg-position-center py-5 py-lg-10" style="background-image: url(${pageContext.request.contextPath}/img/hero2.jpg);background-repeat: no-repeat;background-size:100% 100%; margin:2%;">
+        <div class="container pb-4">
+          <div class="row justify-content-center pb-5">
+            <div class="col-xl-15 col-lg-8 col-md-8 col-sm-10 text-center">
+              <h5 class="text-black">Productos de importación</h5>
+              <div class="h1 text-black mb-5 pb-5">Productos frescos y de calidad en la puerta de tu casa
+              </div><a class="btn btn-primary" href="/" data-scroll="">Mira nuestro catálogo</a>
+            </div>
+          </div>
+        </div>
+      </section>
 <div class="container">
 	<h1 class="text-primary">Lista de productos</h1>
 	 <sec:authorize access="hasAnyAuthority('ROLE_ADMIN')">

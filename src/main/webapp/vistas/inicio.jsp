@@ -33,7 +33,7 @@
       </li>
       </sec:authorize>
       <li class="nav-item">
-        <a class="nav-link" href="/">Productos</a>
+        <a class="nav-link" href="/">Catálogo</a>
       </li>
        <sec:authorize access="hasAnyAuthority('ROLE_ADMIN')">
       <li class="nav-item">
