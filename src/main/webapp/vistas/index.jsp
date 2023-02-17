@@ -8,6 +8,7 @@
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
 </head>
 <body>
 <br>
@@ -22,10 +23,10 @@
 	<br><br>
 	</sec:authorize>
 	
-	<div class="row">
+	<div class="row ">
   <c:forEach var="ele" items="${productos }">
-    <div class="card mx-2 my-2">
-      <img src="/recursos/${ele.img}" class="card-img-top" alt="${ele.img}" style="height: 200px;width: 300px;">
+    <div class="card mx-2 my-2 shadow-lg rounded border border-dark hover-3d">
+      <img src="/recursos/${ele.img}" class="card-img-top border" alt="${ele.img}" style="height: 200px;width: 300px;">
       <div class="card-body">
         <h5 class="card-title">${ele.nombre}</h5>
         <p class="card-text"><span>Precio:</span> ${ele.price} &euro;</p>
