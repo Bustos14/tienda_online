@@ -40,10 +40,13 @@
 				class="form-control" id="estado" name="estado" value="${producto.estado}" readonly>
 		</div>
 		
-		<img src="/recursos/${producto.img}"alt="${producto.img}"style="max-width:25%;">
+		<img src="/recursos/${producto.img}" class="img-fluid" alt="${producto.img}">		
 		
-		<br>
-		<button type="submit" class="btn btn-primary">Volver</button>
+		
+		<br><br>
+		<div class="col text-center">
+			<button type="submit" class="btn btn-primary" style="width: 200px;">Volver</button>
+		</div>
 	</form>
 </div>
 	
