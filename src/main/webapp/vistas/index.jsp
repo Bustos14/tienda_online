@@ -32,7 +32,7 @@
         <p class="card-text"><span>Precio:</span> ${ele.price} &euro;</p>
         <p class="card-text"><small class="text-muted"><span>Stock:</span> ${ele.stock}</small></p>
         <c:if test="${ele.stock <= 3}">
-   			<p class="card-text text-danger">Solo queda ${ele.stock} en stock, corre que vuelan</p>
+   			<p class="card-text text-danger">Solo queda ${ele.stock} en stock</p>
 		</c:if>
         <div class="d-flex">
           <div class="p-2"><a href="/detallesProducto/${ele.idProducto}" class="btn btn-success btn-sm">Detalle</a></div>
