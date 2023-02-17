@@ -1,5 +1,7 @@
 package com.edix.grupo.tienda.full.stack.java.dao;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -15,5 +17,33 @@ public class RolDaoImpl implements RolDao{
 	public Role buscarRol(int idRol) {
 		return rrepo.findById(idRol).orElse(null);
 	}
+	@Override
+	public List<Role> todos() {
+		return rrepo.findAll();
+	}
+	@Override
+	public int nuevoRol(Role rol) {
+		int filas = 0;
+		try{
+			rrepo.save(rol);
+			filas = 1;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return filas;
+	}
+	@Override
+	public int eliminar(int idRol) {
+
+		Role r = rrepo.findById(idRol).orElse(null);
+		
+		if(r != null) {
+			rrepo.delete(r);
+			return 1;
+		}
+		return 0;
+	}
+	
+	
 
 }

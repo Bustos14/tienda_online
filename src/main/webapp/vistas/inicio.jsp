@@ -41,7 +41,7 @@
         <a class="nav-link" href="/altaProducto">Nuevo producto</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/roles">Roles</a>
+        <a class="nav-link" href="/rol/roles">Roles</a>
       </li>
       
       </sec:authorize>
