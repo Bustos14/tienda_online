@@ -13,8 +13,12 @@
 <jsp:include page="inicio.jsp"></jsp:include>
 
 <div class="container">
-	<h1>Detalle de la dirección</h1>
+	<h1>Detalle del producto</h1>
 	<form action="/" method="get">
+	
+	<img src="/recursos/${producto.img}" class="img-fluid" alt="${producto.img}">
+	
+		<br><br>	
 	<div class="form-group">
 			<label for="idDireccion">Nombre:</label> <input
 				type="text" class="form-control" id="nombre"
@@ -39,11 +43,7 @@
 			<label for="numero">Estado actual:</label> <input type="text"
 				class="form-control" id="estado" name="estado" value="${producto.estado}" readonly>
 		</div>
-		
-		<img src="/recursos/${producto.img}" class="img-fluid" alt="${producto.img}">		
-		
-		
-		<br><br>
+				
 		<div class="col text-center">
 			<button type="submit" class="btn btn-primary" style="width: 200px;">Volver</button>
 		</div>
