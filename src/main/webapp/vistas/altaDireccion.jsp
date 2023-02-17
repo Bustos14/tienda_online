@@ -48,6 +48,8 @@
 		<a href="/direccion/direcciones" class="btn btn-primary"> Volver</a>
 	</form>
 </div>
+
+	<jsp:include page="footer.jsp"></jsp:include>
 	
 </body>
 </html>

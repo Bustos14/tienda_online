@@ -46,5 +46,7 @@
 		<h3 class="text-danger"> ${mensaje }</h3>
 	</div>
 </div>
+
+	<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>

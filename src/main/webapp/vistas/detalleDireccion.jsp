@@ -50,6 +50,6 @@
 		<button type="submit" class="btn btn-primary">Volver</button>
 	</form>
 </div>
-	
+		<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>
