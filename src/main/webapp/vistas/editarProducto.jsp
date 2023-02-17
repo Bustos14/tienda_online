@@ -8,6 +8,8 @@
 <title>Insert title here</title>
 </head>
 <body>
+
+<jsp:include page="inicio.jsp"></jsp:include>
 	
 	<h1>Estas editando un producto</h1>
 <div class="container">

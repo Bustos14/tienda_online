@@ -8,6 +8,9 @@
 <title>Insert title here</title>
 </head>
 <body>
+
+<jsp:include page="inicio.jsp"></jsp:include>
+
 <div class="container">
 <form action="/registro" method="post">
 	<div class="form-group">

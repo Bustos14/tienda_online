@@ -1,5 +1,7 @@
 package com.edix.grupo.tienda.full.stack.java.dao;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -34,5 +36,20 @@ public class UsuarioDaoImpl implements UsuarioDao{
         }
         return false;
     }
+	@Override
+	public List<Usuario> todos() {
+		return urepo.findAll();
+	}
+	@Override
+	public int eliminarUsuario(String username) {
+		
+		Usuario u = urepo.findById(username).orElse(null);
+		
+		if(u != null) {
+			urepo.delete(u);
+			return 1;
+		}
+		return 0;
+	}
 
 }

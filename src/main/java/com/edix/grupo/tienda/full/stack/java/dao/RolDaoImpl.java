@@ -33,7 +33,7 @@ public class RolDaoImpl implements RolDao{
 		return filas;
 	}
 	@Override
-	public int eliminar(int idRol) {
+	public int eliminarRol(int idRol) {
 
 		Role r = rrepo.findById(idRol).orElse(null);
 		

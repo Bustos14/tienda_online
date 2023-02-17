@@ -10,6 +10,8 @@
 <title>Insert title here</title>
 </head>
 <body>
+<jsp:include page="inicio.jsp"></jsp:include>
+
 <h3>Mensajes : ${mensaje }</h3>
 
 	<h1>Alta Producto</h1>

@@ -36,7 +36,7 @@
       </li>
        <sec:authorize access="hasAnyAuthority('ROLE_ADMIN')">
       <li class="nav-item">
-        <a class="nav-link" href="/usuarios">Usuarios</a>
+        <a class="nav-link" href="/usuario/usuarios">Usuarios</a>
       </li> <li class="nav-item">
         <a class="nav-link" href="/altaProducto">Nuevo producto</a>
       </li>

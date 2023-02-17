@@ -49,7 +49,7 @@ public class RolesController {
 		
 		for(Role ele : rdao.todos()) {
 			if(ele.getIdRol() == idRol) {
-				rdao.eliminar(idRol);
+				rdao.eliminarRol(idRol);
 			}
 		}
 		

@@ -9,5 +9,5 @@ public interface RolDao {
 	Role buscarRol (int idRol);
 	List<Role> todos();
 	int nuevoRol(Role rol);
-	int eliminar(int idRol);
+	int eliminarRol(int idRol);
 }
