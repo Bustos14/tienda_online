@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <style type="text/css">.hover-3d:hover {box-shadow: 0 0 10px rgba(0,0,0,.2);}</style>
 </head>
-<body>
+<body style="margin-top:60px">
 <div class="fixed-top">
 <sec:authentication property="name"/>
 <sec:authorize access="hasAuthority('ROLE_CLIENTE')">Eres un CLIENTE</sec:authorize>
@@ -22,43 +22,45 @@
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
+  <form class="d-flex flex-grow-1" action="/producto/search" method="get">
+    <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar" name="nombre">
+    <button class="btn btn-outline-success ms-3 me-3" type="submit">Buscar</button>
+  </form>
+  <div class=" container collapse navbar-collapse" id="navbarNav" >
     <ul class="navbar-nav">
-    <sec:authorize access="hasAuthority('ROLE_CLIENTE')">
-      <li class="nav-item active">
-        <a class="nav-link" href="/direccion/direcciones">Direcciones</a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="/tarjeta/tarjetas">Tarjetas</a>
-      </li>
+      <sec:authorize access="hasAuthority('ROLE_CLIENTE')">
+        <li class="nav-item active">
+          <a class="nav-link" href="/direccion/direcciones">Direcciones</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="/tarjeta/tarjetas">Tarjetas</a>
+        </li>
       </sec:authorize>
       <li class="nav-item">
         <a class="nav-link" href="/">Catálogo</a>
       </li>
-       <sec:authorize access="hasAnyAuthority('ROLE_ADMIN')">
-      <li class="nav-item">
-        <a class="nav-link" href="/usuario/usuarios">Usuarios</a>
-      </li> <li class="nav-item">
-        <a class="nav-link" href="/altaProducto">Nuevo producto</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/rol/roles">Roles</a>
-      </li>
-      
+      <sec:authorize access="hasAnyAuthority('ROLE_ADMIN')">
+        <li class="nav-item">
+          <a class="nav-link" href="/usuario/usuarios">Usuarios</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="producto/altaProducto">Nuevo producto</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/rol/roles">Roles</a>
+        </li>
       </sec:authorize>
       <sec:authorize access="!isAuthenticated()">
-      <li class="nav-item"><a class="nav-link"
-							href="/login">Iniciar Sesión</a></li>
-						<li class="nav-item"><a class="nav-link"
-							href="/registro">Registrarse</a></li>
-		</sec:authorize>
-		<sec:authorize access="isAuthenticated()">
-		<li class="nav-item"><a class="nav-link"
-				href="/logout">Cerrar Sesión</a></li>
-		</sec:authorize>
+        <li class="nav-item"><a class="nav-link" href="/login">Iniciar Sesión</a></li>
+        <li class="nav-item"><a class="nav-link" href="/registro">Registrarse</a></li>
+      </sec:authorize>
+      <sec:authorize access="isAuthenticated()">
+        <li class="nav-item"><a class="nav-link" href="/logout">Cerrar Sesión</a></li>
+      </sec:authorize>
     </ul>
   </div>
 </nav>
+
 </div>
 <body>
 	</div>

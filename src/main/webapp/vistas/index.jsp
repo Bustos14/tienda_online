@@ -25,10 +25,42 @@
           </div>
         </div>
       </section>
+       <div class="row text-center" style="margin:10%;">
+                    <div class="col-md-4">
+                        <span class="fa-stack fa-4x">
+                        <a href="/">
+                        <i class="fas fa-circle fa-stack-2x text-primary"></i>
+                            <i class="fas fa-duotone fa-wine-bottle fa-stack-1x fa-inverse"></i>
+                            </a>
+                        </span>
+                        <h4 class="my-3">Catálogo</h4>
+                        <p class="text-muted">Mira nuestro catálogo y encuentra lo que buscas</p>
+                    </div>
+                    <div class="col-md-4">
+                        <span class="fa-stack fa-4x">
+                        <a href="/producto/destacados">
+                        <i class="fas fa-circle fa-stack-2x text-primary"></i>
+                            <i class="fas fa-duotone fa-star fa-stack-1x fa-inverse"></i>
+                            </a>
+                        </span>
+                        <h4 class="my-3">Destacados</h4>
+                        <p class="text-muted">Los mas destacados.</p>
+                    </div>
+                    <div class="col-md-4">
+                        <span class="fa-stack fa-4x">
+                          <a href="/producto/oferta">
+                            <i class="fas fa-circle fa-stack-2x text-primary"></i>
+                            <i class="fas fa-duotone fa-tags fa-stack-1x fa-inverse"></i>
+                            </a>
+                        </span>
+                        <h4 class="my-3">Ofertas</h4>
+                        <p class="text-muted">¡Añade una tarjeta para tu primera compra!</p>
+                    </div>
+                </div>
 <div class="container">
 	<h1 class="text-primary">Lista de productos</h1>
 	 <sec:authorize access="hasAnyAuthority('ROLE_ADMIN')">
-	<a href="/altaProducto" class="btn btn-primary btn-sm" >Nuevo Producto</a></td>
+	<a href="producto/altaProducto" class="btn btn-primary btn-sm" >Nuevo Producto</a></td>
 	<br><br>
 	</sec:authorize>
 	

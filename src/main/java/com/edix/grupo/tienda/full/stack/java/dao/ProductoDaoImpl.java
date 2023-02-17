@@ -57,4 +57,9 @@ public class ProductoDaoImpl implements ProductoDao{
 		return prepo.findByState(estado);
 	}
 
+	@Override
+	public List<Producto> lBusquedaProduc(String nombre) {
+		return prepo.findLikeName(nombre);
+	}
+
 }

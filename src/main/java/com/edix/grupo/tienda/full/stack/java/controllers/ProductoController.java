@@ -36,14 +36,14 @@ public class ProductoController {
 	public String destacados(Model model) {
 		List<Producto> listproductos= pdao.lProductoPorEstado("Destacado");
 		model.addAttribute("productos", listproductos);
-		return "index";
+		return "productos";
 	}
 	@GetMapping("/oferta")
 	public String ofertas(Model model, HttpSession misesion) {
 		System.out.println(misesion.getAttribute("usuario"));
 		List<Producto> listproductos= pdao.lProductoPorEstado("Oferta");
 		model.addAttribute("productos", listproductos);
-		return "index";
+		return "productos";
 	}
 	@GetMapping("/detallesProducto/{id}")
 	public String detalles(@PathVariable("id") int idProd, Model model) {
@@ -127,6 +127,13 @@ public class ProductoController {
 		
 		return "redirect:/altaProducto";
 		
+	}
+	@GetMapping("/search")
+	public String busqueda(@RequestParam(name="nombre") String nombre, Model model) {
+		List<Producto> listproductos=pdao.lBusquedaProduc("cho");
+		System.out.println(listproductos);
+		model.addAttribute("productos", listproductos);
+		return "productos";
 	}
 	
 }

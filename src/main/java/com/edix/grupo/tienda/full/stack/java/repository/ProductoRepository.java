@@ -10,5 +10,6 @@ import com.edix.grupo.tienda.full.stack.java.entitybeans.Producto;
 public interface ProductoRepository extends JpaRepository<Producto, Integer> {
 	@Query("Select p from Producto p where p.estado = ?1")
 	public List<Producto> findByState(String estado);
-
+	@Query("SELECT p FROM Producto p WHERE p.nombre LIKE %:nombre%")
+	public List<Producto> findLikeName(String nombre);
 }

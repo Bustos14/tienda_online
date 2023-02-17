@@ -12,4 +12,5 @@ public interface ProductoDao {
 	Producto detallesProdutos(int idProducto);
 	List<Producto> listadoProducto();
 	List<Producto> lProductoPorEstado(String estado);
+	List<Producto> lBusquedaProduc(String nombre);
 }

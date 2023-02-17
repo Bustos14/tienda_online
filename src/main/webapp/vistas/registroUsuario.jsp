@@ -12,6 +12,7 @@
 <jsp:include page="inicio.jsp"></jsp:include>
 
 <div class="container">
+
 <form action="/registro" method="post">
 	<div class="form-group">
 			<label for="username">Usuario:</label> <input
@@ -42,11 +43,6 @@
 		<button type="reset" class="btn btn-secondary">Borrar</button>
 		<a href="/" class="btn btn-primary"> Volver</a>
 	</form>
-	<div class="col text-center">
-		<h3 class="text-danger"> ${mensaje }</h3>
-	</div>
 </div>
-
-	<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>
