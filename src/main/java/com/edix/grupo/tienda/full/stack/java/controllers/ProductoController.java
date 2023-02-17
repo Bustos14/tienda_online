@@ -64,6 +64,8 @@ public class ProductoController {
 	public String modProducto(@PathVariable ("id") int idProd, Model model) {
 		Producto p = pdao.detallesProdutos(idProd);
 		model.addAttribute("productoEditable", p);
+		List<Tipo> tList = tdao.todoTipo();
+		model.addAttribute("tipos", tList);
 		System.out.println(p.getImg());
 		return "editarProducto";
 	}

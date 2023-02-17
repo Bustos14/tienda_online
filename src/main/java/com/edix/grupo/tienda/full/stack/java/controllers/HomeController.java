@@ -53,15 +53,21 @@ public class HomeController {
 		usuario.setFechaRegistro(new Date());
 		usuario.addRol(rdao.buscarRol(1));
 		usuario.setContrasena(passwordEncoder.encode(usuario.getContrasena()));
-	 	if (udao.registro(usuario)) {
-	 		return "redirect:/login";
-	 	}
-	 	else {
-	 		model.addAttribute("mensaje", "ya existe como usuario");
-	 		return "/registroUsuario";
-	 		
-	 	}
-		
+		if(mayorEdad(usuario.getFechaNacimiento())) {
+			if (udao.registro(usuario)) {
+		 		return "redirect:/login";
+		 	}
+		 	else {
+		 		model.addAttribute("mensaje", "ya existe como usuario");
+		 		return "/registroUsuario";
+		 		
+		 	}
+			
+		}else {
+			model.addAttribute("mensaje", "Debe ser mayor de edad");
+			return "/registroUsuario";
+		}
+	 	
 	}
 	@GetMapping("/index")
 	public void procesarLogin(Authentication aut , HttpSession misesion ){
@@ -83,6 +89,12 @@ public class HomeController {
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			webdataBinder
 			.registerCustomEditor(Date.class, new CustomDateEditor(sdf, false));
+		}
+		public boolean mayorEdad(Date feNac) {
+			 Date fechaActual = new Date();
+		        long edadEnMilisegundos = fechaActual.getTime() - feNac.getTime();
+		        long edadEnAnios = edadEnMilisegundos / (365 * 24 * 60 * 60 * 1000L);
+		        return edadEnAnios >= 18;
 		}
 		
 		

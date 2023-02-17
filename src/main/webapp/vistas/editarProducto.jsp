@@ -43,7 +43,7 @@
 		<div class="form-group">
 		<Select id="tipo" name="tipo">
 		<c:forEach var="ele" items="${tipos}">
-			<Option selected="true" value = "${ele.idTipo}"> ${ele.nombreTipo} </option>
+			<Option value = "${ele.idTipo}"> ${ele.nombreTipo} </option>
 			</c:forEach>
 		</Select>
 		<Select id="estado" name="estado" >
