@@ -64,6 +64,7 @@ public class ProductoController {
 	public String modProducto(@PathVariable ("id") int idProd, Model model) {
 		Producto p = pdao.detallesProdutos(idProd);
 		model.addAttribute("productoEditable", p);
+		System.out.println(p.getImg());
 		return "editarProducto";
 	}
 	@PostMapping("/modificarProducto")
@@ -76,7 +77,8 @@ public class ProductoController {
 				p.setDescripcion(productoEditable.getDescripcion());
 				p.setPrice(productoEditable.getPrice());
 				p.setStock(productoEditable.getStock());
-				p.setEstado(productoEditable.getEstado());
+				p.setEstado(productoEditable.getEstado());		
+				p.setImg(productoEditable.getImg());
 				if(pdao.modificarProducto(p)==1) {
 					attr.addFlashAttribute("mensaje", "Producto modificado con exito");
 					return "redirect:/";

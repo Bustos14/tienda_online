@@ -15,11 +15,8 @@
 
 <div class="container">
 	<h1>Detalle del producto</h1>
+	<img style="width: 200px;" src="/recursos/${producto.img}" class="img-fluid" alt="${producto.img}" >
 	<form action="/" method="get">
-	 <sec:authorize access="!isAuthenticated()">
-	<img src="/recursos/${producto.img}" class="img-fluid" alt="${producto.img}">
-	</sec:authorize>
-	
 		<br><br>	
 	<div class="form-group">
 			<label for="idDireccion">Nombre:</label> <input

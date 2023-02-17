@@ -39,11 +39,16 @@
 				class="form-control" id="stock" name="stock" value="${productoEditable.stock}">
 		</div>
 		<div class="form-group">
-		<Select id="estado" name="estado">
-			<Option value = "Normal"> Normal </option>
+		<Select id="estado" name="estado" >
+			<Option selected="true" value = "Normal" > Normal </option>
 			<Option value = "Oferta"> Oferta </option>
 			<Option value = "Destacado"> Destacado </option>
 		</Select>
+		</div>
+		<div class="form-group">
+			<label for="imagen">Imagen:</label> 
+			<input type="file" class="form-control" id="imagen" name="img" value="${productoEditable.img}">
+		</div>
 		</div>
 		<button type="submit" class="btn btn-primary">Actualizar</button>		
 		<a href="/" class="btn btn-primary"> Volver</a>
