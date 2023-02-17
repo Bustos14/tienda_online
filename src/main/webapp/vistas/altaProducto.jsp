@@ -16,7 +16,7 @@
 
 	<h1>Alta Producto</h1>
 <div class="container">
-	<form action="/altaProducto" method="post" enctype="multipart/form-data">
+	<form action="/producto/altaProducto" method="post" enctype="multipart/form-data">
 		<div class="form-group">
 			<label for="nombre">Nombre del producto:</label> <input
 				type="text" class="form-control" id="nombre"

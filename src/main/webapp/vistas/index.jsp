@@ -44,10 +44,10 @@
    			<p class="card-text text-danger">Solo queda ${ele.stock} en stock</p>
 		</c:if>
         <div class="d-flex">
-          <div class="p-2"><a href="/detallesProducto/${ele.idProducto}" class="btn btn-success btn-sm">Detalle</a></div>
+          <div class="p-2"><a href="/producto/detallesProducto/${ele.idProducto}" class="btn btn-success btn-sm">Detalle</a></div>
           <sec:authorize access="hasAnyAuthority('ROLE_ADMIN')">
-            <div class="p-2"><a href="/modificarProducto/${ele.idProducto}" class="btn btn-success btn-sm">Modificar</a></div>
-            <div class="p-2"><a href="/eliminarProducto/${ele.idProducto}" class="btn btn-danger btn-sm">Eliminar</a></div>
+            <div class="p-2"><a href="/producto/modificarProducto/${ele.idProducto}" class="btn btn-success btn-sm">Modificar</a></div>
+            <div class="p-2"><a href="/producto/eliminarProducto/${ele.idProducto}" class="btn btn-danger btn-sm">Eliminar</a></div>
           </sec:authorize>
         </div>
       </div>

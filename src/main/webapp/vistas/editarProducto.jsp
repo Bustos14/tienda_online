@@ -15,7 +15,7 @@
 	<h1>Estas editando un producto</h1>
 <div class="container">
 <div class="col text-center">
-	<form action="/modificarProducto" method="post">
+	<form action="/producto/modificarProducto" method="post">
 		<div class="form-group">
 			<label for="idProducto">Id producto:</label> <input
 				type="text" class="form-control" id="idProducto"
