@@ -12,11 +12,11 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <style type="text/css">.hover-3d:hover {box-shadow: 0 0 10px rgba(0,0,0,.2);}</style>
 </head>
-<body style="margin-top:60px">
-<div class="fixed-top">
+<body style="margin-top:0px">
+<div class="">
 <sec:authentication property="name"/>
 <sec:authorize access="hasAuthority('ROLE_CLIENTE')">Eres un CLIENTE</sec:authorize>
-	<sec:authorize access="hasAuthority('ROLE_ADMIN')">Eres un ADMON</sec:authorize>
+	<sec:authorize access="hasAuthority('ROLE_ADMIN')">Eres un ADMINISTRADOR</sec:authorize>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="/"><img src="${pageContext.request.contextPath}/img/logo.png" style="width:120px;height:100px;"></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

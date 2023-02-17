@@ -58,7 +58,7 @@
                     </div>
                 </div>
 <div class="container">
-	<h1 class="text-primary">Lista de productos</h1>
+	<h1 class="text-primary">Productos</h1>
 	 <sec:authorize access="hasAnyAuthority('ROLE_ADMIN')">
 	<a href="producto/altaProducto" class="btn btn-primary btn-sm" >Nuevo Producto</a></td>
 	<br><br>
@@ -72,16 +72,18 @@
         <h5 class="card-title">${ele.nombre}</h5>
         <p class="card-text"><span>Precio:</span> ${ele.price} &euro;</p>
         <p class="card-text"><small class="text-muted"><span>Stock:</span> ${ele.stock}</small></p>
-        <c:if test="${ele.stock <= 3}">
-   			<p class="card-text text-danger">Solo queda ${ele.stock} en stock</p>
-		</c:if>
+        
         <div class="d-flex">
           <div class="p-2"><a href="/producto/detallesProducto/${ele.idProducto}" class="btn btn-success btn-sm">Detalle</a></div>
           <sec:authorize access="hasAnyAuthority('ROLE_ADMIN')">
             <div class="p-2"><a href="/producto/modificarProducto/${ele.idProducto}" class="btn btn-success btn-sm">Modificar</a></div>
             <div class="p-2"><a href="/producto/eliminarProducto/${ele.idProducto}" class="btn btn-danger btn-sm">Eliminar</a></div>
           </sec:authorize>
+          
         </div>
+        <c:if test="${ele.stock <= 3}">
+   			<p class="card-text text-danger">Solo queda ${ele.stock} en stock</p>
+		</c:if>
       </div>
     </div>
   </c:forEach>
