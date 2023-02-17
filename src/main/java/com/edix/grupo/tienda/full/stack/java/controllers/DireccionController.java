@@ -40,6 +40,14 @@ public class DireccionController {
 		return "altaDireccion";
 	}
 	
+	@GetMapping("/direcciones")
+	public String todasDirecciones(Model model) {
+		
+		model.addAttribute("todasDirecciones", ddao.todas());
+		
+		return "direcciones";
+	}
+	
 	@GetMapping("/editar/{id}")
 	public String irEditarDirecceion(@PathVariable("id") int id, Model model) {
 		Direccione direccionEditar = ddao.buscarUna(id);
@@ -58,6 +66,8 @@ public class DireccionController {
 	public String irDetalleTarjeta(@PathVariable("id") int id, Model model) {
 		
 		Direccione direccionDetalle = ddao.buscarUna(id);
+		
+		System.out.println(direccionDetalle);
 		
 		model.addAttribute("direccion", direccionDetalle);
 		
@@ -117,6 +127,7 @@ public class DireccionController {
 		}
 		return "redirect:/";
 	}
+	
 	
 
 	//Método necesario para formatear fechas

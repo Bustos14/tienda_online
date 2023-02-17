@@ -9,7 +9,7 @@
 </head>
 <body>
 
-
+<jsp:include page="inicio.jsp"></jsp:include>
 
 <div class="container">
 	<h1>Detalle de la tarjeta</h1>

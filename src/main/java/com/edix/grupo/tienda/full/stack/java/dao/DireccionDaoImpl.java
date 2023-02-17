@@ -1,5 +1,7 @@
 package com.edix.grupo.tienda.full.stack.java.dao;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -55,6 +57,11 @@ public class DireccionDaoImpl implements DireccionDao {
 	@Override
 	public Direccione buscarUna(int idDireccion) {
 		return drepo.findById(idDireccion).orElse(null);
+	}
+
+	@Override
+	public List<Direccione> todas() {
+		return drepo.findAll();
 	}
 
 }

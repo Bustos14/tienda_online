@@ -1,5 +1,7 @@
 package com.edix.grupo.tienda.full.stack.java.dao;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -55,6 +57,11 @@ public class TarjetaDaoImpl implements TarjetaDao{
 	@Override
 	public TarjetasBancaria buscarUna(int idTarjeta) {
 		return trepo.findById(idTarjeta).orElse(null);
+	}
+
+	@Override
+	public List<TarjetasBancaria> todas() {
+		return trepo.findAll();
 	}
 
 }

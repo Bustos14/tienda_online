@@ -9,9 +9,10 @@
 </head>
 <body>
 
+<jsp:include page="inicio.jsp"></jsp:include>
 
 <div class="container">
-	<h1>Detalle de la direcció</h1>
+	<h1>Detalle de la dirección</h1>
 	<form action="/" method="get">
 	<div class="form-group">
 			<label for="idDireccion">Id de la direccion:</label> <input

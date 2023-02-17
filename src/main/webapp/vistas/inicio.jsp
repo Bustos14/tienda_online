@@ -25,10 +25,10 @@
     <ul class="navbar-nav">
     <sec:authorize access="hasAuthority('ROLE_CLIENTE')">
       <li class="nav-item active">
-        <a class="nav-link" href="/direcciones">Direcciones</a>
+        <a class="nav-link" href="/direccion/direcciones">Direcciones</a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="/tarjetas">Tarjetas</a>
+        <a class="nav-link" href="/tarjeta/tarjetas">Tarjetas</a>
       </li>
       </sec:authorize>
       <li class="nav-item">
