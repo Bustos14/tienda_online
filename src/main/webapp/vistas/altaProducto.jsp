@@ -40,14 +40,14 @@
 		<label for="tipo">Tipo de producto:</label> 
 		<Select id="tipo" name="tipo">
 		<c:forEach var="ele" items="${tipos}">
-			<Option value = "${ele.idTipo}"> ${ele.nombreTipo} </option>
+			<Option selected="true" value = "${ele.idTipo}"> ${ele.nombreTipo} </option>
 			</c:forEach>
 		</Select>
 		</div>
 		<div class="form-group">
 		<label for="estado">Estado del producto:</label> 
 		<Select id="estado" name="estado">
-			<Option value = "Normal"> Normal </option>
+			<Option selected="true" value = "Normal"> Normal </option>
 			<Option value = "Oferta"> Oferta </option>
 			<Option value = "Destacado"> Destacado </option>
 		</Select>

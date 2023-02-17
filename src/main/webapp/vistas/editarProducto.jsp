@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,6 +14,7 @@
 	
 	<h1>Estas editando un producto</h1>
 <div class="container">
+<div class="col text-center">
 	<form action="/modificarProducto" method="post">
 		<div class="form-group">
 			<label for="idProducto">Id producto:</label> <input
@@ -39,6 +41,11 @@
 				class="form-control" id="stock" name="stock" value="${productoEditable.stock}">
 		</div>
 		<div class="form-group">
+		<Select id="tipo" name="tipo">
+		<c:forEach var="ele" items="${tipos}">
+			<Option selected="true" value = "${ele.idTipo}"> ${ele.nombreTipo} </option>
+			</c:forEach>
+		</Select>
 		<Select id="estado" name="estado" >
 			<Option selected="true" value = "Normal" > Normal </option>
 			<Option value = "Oferta"> Oferta </option>
@@ -50,8 +57,12 @@
 			<input type="file" class="form-control" id="imagen" name="img" value="${productoEditable.img}">
 		</div>
 		</div>
-		<button type="submit" class="btn btn-primary">Actualizar</button>		
-		<a href="/" class="btn btn-primary"> Volver</a>
+		<div class="col text-center">
+			<button type="submit" class="btn btn-primary" style="width: 200px;">Actualizar</button>	
+            <button type="submit" class="btn btn-primary" style="width: 200px;">Volver</button>
+        </div>	
+
+</div>
 	</form>
 </div>
 	

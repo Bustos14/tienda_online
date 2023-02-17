@@ -72,13 +72,16 @@ public class ProductoController {
 		//Obtenemos la tarjeta existente
 				Producto p = pdao.detallesProdutos(productoEditable.getIdProducto());
 				
+				System.out.println("FOTO"+productoEditable.getImg());
 				//Actualizamos los campos necesarios
 				p.setNombre(productoEditable.getNombre());
 				p.setDescripcion(productoEditable.getDescripcion());
 				p.setPrice(productoEditable.getPrice());
 				p.setStock(productoEditable.getStock());
-				p.setEstado(productoEditable.getEstado());		
-				p.setImg(productoEditable.getImg());
+				p.setEstado(productoEditable.getEstado());
+				if(!productoEditable.getImg().isEmpty()) {
+					p.setImg(productoEditable.getImg());
+				}
 				if(pdao.modificarProducto(p)==1) {
 					attr.addFlashAttribute("mensaje", "Producto modificado con exito");
 					return "redirect:/";
