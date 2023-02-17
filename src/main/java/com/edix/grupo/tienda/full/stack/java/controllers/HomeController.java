@@ -53,6 +53,10 @@ public class HomeController {
 		usuario.setFechaRegistro(new Date());
 		usuario.addRol(rdao.buscarRol(1));
 		usuario.setContrasena(passwordEncoder.encode(usuario.getContrasena()));
+		if(!mayorEdad(usuario.getFechaNacimiento())) {
+			model.addAttribute("mensaje", "Debes ser mayor de edad, para registrarte");
+			return "/registroUsuario";
+		}
 		if(mayorEdad(usuario.getFechaNacimiento())) {
 			if (udao.registro(usuario)) {
 		 		return "redirect:/login";
@@ -63,10 +67,9 @@ public class HomeController {
 		 		
 		 	}
 			
-		}else {
-			model.addAttribute("mensaje", "Debe ser mayor de edad");
-			return "/registroUsuario";
 		}
+		
+		return "/";
 	 	
 	}
 	@GetMapping("/index")

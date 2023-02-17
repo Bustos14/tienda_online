@@ -42,6 +42,9 @@
 		<button type="reset" class="btn btn-secondary">Borrar</button>
 		<a href="/" class="btn btn-primary"> Volver</a>
 	</form>
+	<div class="col text-center">
+		<h3 class="text-danger"> ${mensaje }</h3>
+	</div>
 </div>
 </body>
 </html>
