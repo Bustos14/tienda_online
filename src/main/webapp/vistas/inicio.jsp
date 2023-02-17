@@ -18,7 +18,7 @@
 <sec:authorize access="hasAuthority('ROLE_CLIENTE')">Eres un CLIENTE</sec:authorize>
 	<sec:authorize access="hasAuthority('ROLE_ADMIN')">Eres un ADMON</sec:authorize>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="/">TIENDA ONLINE</a>
+  <a class="navbar-brand" href="/"><img src="${pageContext.request.contextPath}/img/logo.png" style="width:120px;height:100px;"></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
