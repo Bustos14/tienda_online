@@ -20,7 +20,7 @@
 	<br><br><br><br><br><br>
 	</div>
 	
-	<footer class="text-center text-white mt-5 w-100 fixed-bottom" style="background-color: #f1f1f1;">
+	<footer id="footer" class="text-center text-white mt-5 w-100 fixed-bottom" style="background-color: #f1f1f1;">
   <!-- Grid container -->
   <div class="container pt-4">
     <!-- Section: Social media -->

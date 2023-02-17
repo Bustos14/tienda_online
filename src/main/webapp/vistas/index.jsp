@@ -8,7 +8,17 @@
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
+<style type="text/css">
+	body {
+  background-image: url("/img/fondo.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+    #footer {
+      position: static !important;
+    }
+	
+</style>
 </head>
 <body>
 <br>

@@ -8,6 +8,15 @@
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<style type="text/css">
+	body {
+  background-image: url("/img/fondo.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+    
+	
+</style>
 </head>
 <body>
 <br>
@@ -15,30 +24,37 @@
 
 <br>
 
-<div class="container">
+<div class="container p-5" style="background-color: rgba(51, 51, 51, 0.6); color: white; border-radius: 25px">
 	<h1 class="text-primary">Lista de tarjetas</h1>
-	<a href="/tarjeta/alta" class="btn btn-primary btn-sm" >Nueva Tarjeta</a></td>
+	<a href="/tarjeta/alta" class="btn btn-primary btn-sm">Nueva Tarjeta</a>
 	<br><br>
-	<table class="table table-striped table-sm" >
-	<th>Id de la tarjeta</th><th> Usuario </th> <th> Nombre del titular </th> <th> Numero de la tarjeta </th>  <th> Fecha caducidad </th> <th> Cvv </th>
-	<th>Detalle</th><th>Modificar</th>
-	<th>Eliminar</th>
-	
-	<c:forEach var="ele" items="${todasTarjetas }" >
-		<tr>
-			<td>${ele.idTarjetaBancaria}</td>
-			<td>${ele.usuario.username}</td>			
-			<td>${ele.nombreTitular}</td>				
-			<td>${ele.numeroTarjeta}</td>				
-			<td>${ele.fechaCaducidad}</td>		
-			<td>${ele.cvv}</td>	
-			<td><a href="/tarjeta/verTarjeta/${ele.idTarjetaBancaria}" class="btn btn-success btn-sm">Detalle</a></td>
-			<td><a href="/tarjeta/editar/${ele.idTarjetaBancaria}" class="btn btn-success btn-sm">Modificar</a> </td>
-			 <td><a href="/tarjeta/eliminar/${ele.idTarjetaBancaria}" class="btn btn-danger btn-sm">Eliminar</a></td>
-		</tr>
-	</c:forEach>
+	<table class="table table-striped table-sm">
+		<th>Id de la tarjeta</th>
+		<th>Usuario</th>
+		<th>Nombre del titular</th>
+		<th>Numero de la tarjeta</th>
+		<th>Fecha caducidad</th>
+		<th>Cvv</th>
+		<th>Detalle</th>
+		<th>Modificar</th>
+		<th>Eliminar</th>
+		
+		<c:forEach var="ele" items="${todasTarjetas }">
+			<tr>
+				<td>${ele.idTarjetaBancaria}</td>
+				<td>${ele.usuario.username}</td>			
+				<td>${ele.nombreTitular}</td>				
+				<td>${ele.numeroTarjeta}</td>				
+				<td>${ele.fechaCaducidad}</td>		
+				<td>${ele.cvv}</td>	
+				<td><a href="/tarjeta/verTarjeta/${ele.idTarjetaBancaria}" class="btn btn-success btn-sm">Detalle</a></td>
+				<td><a href="/tarjeta/editar/${ele.idTarjetaBancaria}" class="btn btn-success btn-sm">Modificar</a></td>
+				<td><a href="/tarjeta/eliminar/${ele.idTarjetaBancaria}" class="btn btn-danger btn-sm">Eliminar</a></td>
+			</tr>
+		</c:forEach>
 	</table>
-	</div>
+</div>
+
 	
 		<jsp:include page="footer.jsp"></jsp:include>
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
