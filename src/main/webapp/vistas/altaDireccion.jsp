@@ -45,7 +45,7 @@
 		</div>
 		<button type="submit" class="btn btn-primary">Enviar</button>
 		<button type="reset" class="btn btn-secondary">Borrar</button>
-		<a href="/" class="btn btn-primary"> Volver</a>
+		<a href="/direccion/direcciones" class="btn btn-primary"> Volver</a>
 	</form>
 </div>
 	

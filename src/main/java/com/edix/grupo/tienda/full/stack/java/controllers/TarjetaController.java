@@ -43,6 +43,14 @@ public class TarjetaController {
 		return "altaTarjeta";
 	}
 	
+	
+	@GetMapping("/tarjetas")
+	public String todasTarjetas(Model model) {
+		
+		model.addAttribute("todasTarjetas", tdao.todas());
+		
+		return "tarjetas";
+	}
 
 	
 	@GetMapping("/editar/{id}")
@@ -64,6 +72,27 @@ public class TarjetaController {
 		return "detalleTarjeta";
 	}
 	
+	
+
+	@GetMapping("/eliminar/{id}")
+	public String eliminar(Authentication auth, HttpSession sesion,Model model,@PathVariable("id") int idTarjeta) {
+		
+		Usuario usuario = udao.findById(auth.getName());
+		String userName = usuario.getUsername();
+		
+		System.out.println(userName);
+		System.out.println(usuario);
+		
+		for(TarjetasBancaria ele : tdao.todas()) {
+			if(ele.getIdTarjetaBancaria() == idTarjeta) {
+				usuario.removeTarjeta(idTarjeta);
+				udao.modUsuario(usuario);
+				tdao.eliminarTarjeta(idTarjeta);
+			}
+		}
+		
+		return "redirect:/tarjeta/tarjetas";
+	}
 	
 	@PostMapping("/alta")
 	public String altaTarjeta(Authentication auth, HttpSession sesion,TarjetasBancaria tarjeta, RedirectAttributes attr) {
@@ -112,16 +141,6 @@ public class TarjetaController {
 		return "redirect:/";
 	}
 	
-	@GetMapping("/eliminar/{id}")
-	public String eliminar(Model model,@PathVariable("id") int idTarjeta) {
-		int i = tdao.eliminarTarjeta(idTarjeta);
-		if(i == 0)
-			model.addAttribute("mensaje","tarjeta no eliminado");
-		else {
-			model.addAttribute("mensaje","tarjeta eliminado");
-		}
-		return "redirect:/";
-	}
 	
 	
 	

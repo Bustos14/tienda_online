@@ -43,15 +43,13 @@ public class DireccionDaoImpl implements DireccionDao {
 
 	@Override
 	public int eliminarDireccion(int idDireccion) {
-		int filas = 0;
-		try {
-			drepo.deleteById(idDireccion);
-			filas = 1;
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		Direccione d = drepo.findById(idDireccion).orElse(null);
 		
-		return filas;
+		if(d != null) {
+			drepo.delete(d);
+			return 1;
+		}
+		return 0;
 	}
 
 	@Override

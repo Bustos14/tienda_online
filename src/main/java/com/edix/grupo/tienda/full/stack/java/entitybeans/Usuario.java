@@ -160,10 +160,38 @@ public class Usuario implements Serializable {
 		tarjetasBancarias.add(tarjeta);
 	}
 	
+	public void removeTarjeta(int idTarjeta) {
+	    List<TarjetasBancaria> nuevasTarjetas = new ArrayList<TarjetasBancaria>();
+	    for (TarjetasBancaria tarjeta : tarjetasBancarias) {
+	        if (tarjeta.getIdTarjetaBancaria() != idTarjeta) {
+	            nuevasTarjetas.add(tarjeta);
+	        }
+	    }
+	    if (nuevasTarjetas.size() < tarjetasBancarias.size()) {
+	        tarjetasBancarias = nuevasTarjetas;
+	    } else {
+	        System.out.println("No existe esa tarjeta");
+	    }
+	}
+	
 	public void addDireccion(Direccione direccion) {
 		if(direcciones == null)
 			direcciones = new ArrayList<>();
 		direcciones.add(direccion);
+	}
+
+	public void removeDireccion(int idDireccion) {
+	    List<Direccione> nuevasDirecciones = new ArrayList<Direccione>();
+	    for (Direccione direccion : direcciones) {
+	        if (direccion.getIdDireccion() != idDireccion) {
+	            nuevasDirecciones.add(direccion);
+	        }
+	    }
+	    if (nuevasDirecciones.size() < direcciones.size()) {
+	        direcciones = nuevasDirecciones;
+	    } else {
+	        System.out.println("No existe la dirección");
+	    }
 	}
 	
 	public void setRoles(List<Role> roles) {

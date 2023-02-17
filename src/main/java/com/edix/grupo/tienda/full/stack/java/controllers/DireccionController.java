@@ -74,6 +74,29 @@ public class DireccionController {
 		return "detalleDireccion";
 	}
 	
+	@GetMapping("/eliminar/{id}")
+	public String eliminar(Authentication auth, HttpSession sesion,Model model,@PathVariable("id") int idDireccion) {
+		
+		Usuario usuario = udao.findById(auth.getName());
+		String userName = usuario.getUsername();
+		
+		System.out.println(userName);
+		System.out.println(usuario);
+		
+		for(Direccione ele : ddao.todas()){
+			if(ele.getIdDireccion() == idDireccion) {
+				usuario.removeDireccion(idDireccion);
+				udao.modUsuario(usuario);
+				ddao.eliminarDireccion(idDireccion);
+			}
+		}
+			
+				
+		
+		return "redirect:/direccion/direcciones";
+	}
+	
+	
 	@PostMapping("/alta")
 	public String altaDireccion(Authentication auth, HttpSession sesion, Direccione direccion, RedirectAttributes attr) {
 		
@@ -117,16 +140,7 @@ public class DireccionController {
 		return "redirect:/";
 	}
 	
-	@GetMapping("/eliminar/{id}")
-	public String eliminar(Model model,@PathVariable("id") int idDireccion) {
-		int i = ddao.eliminarDireccion(idDireccion);
-		if(i == 0)
-			model.addAttribute("mensaje","Direccion no eliminado");
-		else {
-			model.addAttribute("mensaje","Direccion eliminado");
-		}
-		return "redirect:/";
-	}
+	
 	
 	
 

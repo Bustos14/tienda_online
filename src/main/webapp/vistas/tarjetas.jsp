@@ -16,26 +16,25 @@
 <br>
 
 <div class="container">
-	<h1 class="text-primary">Lista de direcciones</h1>
-	<a href="/direccion/alta" class="btn btn-primary btn-sm" >Nueva Direccion</a></td>
+	<h1 class="text-primary">Lista de tarjetas</h1>
+	<a href="/tarjeta/alta" class="btn btn-primary btn-sm" >Nueva Tarjeta</a></td>
 	<br><br>
 	<table class="table table-striped table-sm" >
-	<th>Id de la dirección</th> <th> Calle </th> <th> CP </th> <th> Letra </th> <th> Localidad </th> <th> Numero </th> <th> Piso </th>
+	<th>Id de la tarjeta</th><th> Usuario </th> <th> Nombre del titular </th> <th> Numero de la tarjeta </th>  <th> Fecha caducidad </th> <th> Cvv </th>
 	<th>Detalle</th><th>Modificar</th>
 	<th>Eliminar</th>
 	
-	<c:forEach var="ele" items="${todasDirecciones }" >
+	<c:forEach var="ele" items="${todasTarjetas }" >
 		<tr>
-			<td>${ele.idDireccion}</td>
-			<td>${ele.calle}</td>			
-			<td>${ele.codigoPostal}</td>				
-			<td>${ele.letra}</td>				
-			<td>${ele.localidad}</td>		
-			<td>${ele.numero}</td>	
-			<td>${ele.piso}</td>
-			<td><a href="/direccion/verDireccion/${ele.idDireccion}" class="btn btn-success btn-sm">Detalle</a></td>
-			<td><a href="/direccion/editar/${ele.idDireccion}" class="btn btn-success btn-sm">Modificar</a> </td>
-			 <td><a href="/direccion/eliminar/${ele.idDireccion}" class="btn btn-danger btn-sm">Eliminar</a></td>
+			<td>${ele.idTarjetaBancaria}</td>
+			<td>${ele.usuario.username}</td>			
+			<td>${ele.nombreTitular}</td>				
+			<td>${ele.numeroTarjeta}</td>				
+			<td>${ele.fechaCaducidad}</td>		
+			<td>${ele.cvv}</td>	
+			<td><a href="/tarjeta/verTarjeta/${ele.idTarjetaBancaria}" class="btn btn-success btn-sm">Detalle</a></td>
+			<td><a href="/tarjeta/editar/${ele.idTarjetaBancaria}" class="btn btn-success btn-sm">Modificar</a> </td>
+			 <td><a href="/tarjeta/eliminar/${ele.idTarjetaBancaria}" class="btn btn-danger btn-sm">Eliminar</a></td>
 		</tr>
 	</c:forEach>
 	</table>

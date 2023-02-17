@@ -1,6 +1,7 @@
 package com.edix.grupo.tienda.full.stack.java.dao;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -43,15 +44,15 @@ public class TarjetaDaoImpl implements TarjetaDao{
 
 	@Override
 	public int eliminarTarjeta(int idTarjeta) {
-		int filas = 0;
-		try {
-			trepo.deleteById(idTarjeta);
-			filas = 1;
-		} catch (Exception e) {
-			e.printStackTrace();
+
+		TarjetasBancaria t = trepo.findById(idTarjeta).orElse(null);
+		
+		if(t != null) {
+			trepo.delete(t);
+			return 1;
 		}
 		
-		return filas;
+		return 0;
 	}
 
 	@Override
