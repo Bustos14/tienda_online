@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,8 +16,9 @@
 <div class="container">
 	<h1>Detalle del producto</h1>
 	<form action="/" method="get">
-	
+	 <sec:authorize access="!isAuthenticated()">
 	<img src="/recursos/${producto.img}" class="img-fluid" alt="${producto.img}">
+	</sec:authorize>
 	
 		<br><br>	
 	<div class="form-group">
