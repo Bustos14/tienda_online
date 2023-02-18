@@ -38,7 +38,7 @@
                 </li>
             </sec:authorize>
             <li class="nav-item">
-                <a class="nav-link" href="/">Catï¿½logo</a>
+                <a class="nav-link" href="/">Catálogo</a>
             </li>
             <sec:authorize access="hasAnyAuthority('ROLE_ADMIN')">
                 <li class="nav-item">
@@ -52,11 +52,11 @@
                 </li>
             </sec:authorize>
             <sec:authorize access="!isAuthenticated()">
-                <li class="nav-item"><a class="nav-link" href="/login">Iniciar Sesiï¿½n</a></li>
+                <li class="nav-item"><a class="nav-link" href="/login">Iniciar Sesión</a></li>
                 <li class="nav-item"><a class="nav-link" href="/registro">Registrarse</a></li>
             </sec:authorize>
             <sec:authorize access="isAuthenticated()">
-                <li class="nav-item"><a class="nav-link" href="/logout">Cerrar Sesiï¿½n</a></li>
+                <li class="nav-item"><a class="nav-link" href="/logout">Cerrar Sesión</a></li>
                 <li style="flex: auto;margin: auto; padding-left: 10px" ><a href="/usuario/perfil"><i class="fa fa-user-circle fa-inverse fa-lg" aria-hidden="true"></i></a> </li>
             </sec:authorize>
         </ul>
