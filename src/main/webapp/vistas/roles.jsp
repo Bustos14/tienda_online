@@ -6,8 +6,17 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Listado de roles</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<style type="text/css">
+	body {
+  background-image: url("/img/fondo.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+    
+	
+</style>
 </head>
 <body>
 <br>
@@ -15,23 +24,30 @@
 
 <br>
 
-<div class="container">
-	<h1 class="text-primary">Lista de roles</h1>
-	<a href="/rol/alta" class="btn btn-primary btn-sm" >Nuevo Rol</a></td>
-	<br><br>
-	<table class="table table-striped table-sm" >
-	<th>Id del rol</th> <th> Nombre </th>
-	<th>Eliminar</th>
-	
-	<c:forEach var="ele" items="${todosRoles }" >
-		<tr>
-			<td>${ele.idRol}</td>
-			<td>${ele.nombre}</td>
-			 <td><a href="/rol/eliminar/${ele.idRol}" class="btn btn-danger btn-sm">Eliminar</a></td>
-		</tr>
-	</c:forEach>
-	</table>
-	</div>
+<div class="container p-5" style="background-color: rgba(51, 51, 51, 0.6); color: white; border-radius: 25px;">
+  <h1 class="text-primary">Lista de roles</h1>
+  <a href="/rol/alta" class="btn btn-primary btn-sm">Nuevo Rol</a>
+  <br><br>
+  <table class="table table-striped table-sm">
+    <thead>
+      <tr>
+        <th>Id del rol</th>
+        <th>Nombre</th>
+        <th>Eliminar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <c:forEach var="ele" items="${todosRoles}">
+        <tr>
+          <td>${ele.idRol}</td>
+          <td>${ele.nombre}</td>
+          <td><a href="/rol/eliminar/${ele.idRol}" class="btn btn-danger btn-sm">Eliminar</a></td>
+        </tr>
+      </c:forEach>
+    </tbody>
+  </table>
+</div>
+
 	
 		<jsp:include page="footer.jsp"></jsp:include>
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

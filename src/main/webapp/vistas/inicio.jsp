@@ -14,9 +14,11 @@
 </head>
 <body style="margin-top:0px">
 <div class="">
+<div class="text-center" style="color:white">
   <sec:authentication property="name"/>
-  <sec:authorize access="hasAuthority('ROLE_CLIENTE')">Eres un CLIENTE</sec:authorize>
-  <sec:authorize access="hasAuthority('ROLE_ADMIN')">Eres un ADMINISTRADOR</sec:authorize>
+  <sec:authorize access="hasAuthority('ROLE_CLIENTE')">tu rol es: CLIENTE</sec:authorize>
+  <sec:authorize access="hasAuthority('ROLE_ADMIN')">tu rol es: ADMINISTRADOR</sec:authorize>
+ </div>
   <nav class="navbar navbar-expand-lg navbar-dark  bg-dark">
     <a class="navbar-brand" href="/">
       <img src="${pageContext.request.contextPath}/img/logo.png" style="width:120px;height:100px;" class="float-start">
@@ -42,7 +44,7 @@
             <a class="nav-link" href="/usuario/usuarios">Usuarios</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="producto/altaProducto">Nuevo producto</a>
+            <a class="nav-link" href="/producto/altaProducto">Nuevo producto</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/rol/roles">Roles</a>

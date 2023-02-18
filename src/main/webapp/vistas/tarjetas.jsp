@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Listado de tus tarjetas</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <style type="text/css">
 	body {
@@ -30,7 +30,6 @@
 	<br><br>
 	<table class="table table-striped table-sm">
 		<th>Id de la tarjeta</th>
-		<th>Usuario</th>
 		<th>Nombre del titular</th>
 		<th>Numero de la tarjeta</th>
 		<th>Fecha caducidad</th>
@@ -41,8 +40,7 @@
 		
 		<c:forEach var="ele" items="${todasTarjetas }">
 			<tr>
-				<td>${ele.idTarjetaBancaria}</td>
-				<td>${ele.usuario.username}</td>			
+				<td>${ele.idTarjetaBancaria}</td>		
 				<td>${ele.nombreTitular}</td>				
 				<td>${ele.numeroTarjeta}</td>				
 				<td>${ele.fechaCaducidad}</td>		

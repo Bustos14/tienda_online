@@ -7,7 +7,14 @@
 <head>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Filtrado productos</title>
+<style type="text/css">
+	body {
+  background-image: url("/img/fondo.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+</style>
 </head>
 <body>
 <jsp:include page="inicio.jsp"></jsp:include>
@@ -20,9 +27,9 @@
 	
 	<div class="row">
   <c:forEach var="ele" items="${productos }">
-    <div class="card mx-2 my-2 shadow-lg rounded border border-dark hover-3d ">
+    <div class="card mx-2 my-2 shadow-lg rounded border border-dark hover-3d " style="background-color: rgba(51, 51, 51, 0.6); color: white;">
       <img src="/recursos/${ele.img}" class="card-img-top border" alt="${ele.img}" style="height: 200px;width: 300px;">
-      <div class="card-body" style="background-color: rgba(51, 51, 51, 0.6); color: white;">
+      <div class="card-body" >
         <h5 class="card-title">${ele.nombre}</h5>
         <p class="card-text"><span>Precio:</span> ${ele.price} &euro;</p>
         <p class="card-text"><small><span>Stock:</span></small> ${ele.stock}</p>

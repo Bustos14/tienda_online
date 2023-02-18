@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Home</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <style type="text/css">
 	body {
@@ -30,7 +30,7 @@
             <div class="col-xl-15 col-lg-8 col-md-8 col-sm-10 text-center">
               <h5 class="text-black">Productos de importación</h5>
               <div class="h1 text-black mb-5 pb-5">Productos frescos y de calidad en la puerta de tu casa
-              </div><a class="btn btn-primary" href="/" data-scroll="">Mira nuestro catálogo</a>
+              </div><a class="btn btn-primary" href="#productos" data-scroll="">Mira nuestro catálogo</a>
             </div>
           </div>
         </div>
@@ -68,13 +68,13 @@
                     </div>
                 </div>
 <div class="container">
-	<h1 class="text-primary">Productos</h1>
+	<h1 class="text-primary" id="productos">Productos</h1>
 	 <sec:authorize access="hasAnyAuthority('ROLE_ADMIN')">
 	<a href="producto/altaProducto" class="btn btn-primary btn-sm" >Nuevo Producto</a></td>
 	<br><br>
 	</sec:authorize>
 	
-	<div class="row ">
+	<div class="row justify-content-center">
   <c:forEach var="ele" items="${productos }">
     <div class="card mx-2 my-2 shadow-lg rounded border border-dark hover-3d" style="background-color: rgba(51, 51, 51, 0.6); color: white;">
       <img src="/recursos/${ele.img}" class="card-img-top border" alt="${ele.img}" style="height: 200px;width: 300px;">

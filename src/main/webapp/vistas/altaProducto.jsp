@@ -7,7 +7,16 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Alta producto</title>
+<style type="text/css">
+	body {
+  background-image: url("/img/fondo.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+    
+	
+</style>
 </head>
 <body>
 <jsp:include page="inicio.jsp"></jsp:include>
@@ -15,53 +24,51 @@
 <h3>Mensajes : ${mensaje }</h3>
 
 	<h1>Alta Producto</h1>
-<div class="container">
-	<form action="/producto/altaProducto" method="post" enctype="multipart/form-data">
-		<div class="form-group">
-			<label for="nombre">Nombre del producto:</label> <input
-				type="text" class="form-control" id="nombre"
-				name="nombre">
-		</div>
-		<div class="form-group">
-			<label for="descripcion">Descripcion:</label> <input
-				type="text" class="form-control" id="descripcion"
-				name="descripcion">
-		</div>
-		<div class="form-group">
-			<label for="price">Precio:</label> <input
-				type="number" class="form-control" id="price" step="any"
-				name="price">
-		</div>
-		<div class="form-group">
-			<label for="stock">Stock:</label> <input type="number"
-				class="form-control" id="stock" name="stock">
-		</div>
-		<div class="form-group">
-		<label for="tipo">Tipo de producto:</label> 
-		<Select id="tipo" name="tipo">
-		<c:forEach var="ele" items="${tipos}">
-			<Option selected="true" value = "${ele.idTipo}"> ${ele.nombreTipo} </option>
-			</c:forEach>
-		</Select>
-		</div>
-		<div class="form-group">
-		<label for="estado">Estado del producto:</label> 
-		<Select id="estado" name="estado">
-			<Option selected="true" value = "Normal"> Normal </option>
-			<Option value = "Oferta"> Oferta </option>
-			<Option value = "Destacado"> Destacado </option>
-		</Select>
-		</div>
-			<div class="form-group">
-			<label for="imagen">Imagen:</label> 
-			<input type="file" class="form-control" id="imagen" name="file">
-		</div>
-
-		<button type="submit" class="btn btn-primary">Enviar</button>
-		<button type="reset" class="btn btn-secondary">Borrar</button>
-		<a href="/" class="btn btn-primary"> Volver</a>
-	</form>
+<div class="container p-5" style="background-color: rgba(51, 51, 51, 0.6); color: white; border-radius: 25px">
+  <h1 class="text-primary">Formulario de alta de productos</h1>
+  <form action="/producto/altaProducto" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+      <label for="nombre" class="text-white">Nombre del producto:</label> 
+      <input type="text" class="form-control" id="nombre" name="nombre">
+    </div>
+    <div class="form-group">
+      <label for="descripcion" class="text-white">Descripción:</label> 
+      <input type="text" class="form-control" id="descripcion" name="descripcion">
+    </div>
+    <div class="form-group">
+      <label for="price" class="text-white">Precio:</label> 
+      <input type="number" class="form-control" id="price" step="any" name="price">
+    </div>
+    <div class="form-group">
+      <label for="stock" class="text-white">Stock:</label> 
+      <input type="number" class="form-control" id="stock" name="stock">
+    </div>
+    <div class="form-group">
+      <label for="tipo" class="text-white">Tipo de producto:</label> 
+      <select id="tipo" name="tipo" class="form-control">
+        <c:forEach var="ele" items="${tipos}">
+          <option selected="true" value="${ele.idTipo}">${ele.nombreTipo}</option>
+        </c:forEach>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="estado" class="text-white">Estado del producto:</label> 
+      <select id="estado" name="estado" class="form-control">
+        <option selected="true" value="Normal">Normal</option>
+        <option value="Oferta">Oferta</option>
+        <option value="Destacado">Destacado</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="imagen" class="text-white">Imagen:</label> 
+      <input type="file" class="form-control" id="imagen" name="file">
+    </div>
+    <button type="submit" class="btn btn-primary">Enviar</button>
+    <button type="reset" class="btn btn-secondary">Borrar</button>
+    <a href="/" class="btn btn-primary">Volver</a>
+  </form>
 </div>
+
 
 	<jsp:include page="footer.jsp"></jsp:include>
 </body>
