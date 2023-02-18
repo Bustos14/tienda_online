@@ -18,14 +18,14 @@
 	<br><br>
 	</sec:authorize>
 	
-	<div class="row ">
+	<div class="row">
   <c:forEach var="ele" items="${productos }">
-    <div class="card mx-2 my-2 shadow-lg rounded border border-dark hover-3d">
+    <div class="card mx-2 my-2 shadow-lg rounded border border-dark hover-3d ">
       <img src="/recursos/${ele.img}" class="card-img-top border" alt="${ele.img}" style="height: 200px;width: 300px;">
-      <div class="card-body">
+      <div class="card-body" style="background-color: rgba(51, 51, 51, 0.6); color: white;">
         <h5 class="card-title">${ele.nombre}</h5>
         <p class="card-text"><span>Precio:</span> ${ele.price} &euro;</p>
-        <p class="card-text"><small class="text-muted"><span>Stock:</span> ${ele.stock}</small></p>
+        <p class="card-text"><small><span>Stock:</span></small> ${ele.stock}</p>
         <c:if test="${ele.stock <= 3}">
    			<p class="card-text text-danger">Solo queda ${ele.stock} en stock</p>
 		</c:if>
@@ -39,6 +39,7 @@
       </div>
     </div>
   </c:forEach>
+</div>
 </div>
 </body>
 </html>

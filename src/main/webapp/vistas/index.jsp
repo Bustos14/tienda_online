@@ -76,12 +76,12 @@
 	
 	<div class="row ">
   <c:forEach var="ele" items="${productos }">
-    <div class="card mx-2 my-2 shadow-lg rounded border border-dark hover-3d">
+    <div class="card mx-2 my-2 shadow-lg rounded border border-dark hover-3d" style="background-color: rgba(51, 51, 51, 0.6); color: white;">
       <img src="/recursos/${ele.img}" class="card-img-top border" alt="${ele.img}" style="height: 200px;width: 300px;">
-      <div class="card-body">
+      <div class="card-body" >
         <h5 class="card-title">${ele.nombre}</h5>
         <p class="card-text"><span>Precio:</span> ${ele.price} &euro;</p>
-        <p class="card-text"><small class="text-muted"><span>Stock:</span> ${ele.stock}</small></p>
+        <p class="card-text"><small><span>Stock:</span></small> ${ele.stock}</p>
         
         <div class="d-flex">
           <div class="p-2"><a href="/producto/detallesProducto/${ele.idProducto}" class="btn btn-success btn-sm">Detalle</a></div>
