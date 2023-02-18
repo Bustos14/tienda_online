@@ -21,50 +21,52 @@
  </div>
   <nav class="navbar navbar-expand-lg navbar-dark  bg-dark">
     <a class="navbar-brand" href="/">
-      <img src="${pageContext.request.contextPath}/img/logo.png" style="width:120px;height:100px;" class="float-start">
+        <img src="${pageContext.request.contextPath}/img/logo.png" style="width:120px;height:100px;" class="float-start">
     </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="container collapse navbar-collapse" id="navbarNav" >
-      <ul class="navbar-nav ml-auto">
-        <sec:authorize access="hasAuthority('ROLE_CLIENTE')">
-          <li class="nav-item active">
-            <a class="nav-link" href="/direccion/direcciones">Direcciones</a>
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="/tarjeta/tarjetas">Tarjetas</a>
-          </li>
-        </sec:authorize>
-        <li class="nav-item">
-          <a class="nav-link" href="/">Catálogo</a>
-        </li>
-        <sec:authorize access="hasAnyAuthority('ROLE_ADMIN')">
-          <li class="nav-item">
-            <a class="nav-link" href="/usuario/usuarios">Usuarios</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/producto/altaProducto">Nuevo producto</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/rol/roles">Roles</a>
-          </li>
-        </sec:authorize>
-        <sec:authorize access="!isAuthenticated()">
-          <li class="nav-item"><a class="nav-link" href="/login">Iniciar Sesión</a></li>
-          <li class="nav-item"><a class="nav-link" href="/registro">Registrarse</a></li>
-        </sec:authorize>
-        <sec:authorize access="isAuthenticated()">
-          <li class="nav-item"><a class="nav-link" href="/logout">Cerrar Sesión</a></li>
-        </sec:authorize>
-       </ul>
-       <form class="d-flex flex-grow-1 ms-auto" action="/producto/search" method="get">
-      		<input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar" name="nombre">
-      		<button class="btn btn-outline-success ms-3 me-3" type="submit">Buscar</button>
-    	</form>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mr-auto">
+            <sec:authorize access="hasAuthority('ROLE_CLIENTE')">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/direccion/direcciones">Direcciones</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/tarjeta/tarjetas">Tarjetas</a>
+                </li>
+            </sec:authorize>
+            <li class="nav-item">
+                <a class="nav-link" href="/">Catï¿½logo</a>
+            </li>
+            <sec:authorize access="hasAnyAuthority('ROLE_ADMIN')">
+                <li class="nav-item">
+                    <a class="nav-link" href="/usuario/usuarios">Usuarios</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="producto/altaProducto">Nuevo producto</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/rol/roles">Roles</a>
+                </li>
+            </sec:authorize>
+            <sec:authorize access="!isAuthenticated()">
+                <li class="nav-item"><a class="nav-link" href="/login">Iniciar Sesiï¿½n</a></li>
+                <li class="nav-item"><a class="nav-link" href="/registro">Registrarse</a></li>
+            </sec:authorize>
+            <sec:authorize access="isAuthenticated()">
+                <li class="nav-item"><a class="nav-link" href="/logout">Cerrar Sesiï¿½n</a></li>
+                <li style="flex: auto;margin: auto; padding-left: 10px" ><a href="/usuario/perfil"><i class="fa fa-user-circle fa-inverse fa-lg" aria-hidden="true"></i></a> </li>
+            </sec:authorize>
+        </ul>
+        <form class="form-inline my-2 my-lg-1 mx-auto" action="/producto/search" method="get">
+            <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Buscar" name="nombre">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+        </form>
+      
     </div>
-  </nav>
-</div>
+</nav>
 
 <body>
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
