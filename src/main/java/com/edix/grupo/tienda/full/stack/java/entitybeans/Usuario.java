@@ -205,5 +205,7 @@ public class Usuario implements Serializable {
 	public void setTarjetasBancarias(List<TarjetasBancaria> tarjetasBancarias) {
 		this.tarjetasBancarias = tarjetasBancarias;
 	}
+	
+	
 
 }

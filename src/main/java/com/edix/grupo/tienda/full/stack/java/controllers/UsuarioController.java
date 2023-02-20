@@ -2,6 +2,7 @@ package com.edix.grupo.tienda.full.stack.java.controllers;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -18,7 +19,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.edix.grupo.tienda.full.stack.java.dao.DireccionDaoImpl;
+import com.edix.grupo.tienda.full.stack.java.dao.TarjetaDaoImpl;
 import com.edix.grupo.tienda.full.stack.java.dao.UsuarioDaoImpl;
+import com.edix.grupo.tienda.full.stack.java.entitybeans.Direccione;
+import com.edix.grupo.tienda.full.stack.java.entitybeans.TarjetasBancaria;
 import com.edix.grupo.tienda.full.stack.java.entitybeans.Usuario;
 
 @Controller
@@ -27,6 +32,12 @@ public class UsuarioController {
 
 	@Autowired
 	private UsuarioDaoImpl udao;
+	
+	@Autowired
+	private TarjetaDaoImpl tdao;
+	
+	@Autowired
+	private DireccionDaoImpl ddao;
 	
 	@GetMapping("usuarios")
 	public String todosUsuarios(Model model) {
@@ -84,6 +95,31 @@ public class UsuarioController {
 		}
 		
 	    return "redirect:/usuario/perfil";
+	}
+	
+	@GetMapping("/misTarjetas/{username}")
+	public String misTarjetas(Authentication auth, Model model, @PathVariable("username") String username) {
+		
+		List<TarjetasBancaria> tarjetas = tdao.findByUsername(username);
+		
+		model.addAttribute("todasTarjetas", tarjetas);
+		
+		return "tarjetas";
+	}
+	
+	@GetMapping("/misDirecciones/{username}")
+	public String misDirecciones(Authentication auth, Model model, @PathVariable("username") String username) {
+		
+		Usuario user = udao.findById(username);
+		String userName = user.getUsername();
+		
+		List<Direccione> misDirecciones = user.getDirecciones();
+		
+		model.addAttribute("todasDirecciones", misDirecciones);
+		
+		
+		
+		return "direcciones";
 	}
 	
 	//Método necesario para formatear fechas

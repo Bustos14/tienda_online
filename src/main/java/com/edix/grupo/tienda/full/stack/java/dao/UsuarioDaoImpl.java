@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.edix.grupo.tienda.full.stack.java.entitybeans.Direccione;
+import com.edix.grupo.tienda.full.stack.java.entitybeans.TarjetasBancaria;
 import com.edix.grupo.tienda.full.stack.java.entitybeans.Usuario;
 import com.edix.grupo.tienda.full.stack.java.repository.UsuarioRepository;
 

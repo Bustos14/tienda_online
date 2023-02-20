@@ -11,6 +11,7 @@ public interface TarjetaDao {
 	int eliminarTarjeta(int idTarjeta);
 	TarjetasBancaria buscarUna(int idTarjeta);
 	List<TarjetasBancaria> todas();
+	List<TarjetasBancaria> findByUsername(String username);
 	
 
 }

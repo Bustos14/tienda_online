@@ -9,10 +9,22 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 	crossorigin="anonymous">
+	
+	<style type="text/css">
+	body {
+  background-image: url("/img/fondo.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+    
+	
+</style>
 </head>
 <body>
 	<jsp:include page="inicio.jsp"></jsp:include>
-<div class="container col-4">
+	<br>
+<div class="container col-4" style="background-color: rgba(51, 51, 51, 0.6); color: white; border-radius: 25px">
+	
 	<h1>Bienvenido, ${userName}</h1>
 	<h3>${mensaje}</h3>
 	<h2>Tus datos de usuario:</h2>
@@ -56,9 +68,9 @@
 	</form>
 	<a class="btn btn-success  btn-sm" id="btnModificar" onclick="document.getElementById('nombre').removeAttribute('readonly');document.getElementById('apellidos').removeAttribute('readonly');document.getElementById('fechaNacimiento').removeAttribute('readonly');" style="color:white">Modificar</a>
 
-	<a class="btn btn-info btn-sm" id="verTarjetas" href="/usuario/misTarjetas">Mis tarjetas</a>
+	<a class="btn btn-info btn-sm" id="verTarjetas" href="/usuario/misTarjetas/${userName}">Mis tarjetas</a>
 
-	<a class="btn btn-info btn-sm" id="verDirecciones" href="/direccion/direcciones">Mis Direcciones</a>
+	<a class="btn btn-info btn-sm" id="verDirecciones" href="/usuario/misDirecciones/${userName}">Mis Direcciones</a>
 
 	<a class="btn btn-info btn-sm" id="verPedidos" href="/">Mis Pedidos</a>
 	

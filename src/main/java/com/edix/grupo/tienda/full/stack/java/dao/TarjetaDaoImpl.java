@@ -65,4 +65,9 @@ public class TarjetaDaoImpl implements TarjetaDao{
 		return trepo.findAll();
 	}
 
+	@Override
+	public List<TarjetasBancaria> findByUsername(String username) {
+		return trepo.findByUsuario_Username(username);
+	}
+
 }
