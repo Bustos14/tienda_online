@@ -46,23 +46,20 @@ public class HomeController {
 	private ArticuloPedidoDao apdao;
 	@GetMapping("/")
 	public String inicio(Model model, HttpSession misesion, Authentication aut) {
-		if(aut == null) {
-			List<Producto> listproductos= pdao.listadoProducto();
-			model.addAttribute("productos", listproductos);
-		}else {
+		List<Producto> listproductos= pdao.listadoProducto();
+		if(aut != null) {
 			Pedido p = pedao.obtenerCarrito(aut.getName());
 			if(p!=null) {
-				int contador = 0;
-				List<AticulosPedido> lArp = apdao.findByPedido(p.getIdPedido());
-				for (AticulosPedido aticulosPedido : lArp) {
-					contador = aticulosPedido.getCantidad() + contador;
-				}
-				model.addAttribute("contador", contador);
-				List<Producto> listproductos= pdao.listadoProducto();
-				model.addAttribute("productos", listproductos);
+			int contador = 0;
+			List<AticulosPedido> lArp = apdao.findByPedido(p.getIdPedido());
+			for (AticulosPedido aticulosPedido : lArp) {
+				contador = aticulosPedido.getCantidad() + contador;
 			}
+			model.addAttribute("contador", contador);
+			model.addAttribute("productos", listproductos);
 		}
-		
+		}
+		model.addAttribute("productos", listproductos);
 		return "index";
 		
 	}
