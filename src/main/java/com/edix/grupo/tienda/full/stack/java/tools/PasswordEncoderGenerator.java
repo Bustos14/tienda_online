@@ -1,4 +1,4 @@
-package com.edix.apirestblog.tools;
+package com.edix.grupo.tienda.full.stack.java.tools;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;

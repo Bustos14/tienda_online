@@ -1,11 +1,13 @@
 package com.edix.grupo.tienda.full.stack.java.dao;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.edix.grupo.tienda.full.stack.java.entitybeans.Producto;
+import com.edix.grupo.tienda.full.stack.java.entitybeans.Usuario;
 import com.edix.grupo.tienda.full.stack.java.repository.ProductoRepository;
 
 @Repository
@@ -60,6 +62,13 @@ public class ProductoDaoImpl implements ProductoDao{
 	@Override
 	public List<Producto> lBusquedaProduc(String nombre) {
 		return prepo.findLikeName(nombre);
+	}
+	
+	@Override
+	public double findPrecioById(int idProducto) {		
+		Optional<Producto> prod = prepo.findById(idProducto);	
+			
+		return prod.get().getPrice();
 	}
 
 }
