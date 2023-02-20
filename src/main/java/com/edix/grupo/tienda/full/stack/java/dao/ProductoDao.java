@@ -13,4 +13,5 @@ public interface ProductoDao {
 	List<Producto> listadoProducto();
 	List<Producto> lProductoPorEstado(String estado);
 	List<Producto> lBusquedaProduc(String nombre);
+	public double findPrecioById(int idProducto);
 }

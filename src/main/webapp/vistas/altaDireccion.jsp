@@ -60,9 +60,7 @@
 			<input type="text"
 				class="form-control" 
 				id="piso" 
-				name="piso"
-				pattern="(bajo|primer|segundo|tercer)"
-				title="Elija entre bajo,primer,segundo o tercer)">
+				name="piso">
 		</div>
 		<div class="form-group">
 			<label for="letra">Letra:</label> 
@@ -75,7 +73,7 @@
 		</div>
 		<button type="submit" class="btn btn-primary">Enviar</button>
 		<button type="reset" class="btn btn-secondary">Borrar</button>
-		<a href="/direccion/direcciones" class="btn btn-primary"> Volver</a>
+		<a href="/usuario/perfil" class="btn btn-primary">Volver</a>
 	</form>
 </div>
 
