@@ -17,26 +17,26 @@
 	<div class="form-group">
 			<label for="username">Usuario:</label> <input
 				type="text" class="form-control" id="username"
-				name="username">
+				name="username" required>
 		</div>
 		<div class="form-group">
 			<label for="nombre">Nombre:</label> <input
 				type="text" class="form-control" id="nombre"
-				name="nombre">
+				name="nombre" required>
 		</div>
 		<div class="form-group">
 			<label for="apellidos">Apellidos:</label> <input
 				type="text" class="form-control" id="apellidos"
-				name="apellidos">
+				name="apellidos" required>
 		</div>
 		<div class="form-group">
 			<label for="fechaNacimiento">Fecha nacimiento:</label> <input
 				type="date" class="form-control" id="fechaNacimiento"
-				name="fechaNacimiento">
+				name="fechaNacimiento" required>
 		</div>
 		<div class="form-group">
 			<label for="contrasena">Contraseña:</label> <input type="password"
-				class="form-control" id="contrasena" name="contrasena">
+				class="form-control" id="contrasena" name="contrasena" required>
 		</div>
 	
 		<button type="submit" class="btn btn-primary">Enviar</button>
