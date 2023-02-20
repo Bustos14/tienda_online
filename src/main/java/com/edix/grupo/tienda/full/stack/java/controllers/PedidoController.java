@@ -19,8 +19,10 @@ import com.edix.grupo.tienda.full.stack.java.dao.PedidoDao;
 import com.edix.grupo.tienda.full.stack.java.dao.ProductoDao;
 import com.edix.grupo.tienda.full.stack.java.dao.UsuarioDao;
 import com.edix.grupo.tienda.full.stack.java.entitybeans.AticulosPedido;
+import com.edix.grupo.tienda.full.stack.java.entitybeans.Direccione;
 import com.edix.grupo.tienda.full.stack.java.entitybeans.Pedido;
 import com.edix.grupo.tienda.full.stack.java.entitybeans.Producto;
+import com.edix.grupo.tienda.full.stack.java.entitybeans.TarjetasBancaria;
 import com.edix.grupo.tienda.full.stack.java.entitybeans.Usuario;
 
 @Controller
@@ -38,7 +40,7 @@ public class PedidoController {
 	ArticuloPedidoDao ardao;
 	
 	@GetMapping("/modCarrito/{id}")
-	public String procCarrito(Model model, @PathVariable("id") int idProd, Authentication aut, RedirectAttributes attr) {
+	public String procCarrito(Model model, @PathVariable("id") int idProd, Authentication aut) {
 		Usuario u = udao.findById(aut.getName());
 		Producto p = pdao.detallesProdutos(idProd);
 		Pedido pe = pedao.obtenerCarrito(u.getUsername());
@@ -64,10 +66,27 @@ public class PedidoController {
 	
 	@GetMapping("/efectuarCompra")
 	public String procCompra() {
-		return "/usuario/perfil";
+		
+		
+		return "carrito";	
 	}
 	@GetMapping("/carrito")
-	public String getCarrito() {
+	public String getCarrito(Model model, Authentication aut) {
+		Usuario usu = udao.findById(aut.getName());
+		
+		Pedido pe = pedao.obtenerCarrito(aut.getName());
+		List<AticulosPedido>apList =  ardao.findByPedido(pe.getIdPedido());
+		double cantidadTotal = 0;
+		for (AticulosPedido aticulosPedido : apList) {
+			cantidadTotal = (aticulosPedido.getCantidad() * aticulosPedido.getProducto().getPrice()) + cantidadTotal;
+		}
+		List<Direccione> lDir = usu.getDirecciones();
+		List<TarjetasBancaria> lTar = usu.getTarjetasBancarias();
+		System.out.println(lDir.get(0).getCalle());
+		model.addAttribute("total", cantidadTotal);
+		model.addAttribute("direcciones", lDir);
+		model.addAttribute("tarjetas", lTar);
+		model.addAttribute("carrito", apList);
 		return "carrito";
 	}
 	
