@@ -101,7 +101,7 @@ public class TarjetaController {
 		
 		
 		if(tdao.nuevaTarjeta(tarjeta) != 0) {
-			
+			tarjeta.setUsuario(usuario);
 			usuario.addTarjetA(tarjeta);
 			udao.modUsuario(usuario);
 			attr.addFlashAttribute("mensaje", "Tarjeta bancaria dada de alta");

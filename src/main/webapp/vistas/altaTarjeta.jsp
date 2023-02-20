@@ -19,23 +19,44 @@
 
 	<form action="/tarjeta/alta" method="post">
 		<div class="form-group">
-			<label for="numeroTarjeta">Número de tarjeta:</label> <input
-				type="text" class="form-control" id="numeroTarjeta"
-				name="numeroTarjeta" required>
+			<label for="numeroTarjeta">Número de tarjeta:</label> 
+			<input
+				type="text" 
+				class="form-control" 
+				id="numeroTarjeta"
+				name="numeroTarjeta" 
+				pattern="^[0-9]{16}" 
+				title="Por favor ingrese un número de tarjeta Visa válido de 16 dígitos, todos juntos"
+				maxlength ="16"
+				required>
 		</div>
 		<div class="form-group">
-			<label for="nombreTitular">Nombre del titular:</label> <input
-				type="text" class="form-control" id="nombreTitular"
-				name="nombreTitular" required>
+			<label for="nombreTitular">Nombre del titular:</label> 
+			<input
+				type="text" 
+				class="form-control" 
+				id="nombreTitular"
+				name="nombreTitular" 
+				minlength="3"
+				required>
 		</div>
 		<div class="form-group">
-			<label for="fechaCaducidad">Fecha caducidad:</label> <input
-				type="date" class="form-control" id="fechaCaducidad"
-				name="fechaCaducidad" required>
+			<label for="fechaCaducidad">Fecha caducidad:</label> 
+			<input
+				type="date" 
+				class="form-control" 
+				id="fechaCaducidad"
+				name="fechaCaducidad" 
+				required>
 		</div>
 		<div class="form-group">
-			<label for="cvv">CVV:</label> <input type="number"
-				class="form-control" id="cvv" name="cvv" required>
+			<label for="cvv">CVV:</label> 
+			<input type="number"
+				class="form-control" 
+				id="cvv" 
+				name="cvv" 
+				pattern="[0-9]{3}"
+				required>
 		</div>		
 		<button type="submit" class="btn btn-primary">Enviar</button>
 		<button type="reset" class="btn btn-secondary">Borrar</button>

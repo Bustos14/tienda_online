@@ -17,13 +17,22 @@
 	<h1>Alta Rol</h1>
 	<form action="/rol/alta" method="post">
 		<div class="form-group">
-			<label for="idRol">Id Rol:</label> <input type="number"
-				class="form-control" id="idRol" name="idRol" required>
+			<label for="idRol">Id Rol:</label> 
+			<input type="number"
+				class="form-control" 
+				id="idRol" 
+				name="idRol"
+				required>
 		</div>
 		<div class="form-group">
-			<label for="nombre">Nombre:</label> <input
-				type="text" class="form-control" id="nombre"
-				name="nombre" required>
+			<label for="nombre">Nombre:</label> 
+			<input
+				type="text" 
+				class="form-control" 
+				id="nombre"
+				name="nombre" 
+				minlength="3" 				
+				required>
 		</div>
 		<button type="submit" class="btn btn-primary">Enviar</button>
 		<button type="reset" class="btn btn-secondary">Borrar</button>

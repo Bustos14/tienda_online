@@ -17,31 +17,61 @@
 	<h1>Alta Direccion</h1>
 	<form action="/direccion/alta" method="post">
 		<div class="form-group">
-			<label for="localidad">Localidad:</label> <input type="text"
-				class="form-control" id="localidad" name="localidad" required>
+			<label for="localidad">Localidad:</label> 
+		<input type="text"
+				class="form-control" 
+				id="localidad" 
+				name="localidad"
+				minlength="3" 
+				required>
 		</div>
 		<div class="form-group">
-			<label for="codigoPostal">Codigo Postal:</label> <input
-				type="text" class="form-control" id="codigoPostal"
-				name="codigoPostal" required>
+			<label for="codigoPostal">Codigo Postal:</label> 
+			<input
+				type="text" 
+				class="form-control" 
+				id="codigoPostal"
+				name="codigoPostal"
+				pattern="\d{5}" 
+				title="El codigo postal tiene que tener 5 dígitos"
+				required>
 		</div>
 		<div class="form-group">
-			<label for="calle">Calle:</label> <input
-				type="text" class="form-control" id="calle"
-				name="calle" required>
+			<label for="calle">Calle:</label> 
+			<input
+				type="text" 
+				class="form-control" 
+				id="calle"
+				name="calle" 
+				minlength="3"
+				required>
 		</div>
 		<div class="form-group">
-			<label for="numero">Numero:</label> <input type="number"
-				class="form-control" id="numero" name="numero" required>
+			<label for="numero">Numero:</label> 
+			<input type="number"
+				class="form-control" 
+				id="numero" 
+				name="numero" 
+				pattern="[0-9]+.*"
+				required>
 		</div>
 		<div class="form-group">
-			<label for="piso">Piso:</label> <input type="text"
-				class="form-control" id="piso" name="piso">
+			<label for="piso">Piso:</label> 
+			<input type="text"
+				class="form-control" 
+				id="piso" 
+				name="piso"
+				pattern="(bajo|primer|segundo|tercer)"
+				title="Elija entre bajo,primer,segundo o tercer)">
 		</div>
 		<div class="form-group">
-			<label for="letra">Letra:</label> <input
-				type="text" class="form-control" id="letra"
-				name="letra">
+			<label for="letra">Letra:</label> 
+			<input
+				type="text" 
+				class="form-control" 
+				id="letra"
+				name="letra"
+				pattern="[A-Za-z]">
 		</div>
 		<button type="submit" class="btn btn-primary">Enviar</button>
 		<button type="reset" class="btn btn-secondary">Borrar</button>

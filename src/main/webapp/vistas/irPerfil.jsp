@@ -56,7 +56,7 @@
 	</form>
 	<a class="btn btn-success  btn-sm" id="btnModificar" onclick="document.getElementById('nombre').removeAttribute('readonly');document.getElementById('apellidos').removeAttribute('readonly');document.getElementById('fechaNacimiento').removeAttribute('readonly');" style="color:white">Modificar</a>
 
-	<a class="btn btn-info btn-sm" id="verTarjetas" href="/tarjeta/tarjetas">Mis tarjetas</a>
+	<a class="btn btn-info btn-sm" id="verTarjetas" href="/usuario/misTarjetas">Mis tarjetas</a>
 
 	<a class="btn btn-info btn-sm" id="verDirecciones" href="/direccion/direcciones">Mis Direcciones</a>
 
