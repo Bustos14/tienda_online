@@ -43,8 +43,8 @@
                             <i class="fas fa-duotone fa-wine-bottle fa-stack-1x fa-inverse"></i>
                             </a>
                         </span>
-                        <h4 class="my-3">Catálogo</h4>
-                        <p class="text-muted">Mira nuestro catálogo y encuentra lo que buscas</p>
+                        <h4 class="my-3" style="color:white">Catálogo</h4>
+                        <p class="text-muted" >Mira nuestro catálogo y encuentra lo que buscas</p>
                     </div>
                     <div class="col-md-4">
                         <span class="fa-stack fa-4x">
@@ -53,7 +53,7 @@
                             <i class="fas fa-duotone fa-star fa-stack-1x fa-inverse"></i>
                             </a>
                         </span>
-                        <h4 class="my-3">Destacados</h4>
+                        <h4 class="my-3" style="color:white">Destacados</h4>
                         <p class="text-muted">Los mas destacados.</p>
                     </div>
                     <div class="col-md-4">
@@ -63,7 +63,7 @@
                             <i class="fas fa-duotone fa-tags fa-stack-1x fa-inverse"></i>
                             </a>
                         </span>
-                        <h4 class="my-3">Ofertas</h4>
+                        <h4 class="my-3" style="color:white">Ofertas</h4>
                         <p class="text-muted">¡Añade una tarjeta para tu primera compra!</p>
                     </div>
                 </div>
