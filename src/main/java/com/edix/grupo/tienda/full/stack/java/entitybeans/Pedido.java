@@ -29,11 +29,6 @@ public class Pedido implements Serializable {
 
 	private BigDecimal precioTotal;
 
-	//uni-directional many-to-one association to Producto
-	@ManyToOne
-	@JoinColumn(name="id_producto")
-	private Producto producto;
-
 	//uni-directional many-to-one association to Usuario
 	@ManyToOne
 	@JoinColumn(name="username")
@@ -73,15 +68,6 @@ public class Pedido implements Serializable {
 	public void setPrecioTotal(BigDecimal precioTotal) {
 		this.precioTotal = precioTotal;
 	}
-
-	public Producto getProducto() {
-		return this.producto;
-	}
-
-	public void setProducto(Producto producto) {
-		this.producto = producto;
-	}
-
 	public Usuario getUsuario() {
 		return this.usuario;
 	}
