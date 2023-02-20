@@ -66,13 +66,13 @@
 		<button type="submit" class="btn btn-primary" id="btnEnviar" disabled>Actualizar datos usuario</button>
 		<br><br>
 	</form>
-	<a class="btn btn-success  btn-sm" id="btnModificar" onclick="document.getElementById('nombre').removeAttribute('readonly');document.getElementById('apellidos').removeAttribute('readonly');document.getElementById('fechaNacimiento').removeAttribute('readonly');" style="color:white">Modificar</a>
+	<a class="btn btn-success  btn-sm mb-3" id="btnModificar" onclick="document.getElementById('nombre').removeAttribute('readonly');document.getElementById('apellidos').removeAttribute('readonly');document.getElementById('fechaNacimiento').removeAttribute('readonly');" style="color:white">Modificar</a>
 
-	<a class="btn btn-info btn-sm" id="verTarjetas" href="/usuario/misTarjetas/${userName}">Mis tarjetas</a>
+	<a class="btn btn-info btn-sm mb-3" id="verTarjetas" href="/usuario/misTarjetas/${userName}">Mis tarjetas</a>
 
-	<a class="btn btn-info btn-sm" id="verDirecciones" href="/usuario/misDirecciones/${userName}">Mis Direcciones</a>
+	<a class="btn btn-info btn-sm mb-3" id="verDirecciones" href="/usuario/misDirecciones/${userName}">Mis Direcciones</a>
 
-	<a class="btn btn-info btn-sm" id="verPedidos" href="/">Mis Pedidos</a>
+	<a class="btn btn-info btn-sm mb-3" id="verPedidos" href="/">Mis Pedidos</a>
 	
 	
 </div>
