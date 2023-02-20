@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.edix.grupo.tienda.full.stack.java.entitybeans.Direccione;
 import com.edix.grupo.tienda.full.stack.java.entitybeans.Usuario;
 import com.edix.grupo.tienda.full.stack.java.repository.UsuarioRepository;
 
@@ -50,6 +51,20 @@ public class UsuarioDaoImpl implements UsuarioDao{
 			return 1;
 		}
 		return 0;
+	}
+	@Override
+	public int modificarUsuario(Usuario usuario) {
+		int filas = 0;
+		Usuario mod = null;
+		try {
+			mod = urepo.getOne(usuario.getUsername());
+			mod = usuario;
+			urepo.save(mod);
+			filas = 1;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return filas;
 	}
 
 }

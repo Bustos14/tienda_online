@@ -1,14 +1,22 @@
 package com.edix.grupo.tienda.full.stack.java.controllers;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.edix.grupo.tienda.full.stack.java.dao.UsuarioDaoImpl;
 import com.edix.grupo.tienda.full.stack.java.entitybeans.Usuario;
@@ -39,4 +47,52 @@ public class UsuarioController {
 		
 		return "redirect:/usuario/usuarios";
 	}
+	
+	@GetMapping("/perfil")
+	public String irPerfil(Authentication auth, Model model) {
+		
+		Usuario usuario = udao.findById(auth.getName());
+		String userName = usuario.getUsername();
+		String nombre = usuario.getNombre();
+		String apellidos = usuario.getApellidos();
+		Date fechaNacimiento = usuario.getFechaNacimiento();
+		
+		model.addAttribute("userName", userName);
+		model.addAttribute("nombre", nombre);
+		model.addAttribute("apellidos", apellidos);
+		model.addAttribute("fechaNacimiento", fechaNacimiento);
+
+		
+		return "irPerfil";
+	}
+	
+	@PostMapping("/editar")
+	public String guardarUsuario(Usuario usuario, RedirectAttributes attr) {
+		
+		Usuario usuarioExistente = udao.findById(usuario.getUsername());
+		
+		usuarioExistente.setUsername(usuarioExistente.getUsername());
+		usuarioExistente.setNombre(usuario.getNombre());
+		usuarioExistente.setApellidos(usuario.getApellidos());
+		usuarioExistente.setFechaNacimiento(usuario.getFechaNacimiento());
+		
+		
+		if(udao.modificarUsuario(usuario) == 1) {
+			attr.addFlashAttribute("mensaje", "Usuario actualizado");
+		} else {
+			attr.addFlashAttribute("mensaje", "No se ha podido actualizar usuario");
+		}
+		
+	    return "redirect:/usuario/perfil";
+	}
+	
+	//Método necesario para formatear fechas
+			@InitBinder
+			public void initBinder(WebDataBinder webdataBinder) {
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+				webdataBinder
+				.registerCustomEditor(Date.class, new CustomDateEditor(sdf, false));
+			}
+	
+	
 }

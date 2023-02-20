@@ -73,6 +73,7 @@
 	<h1 class="text-primary" id="productos">Productos</h1>
 	 <sec:authorize access="hasAnyAuthority('ROLE_ADMIN')">
 	<a href="producto/altaProducto" class="btn btn-primary btn-sm" >Nuevo Producto</a></td>
+	<a href="usuario/perfil" class="btn btn-primary btn-sm" >ir Perfil</a></td>
 	<br><br>
 	</sec:authorize>
 	

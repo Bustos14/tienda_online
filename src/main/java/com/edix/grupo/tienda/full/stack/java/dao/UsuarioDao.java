@@ -11,4 +11,5 @@ public interface UsuarioDao {
 	boolean modUsuario(Usuario usuario);
 	List<Usuario> todos();
 	int eliminarUsuario(String username);
+	int modificarUsuario(Usuario usuario);
 }
