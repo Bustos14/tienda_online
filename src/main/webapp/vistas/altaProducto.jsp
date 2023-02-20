@@ -29,23 +29,23 @@
   <form action="/producto/altaProducto" method="post" enctype="multipart/form-data">
     <div class="form-group">
       <label for="nombre" class="text-white">Nombre del producto:</label> 
-      <input type="text" class="form-control" id="nombre" name="nombre">
+      <input type="text" class="form-control" id="nombre" name="nombre" required>
     </div>
     <div class="form-group">
       <label for="descripcion" class="text-white">Descripción:</label> 
-      <input type="text" class="form-control" id="descripcion" name="descripcion">
+      <input type="text" class="form-control" id="descripcion" name="descripcion" required>
     </div>
     <div class="form-group">
       <label for="price" class="text-white">Precio:</label> 
-      <input type="number" class="form-control" id="price" step="any" name="price">
+      <input type="number" class="form-control" id="price" step="any" name="price" required>
     </div>
     <div class="form-group">
       <label for="stock" class="text-white">Stock:</label> 
-      <input type="number" class="form-control" id="stock" name="stock">
+      <input type="number" class="form-control" id="stock" name="stock" required>
     </div>
     <div class="form-group">
       <label for="tipo" class="text-white">Tipo de producto:</label> 
-      <select id="tipo" name="tipo" class="form-control">
+      <select id="tipo" name="tipo" class="form-control" required>
         <c:forEach var="ele" items="${tipos}">
           <option selected="true" value="${ele.idTipo}">${ele.nombreTipo}</option>
         </c:forEach>
@@ -53,7 +53,7 @@
     </div>
     <div class="form-group">
       <label for="estado" class="text-white">Estado del producto:</label> 
-      <select id="estado" name="estado" class="form-control">
+      <select id="estado" name="estado" class="form-control" required>
         <option selected="true" value="Normal">Normal</option>
         <option value="Oferta">Oferta</option>
         <option value="Destacado">Destacado</option>
@@ -61,7 +61,7 @@
     </div>
     <div class="form-group">
       <label for="imagen" class="text-white">Imagen:</label> 
-      <input type="file" class="form-control" id="imagen" name="file">
+      <input type="file" class="form-control" id="imagen" name="file" required>
     </div>
     <button type="submit" class="btn btn-primary">Enviar</button>
     <button type="reset" class="btn btn-secondary">Borrar</button>

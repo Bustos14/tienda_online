@@ -21,21 +21,21 @@
 		<div class="form-group">
 			<label for="numeroTarjeta">Número de tarjeta:</label> <input
 				type="text" class="form-control" id="numeroTarjeta"
-				name="numeroTarjeta">
+				name="numeroTarjeta" required>
 		</div>
 		<div class="form-group">
 			<label for="nombreTitular">Nombre del titular:</label> <input
 				type="text" class="form-control" id="nombreTitular"
-				name="nombreTitular">
+				name="nombreTitular" required>
 		</div>
 		<div class="form-group">
 			<label for="fechaCaducidad">Fecha caducidad:</label> <input
 				type="date" class="form-control" id="fechaCaducidad"
-				name="fechaCaducidad">
+				name="fechaCaducidad" required>
 		</div>
 		<div class="form-group">
 			<label for="cvv">CVV:</label> <input type="number"
-				class="form-control" id="cvv" name="cvv">
+				class="form-control" id="cvv" name="cvv" required>
 		</div>		
 		<button type="submit" class="btn btn-primary">Enviar</button>
 		<button type="reset" class="btn btn-secondary">Borrar</button>

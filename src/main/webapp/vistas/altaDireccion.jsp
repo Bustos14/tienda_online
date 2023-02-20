@@ -18,21 +18,21 @@
 	<form action="/direccion/alta" method="post">
 		<div class="form-group">
 			<label for="localidad">Localidad:</label> <input type="text"
-				class="form-control" id="localidad" name="localidad">
+				class="form-control" id="localidad" name="localidad" required>
 		</div>
 		<div class="form-group">
 			<label for="codigoPostal">Codigo Postal:</label> <input
 				type="text" class="form-control" id="codigoPostal"
-				name="codigoPostal">
+				name="codigoPostal" required>
 		</div>
 		<div class="form-group">
 			<label for="calle">Calle:</label> <input
 				type="text" class="form-control" id="calle"
-				name="calle">
+				name="calle" required>
 		</div>
 		<div class="form-group">
 			<label for="numero">Numero:</label> <input type="number"
-				class="form-control" id="numero" name="numero">
+				class="form-control" id="numero" name="numero" required>
 		</div>
 		<div class="form-group">
 			<label for="piso">Piso:</label> <input type="text"
