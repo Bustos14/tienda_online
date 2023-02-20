@@ -40,7 +40,7 @@
 				name="apellidos"
 				value="${apellidos}"				
 		      	minlength="5"
-				 readonly>
+				readonly>
 		</div>
 		<div class="form-group">
 			<label for="fechaNacimiento">Fecha de Nacimiento:</label> <input
@@ -54,7 +54,14 @@
 		<button type="submit" class="btn btn-primary" id="btnEnviar" disabled>Actualizar datos usuario</button>
 		<br><br>
 	</form>
-	<a class="btn btn-success btn-sm"  id="btnModificar" onclick="document.getElementById('nombre').removeAttribute('readonly');document.getElementById('apellidos').removeAttribute('readonly');document.getElementById('fechaNacimiento').removeAttribute('readonly');" style="color:white">Modificar</a>
+	<a class="btn btn-success  btn-sm" id="btnModificar" onclick="document.getElementById('nombre').removeAttribute('readonly');document.getElementById('apellidos').removeAttribute('readonly');document.getElementById('fechaNacimiento').removeAttribute('readonly');" style="color:white">Modificar</a>
+
+	<a class="btn btn-info btn-sm" id="verTarjetas" href="/tarjeta/tarjetas">Mis tarjetas</a>
+
+	<a class="btn btn-info btn-sm" id="verDirecciones" href="/direccion/direcciones">Mis Direcciones</a>
+
+	<a class="btn btn-info btn-sm" id="verPedidos" href="/">Mis Pedidos</a>
+	
 	
 </div>
 
