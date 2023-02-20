@@ -51,14 +51,16 @@ public class HomeController {
 			model.addAttribute("productos", listproductos);
 		}else {
 			Pedido p = pedao.obtenerCarrito(aut.getName());
-			int contador = 0;
-			List<AticulosPedido> lArp = apdao.findByPedido(p.getIdPedido());
-			for (AticulosPedido aticulosPedido : lArp) {
-				contador = aticulosPedido.getCantidad() + contador;
+			if(p!=null) {
+				int contador = 0;
+				List<AticulosPedido> lArp = apdao.findByPedido(p.getIdPedido());
+				for (AticulosPedido aticulosPedido : lArp) {
+					contador = aticulosPedido.getCantidad() + contador;
+				}
+				model.addAttribute("contador", contador);
+				List<Producto> listproductos= pdao.listadoProducto();
+				model.addAttribute("productos", listproductos);
 			}
-			model.addAttribute("contador", contador);
-			List<Producto> listproductos= pdao.listadoProducto();
-			model.addAttribute("productos", listproductos);
 		}
 		
 		return "index";
