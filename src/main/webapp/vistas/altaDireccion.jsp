@@ -60,9 +60,7 @@
 			<input type="text"
 				class="form-control" 
 				id="piso" 
-				name="piso"
-				pattern="(bajo|primer|segundo|tercer)"
-				title="Elija entre bajo,primer,segundo o tercer)">
+				name="piso">
 		</div>
 		<div class="form-group">
 			<label for="letra">Letra:</label> 
