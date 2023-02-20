@@ -27,7 +27,9 @@ public class PedidoDaoImpl implements PedidoDao{
 
 	@Override
 	public boolean guardarPedido(Pedido pedido) {
-		// TODO Auto-generated method stub
+		if(perepo.save(pedido)!=null) {
+			return true;
+		}
 		return false;
 	}
 
@@ -35,6 +37,12 @@ public class PedidoDaoImpl implements PedidoDao{
 	public boolean efectuarCompra(Pedido pedido) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public Pedido obtenerCarrito(String username) {
+		// TODO Auto-generated method stub
+		return perepo.findCard(username);
 	}
 
 }

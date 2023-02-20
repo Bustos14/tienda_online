@@ -58,6 +58,9 @@
             <sec:authorize access="isAuthenticated()">
                 <li class="nav-item"><a class="nav-link" href="/logout">Cerrar Sesión</a></li>
                 <li style="flex: auto;margin: auto; padding-left: 10px" ><a href="/usuario/perfil"><i class="fa fa-user-circle fa-inverse fa-lg" aria-hidden="true"></i></a> </li>
+                 <li class="nav-item">
+                    <a class="nav-link" href="/pedidos/carrito"><i class="fa fa-shopping-cart fa-inverse" aria-hidden="true">(<label style="color:orange">${contador}</label>)</i></a>
+                </li>
             </sec:authorize>
         </ul>
         <form class="form-inline my-2 my-lg-1 mx-auto" action="/producto/search" method="get">

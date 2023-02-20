@@ -88,9 +88,7 @@
         
         <div class="d-flex">
         <sec:authorize access="isAuthenticated()">
-        <button>
-        	Añadir al carrito
-        </button>
+        <div class="p-2"><a href="pedidos/modCarrito/${ele.idProducto}" class="btn btn-success btn-sm">Añadir carrito</a></div>
         <div>
 		</div>
 		</sec:authorize>

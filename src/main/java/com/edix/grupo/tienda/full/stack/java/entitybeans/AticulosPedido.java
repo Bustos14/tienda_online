@@ -29,9 +29,21 @@ public class AticulosPedido implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="id_producto")
 	private Producto producto;
+	
 
 	public AticulosPedido() {
+		super();
 	}
+
+
+	public AticulosPedido(int id_pedArticulo, int cantidad, Pedido pedido, Producto producto) {
+		super();
+		this.id_pedArticulo = id_pedArticulo;
+		this.cantidad = cantidad;
+		this.pedido = pedido;
+		this.producto = producto;
+	}
+
 
 	public int getId_pedArticulo() {
 		return this.id_pedArticulo;

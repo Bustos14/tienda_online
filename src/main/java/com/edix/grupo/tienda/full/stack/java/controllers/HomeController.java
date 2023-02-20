@@ -18,9 +18,13 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.edix.grupo.tienda.full.stack.java.dao.ArticuloPedidoDao;
+import com.edix.grupo.tienda.full.stack.java.dao.PedidoDao;
 import com.edix.grupo.tienda.full.stack.java.dao.ProductoDao;
 import com.edix.grupo.tienda.full.stack.java.dao.RolDao;
 import com.edix.grupo.tienda.full.stack.java.dao.UsuarioDao;
+import com.edix.grupo.tienda.full.stack.java.entitybeans.AticulosPedido;
+import com.edix.grupo.tienda.full.stack.java.entitybeans.Pedido;
 import com.edix.grupo.tienda.full.stack.java.entitybeans.Producto;
 import com.edix.grupo.tienda.full.stack.java.entitybeans.Usuario;
 
@@ -33,14 +37,32 @@ public class HomeController {
 	@Autowired
 	private UsuarioDao udao;
 	@Autowired
+	private PedidoDao pedao;
+	@Autowired
 	private RolDao rdao;
 	@Autowired
 	private PasswordEncoder passwordEncoder;
+	@Autowired
+	private ArticuloPedidoDao apdao;
 	@GetMapping("/")
 	public String inicio(Model model, HttpSession misesion, Authentication aut) {
-		List<Producto> listproductos= pdao.listadoProducto();
-		model.addAttribute("productos", listproductos);
+		if(aut == null) {
+			List<Producto> listproductos= pdao.listadoProducto();
+			model.addAttribute("productos", listproductos);
+		}else {
+			Pedido p = pedao.obtenerCarrito(aut.getName());
+			int contador = 0;
+			List<AticulosPedido> lArp = apdao.findByPedido(p.getIdPedido());
+			for (AticulosPedido aticulosPedido : lArp) {
+				contador = aticulosPedido.getCantidad() + contador;
+			}
+			model.addAttribute("contador", contador);
+			List<Producto> listproductos= pdao.listadoProducto();
+			model.addAttribute("productos", listproductos);
+		}
+		
 		return "index";
+		
 	}
 	
 	@GetMapping("/registro")

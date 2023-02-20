@@ -36,6 +36,17 @@ public class Pedido implements Serializable {
 
 	public Pedido() {
 	}
+	
+
+	public Pedido(int idPedido, String estado, Date fechaRealizacion, BigDecimal precioTotal, Usuario usuario) {
+		super();
+		this.idPedido = idPedido;
+		this.estado = estado;
+		this.fechaRealizacion = fechaRealizacion;
+		this.precioTotal = precioTotal;
+		this.usuario = usuario;
+	}
+
 
 	public int getIdPedido() {
 		return this.idPedido;
