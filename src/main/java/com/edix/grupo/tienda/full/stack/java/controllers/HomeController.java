@@ -45,7 +45,7 @@ public class HomeController {
 	@Autowired
 	private ArticuloPedidoDao apdao;
 	@GetMapping("/")
-	public String inicio(Model model, HttpSession misesion, Authentication aut) {
+	public String inicio(Model model, HttpSession misesion, Authentication aut, HttpSession misession) {
 		List<Producto> listproductos= pdao.listadoProducto();
 		if(aut != null) {
 			Pedido p = pedao.obtenerCarrito(aut.getName());
@@ -55,7 +55,7 @@ public class HomeController {
 			for (AticulosPedido aticulosPedido : lArp) {
 				contador = aticulosPedido.getCantidad() + contador;
 			}
-			model.addAttribute("contador", contador);
+			misession.setAttribute("contador", contador);
 			model.addAttribute("productos", listproductos);
 		}
 		}
