@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -95,6 +97,20 @@ public class PedidoController {
 			model.addAttribute("carrito", apList);
 		}
 		return "carrito";
+	}
+	@GetMapping("/delete/{id}/{id2}")
+	public String procDeletePedido(Model model, Authentication aut, @PathVariable("id") int idPed, @PathVariable("id2") int idProd, HttpSession misession) {
+		AticulosPedido aP = ardao.findByPedidoProdcuto(idPed, idProd);
+		if(ardao.delArPe(aP)==true) {
+			model.addAttribute("mensaje", "Pedido eliminado correctamente");
+			int contador = (Integer) misession.getAttribute("contador");
+			misession.removeAttribute("contador");
+			misession.setAttribute("contador", contador-aP.getCantidad());
+			return "redirect:/pedidos/carrito";
+		}else {
+			model.addAttribute("mensaje", "No se pudo eliminar el/los articulo");
+			return "redirect:/pedidos/carrito";
+		}
 	}
 	
 }

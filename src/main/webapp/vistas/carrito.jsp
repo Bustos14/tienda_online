@@ -23,11 +23,11 @@
 	<br>
 <div class="container mt-4">
 	<h3>Carrito</h3>
-	<div class="row">
+	<div class="row ">
 	<div class="col-sm-8 mb-4">
       <form id="cart-update-form" method="post" action="/cart/update">
         <div class="table-responsive">
-          <table class="table">
+          <table class="table" style="text-align: center;">
            <thead>
 				<tr>
 				<th>Imagen</th>
@@ -48,6 +48,7 @@
 			<td>${carrito.producto.price}</td>
 			<td>${carrito.cantidad}</td>
 			<td>${carrito.producto.price * carrito.cantidad}</td>
+			<td><a href="delete/${carrito.pedido.idPedido}/${carrito.producto.idProducto}"><i class="fa fa-trash" aria-hidden="true" style="color:red"></i></a></td>
 			</tr>
 			</c:forEach>
 			</tbody></table>
