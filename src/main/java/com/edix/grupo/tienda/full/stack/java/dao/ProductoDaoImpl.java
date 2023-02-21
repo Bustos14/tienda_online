@@ -27,9 +27,13 @@ public class ProductoDaoImpl implements ProductoDao{
 
 	@Override
 	public int modificarProducto(Producto producto) {
+		try {
 		if(prepo.findById(producto.getIdProducto())!=null) {
 			prepo.save(producto);
 			return 1;
+		}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		return 0;
 	}

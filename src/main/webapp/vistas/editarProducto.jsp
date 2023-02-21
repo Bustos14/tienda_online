@@ -15,7 +15,7 @@
 	<h1>Estas editando un producto</h1>
 <div class="container">
 <div class="col text-center">
-	<form action="/producto/modificarProducto" method="post">
+	<form action="/producto/modificarProducto" method="post" enctype="multipart/form-data">
 		<div class="form-group">
 			<label for="idProducto">Id producto:</label> <input
 				type="text" class="form-control" id="idProducto"
@@ -53,17 +53,15 @@
 		</Select>
 		</div>
 		<div class="form-group">
-			<label for="imagen">Imagen:</label> 
-			<input type="file" class="form-control" id="imagen" name="img" value="${productoEditable.img}">
-		</div>
-		</div>
+      		<label for="imagen" class="text-white">Imagen:</label> 
+      		<input type="file" class="form-control" id="imagen" name="file" required>
+   		</div>
 		<div class="col text-center">
 			<button type="submit" class="btn btn-primary" style="width: 200px;">Actualizar</button>	
             <button type="submit" class="btn btn-primary" style="width: 200px;">Volver</button>
         </div>	
-
-</div>
 	</form>
+	</div>
 </div>
 	
 		<jsp:include page="footer.jsp"></jsp:include>

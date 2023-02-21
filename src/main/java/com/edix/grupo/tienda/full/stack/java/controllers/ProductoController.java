@@ -68,11 +68,10 @@ public class ProductoController {
 		model.addAttribute("productoEditable", p);
 		List<Tipo> tList = tdao.todoTipo();
 		model.addAttribute("tipos", tList);
-		System.out.println(p.getImg());
 		return "editarProducto";
 	}
 	@PostMapping("/modificarProducto")
-	public String guardarModificado( @ModelAttribute Producto productoEditable, RedirectAttributes attr) {
+	public String guardarModificado( @ModelAttribute Producto productoEditable, RedirectAttributes attr, @RequestParam("file") MultipartFile image) {
 		//Obtenemos la tarjeta existente
 				Producto p = pdao.detallesProdutos(productoEditable.getIdProducto());
 				
@@ -83,9 +82,15 @@ public class ProductoController {
 				p.setPrice(productoEditable.getPrice());
 				p.setStock(productoEditable.getStock());
 				p.setEstado(productoEditable.getEstado());
-				if(!productoEditable.getImg().isEmpty()) {
-					p.setImg(productoEditable.getImg());
-				}
+				String rutaAbsoluta = "C:/Producto/recursos";
+				try {
+					byte[] bytesImg = image.getBytes();
+					Path rutaCompleta = Paths.get(rutaAbsoluta + "//" + image.getOriginalFilename());
+					Files.write(rutaCompleta, bytesImg);
+					p.setImg(image.getOriginalFilename());
+				}catch(Exception e) {
+					e.printStackTrace();
+				}			
 				if(pdao.modificarProducto(p)==1) {
 					attr.addFlashAttribute("mensaje", "Producto modificado con exito");
 					return "redirect:/";
@@ -130,10 +135,14 @@ public class ProductoController {
 	}
 	@GetMapping("/search")
 	public String busqueda(@RequestParam(name="nombre") String nombre, Model model) {
-		List<Producto> listproductos=pdao.lBusquedaProduc("cho");
+		List<Producto> listproductos=pdao.lBusquedaProduc(nombre);
 		System.out.println(listproductos);
 		model.addAttribute("productos", listproductos);
 		return "productos";
 	}
 	
+	public boolean imagenes(MultipartFile image) {
+	
+		return true;
+	}
 }
