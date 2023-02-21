@@ -14,4 +14,5 @@ public interface UsuarioDao {
 	List<Usuario> todos();
 	int eliminarUsuario(String username);
 	int modificarUsuario(Usuario usuario);
+	List<Usuario> buscarPorLocalidad(String localidad);
 }

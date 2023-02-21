@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.edix.grupo.tienda.full.stack.java.entitybeans.Direccione;
 import com.edix.grupo.tienda.full.stack.java.entitybeans.TarjetasBancaria;
 import com.edix.grupo.tienda.full.stack.java.entitybeans.Usuario;
+import com.edix.grupo.tienda.full.stack.java.repository.DireccionRepository;
 import com.edix.grupo.tienda.full.stack.java.repository.UsuarioRepository;
 
 @Repository
@@ -16,6 +17,10 @@ public class UsuarioDaoImpl implements UsuarioDao{
 
 	@Autowired
 	private UsuarioRepository urepo;
+	
+	@Autowired
+	private DireccionDaoImpl ddao;
+	
 	@Override
 	public Usuario findById(String username) {
 		// TODO Auto-generated method stub
@@ -67,6 +72,10 @@ public class UsuarioDaoImpl implements UsuarioDao{
 			e.printStackTrace();
 		}
 		return filas;
+	}
+	@Override
+	public List<Usuario> buscarPorLocalidad(String localidad) {
+		return urepo.findByLocalidad(localidad);
 	}
 }
 

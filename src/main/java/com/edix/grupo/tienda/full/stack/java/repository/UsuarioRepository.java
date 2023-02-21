@@ -13,10 +13,7 @@ import com.edix.grupo.tienda.full.stack.java.entitybeans.Usuario;
 
 
 public interface UsuarioRepository extends JpaRepository<Usuario, String>{
-//	@Query("SELECT u FROM Usuario u WHERE u.direcciones.localidad = ?1 ")
-//	List<Usuario> findByDireccion(String direccione);
 
-//	@Query("SELECT u FROM Usuario u WHERE u.direccione.localidad = :localidad")
-//	List<Usuario> findByLocalidad(@Param("localidad") String localidad);
-
+	@Query("SELECT u FROM Usuario u JOIN u.direcciones d WHERE d.localidad = :localidad")
+    List<Usuario> findByLocalidad(@Param("localidad") String localidad);
 }
