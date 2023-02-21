@@ -73,20 +73,27 @@ public class PedidoController {
 	@GetMapping("/carrito")
 	public String getCarrito(Model model, Authentication aut) {
 		Usuario usu = udao.findById(aut.getName());
-		
 		Pedido pe = pedao.obtenerCarrito(aut.getName());
-		List<AticulosPedido>apList =  ardao.findByPedido(pe.getIdPedido());
-		double cantidadTotal = 0;
-		for (AticulosPedido aticulosPedido : apList) {
-			cantidadTotal = (aticulosPedido.getCantidad() * aticulosPedido.getProducto().getPrice()) + cantidadTotal;
+		if(pe!=null) {
+			List<AticulosPedido>apList =  ardao.findByPedido(pe.getIdPedido());
+			double cantidadTotal = 0;
+			for (AticulosPedido aticulosPedido : apList) {
+				cantidadTotal = (aticulosPedido.getCantidad() * aticulosPedido.getProducto().getPrice()) + cantidadTotal;
+			}
+			if(usu.getDirecciones() != null) {
+				List<Direccione> lDir = usu.getDirecciones();
+				if(lDir.size()!=0) {
+					model.addAttribute("direcciones", lDir);
+				}
+			}
+			List<TarjetasBancaria> lTar = usu.getTarjetasBancarias();
+			if(lTar.size()!=0) {
+				model.addAttribute("tarjetas", lTar);
+			}
+			model.addAttribute("userName", usu.getUsername());
+			model.addAttribute("total", cantidadTotal);
+			model.addAttribute("carrito", apList);
 		}
-		List<Direccione> lDir = usu.getDirecciones();
-		List<TarjetasBancaria> lTar = usu.getTarjetasBancarias();
-		System.out.println(lDir.get(0).getCalle());
-		model.addAttribute("total", cantidadTotal);
-		model.addAttribute("direcciones", lDir);
-		model.addAttribute("tarjetas", lTar);
-		model.addAttribute("carrito", apList);
 		return "carrito";
 	}
 	

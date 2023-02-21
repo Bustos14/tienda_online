@@ -65,24 +65,39 @@
 			<input type="text" readonly="true" class="form-control" value="${total}">
 			<hr class="my-3">
 			 <label>Tarjetas:</label><br>
+			 <c:if test="${tarjetas == null}">
+              <p class="card-text text-danger">No tienes tarjetas asignadas</p> <a href="/usuario/misTarjetas/${userName}" class="btn btn-info btn-block" style="color:white; href="/usuario/misTarjetas">Añadir tarjeta <i class="fa fa-credit-card fa-inverse" aria-hidden="true"></i></a>       
+             </c:if>
+             <c:if test="${tarjetas != null}">
 			 <select class="select form-control">
 			 <c:forEach var="ele" items="${tarjetas}">
           	<option selected="true" value="${ele.idTarjetaBancaria}">${ele.numeroTarjeta}</option>
         	</c:forEach>
+  			</c:if>
 			 </select>
 			<hr class="my-3">
 			<label>Dirección:</label>
+			 <c:if test="${direcciones == null}">
+              <p class="card-text text-danger">No tienes ninguna dirección</p>   
+              <a href="/usuario/misDirecciones/${userName}" class="btn btn-info btn-block" style="color:white;">Añadir dirección <i class="fa fa-compass fa-inverse" aria-hidden="true"></i></a>       
+             </c:if>
+             <c:if test="${direcciones != null}">
 			<select class="select form-control">
 			 <c:forEach var="ele" items="${direcciones}">
           	<option selected="true" value="${ele.idDireccion}">Calle: ${ele.calle}, Nº${ele.numero}, Piso: ${ele.piso}, Letra:  ${ele.letra}</option>
         	</c:forEach>
+        	</c:if>
 			</select>
 			</div>
 			</div>
 			
 			<div class="card-footer">
-			<a class="btn btn-info btn-block">Realizar pago</a>
-			<a class="btn btn-danger btn-block">Seguir comprando</a>
+			 <c:if test="${direcciones != null}">
+			 <c:if test="${tarjetas != null}">
+				<a class="btn btn-info btn-block" style="color:white;">Realizar pago</a>
+			</c:if>
+			</c:if>
+			<a class="btn btn-danger btn-block" href="/">Seguir comprando</a>
 			</div>
 		</div>
 		</div>
