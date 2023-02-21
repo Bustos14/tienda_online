@@ -44,6 +44,11 @@ public class PedidoDaoImpl implements PedidoDao{
 		// TODO Auto-generated method stub
 		return perepo.findCard(username);
 	}
+	
+	@Override
+	public List<Pedido> pedidoRealizado(String username){
+		return perepo.pedidoRealizado(username);
+	}
 
 	@Override
 	public boolean elminarPedido(int idPedido) {

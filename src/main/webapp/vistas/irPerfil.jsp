@@ -71,7 +71,7 @@
 	<sec:authorize access="hasAuthority('ROLE_CLIENTE')">
     <a class="btn btn-info btn-sm mb-3" id="verTarjetas" href="/usuario/misTarjetas/${userName}">Mis tarjetas</a>
     <a class="btn btn-info btn-sm mb-3" id="verDirecciones" href="/usuario/misDirecciones/${userName}">Mis Direcciones</a>
-    <a class="btn btn-info btn-sm mb-3" id="verPedidos" href="/">Mis Pedidos</a>
+    <a class="btn btn-info btn-sm mb-3" id="verPedidos" href="/usuario/realizados/${userName}">Mis Pedidos</a>
 	</sec:authorize>
 	
 </div>

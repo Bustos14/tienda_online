@@ -13,4 +13,6 @@ public interface PedidoRepository extends JpaRepository<Pedido, Integer> {
 	public List<Pedido> findByUsername(@Param("username") String username);
 	@Query("SELECT p FROM Pedido p WHERE p.usuario.username = :username AND p.estado = 'En el carrito'")
 	Pedido findCard(@Param("username") String username);
+	@Query("SELECT p FROM Pedido p WHERE p.usuario.username = :username AND p.estado = 'Comprado'")
+	List<Pedido> pedidoRealizado(@Param("username") String username);
 }

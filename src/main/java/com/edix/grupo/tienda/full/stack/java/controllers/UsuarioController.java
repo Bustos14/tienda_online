@@ -20,9 +20,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.edix.grupo.tienda.full.stack.java.dao.DireccionDaoImpl;
+import com.edix.grupo.tienda.full.stack.java.dao.PedidoDaoImpl;
 import com.edix.grupo.tienda.full.stack.java.dao.TarjetaDaoImpl;
 import com.edix.grupo.tienda.full.stack.java.dao.UsuarioDaoImpl;
 import com.edix.grupo.tienda.full.stack.java.entitybeans.Direccione;
+import com.edix.grupo.tienda.full.stack.java.entitybeans.Pedido;
 import com.edix.grupo.tienda.full.stack.java.entitybeans.TarjetasBancaria;
 import com.edix.grupo.tienda.full.stack.java.entitybeans.Usuario;
 
@@ -38,6 +40,9 @@ public class UsuarioController {
 	
 	@Autowired
 	private DireccionDaoImpl ddao;
+	
+	@Autowired
+	private PedidoDaoImpl pdao;
 	
 	@GetMapping("usuarios")
 	public String todosUsuarios(Model model) {
@@ -120,6 +125,19 @@ public class UsuarioController {
 		
 		
 		return "direcciones";
+	}
+	
+	@GetMapping("/realizados/{username}")
+	public String pedidoRealizado(Authentication auth, Model model, @PathVariable("username") String username) {
+		
+		Usuario user = udao.findById(username);
+		String userName = user.getUsername();
+		
+		List<Pedido> misPedidos = pdao.pedidoRealizado(userName);
+		
+		model.addAttribute("todosPedidos", misPedidos);
+		
+		return "pedidos";
 	}
 	
 	//Método necesario para formatear fechas
