@@ -10,5 +10,7 @@ public interface PedidoDao {
 	Pedido obtenerCarrito(String username);
 	boolean guardarPedido(Pedido pedido);
 	boolean efectuarCompra (Pedido pedido);
+	List<Pedido> pedidoRealizado(String username);
+	boolean elminarPedido(int idPedido);
 
 }
