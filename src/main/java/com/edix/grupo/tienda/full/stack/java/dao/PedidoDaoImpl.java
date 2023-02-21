@@ -45,4 +45,15 @@ public class PedidoDaoImpl implements PedidoDao{
 		return perepo.findCard(username);
 	}
 
+	@Override
+	public boolean elminarPedido(int idPedido) {
+		Pedido p = perepo.findById(idPedido).orElse(null);
+		if(p!=null) {
+			perepo.delete(p);
+			return true;
+		}
+		return false;
+		
+	}
+
 }

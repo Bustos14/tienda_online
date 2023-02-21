@@ -106,6 +106,9 @@ public class PedidoController {
 			int contador = (Integer) misession.getAttribute("contador");
 			misession.removeAttribute("contador");
 			misession.setAttribute("contador", contador-aP.getCantidad());
+			if(ardao.findByPedido(idPed)==null) {
+				pedao.elminarPedido(idPed);
+			}
 			return "redirect:/pedidos/carrito";
 		}else {
 			model.addAttribute("mensaje", "No se pudo eliminar el/los articulo");
