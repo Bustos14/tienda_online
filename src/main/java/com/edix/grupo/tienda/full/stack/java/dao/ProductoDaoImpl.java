@@ -71,4 +71,9 @@ public class ProductoDaoImpl implements ProductoDao{
 		return prod.get().getPrice();
 	}
 
+	@Override
+	public List<Producto> findByTipo(String tipo) {
+		return prepo.findByTipo(tipo);
+	}
+
 }
