@@ -55,8 +55,12 @@ public class PedidoController {
 			 apList = ardao.findByPedido(pe.getIdPedido());
 			 for (AticulosPedido atp : apList) {
 				 if(atp.getProducto().getIdProducto() == p.getIdProducto()) {
-					 atp.setCantidad(atp.getCantidad()+1);
-					 ardao.guardarArPe(atp);
+					 if(p.getStock() > 0) {
+						 atp.setCantidad(atp.getCantidad()+1);
+						 p.setStock(p.getStock() -1);
+						 pdao.modificarProducto(p);
+						 ardao.guardarArPe(atp);
+					 }
 					 return "redirect:/";
 				 }
 			}
@@ -73,13 +77,7 @@ public class PedidoController {
 		List<AticulosPedido>apList =  ardao.findByPedido(pe.getIdPedido());
 		double cantidadTotal = 0;
 		for (AticulosPedido aticulosPedido : apList) {
-			int cambioStock = aticulosPedido.getProducto().getStock() - aticulosPedido.getCantidad();
-			if(cambioStock<0) {
-				model.addAttribute("mensaje", "Stock insuficiente");
-				return "redirect:/pedidos/carrito";
-			}
-			aticulosPedido.getProducto().setStock(cambioStock);
-			pdao.modificarProducto(aticulosPedido.getProducto());
+			
 			cantidadTotal = (aticulosPedido.getCantidad() * aticulosPedido.getProducto().getPrice()) + cantidadTotal;
 		}
 		pe.setEstado("Comprado");
@@ -136,6 +134,9 @@ public class PedidoController {
 		if(ardao.delArPe(aP)==true) {
 			model.addAttribute("mensaje", "Pedido eliminado correctamente");
 			int contador = (Integer) misession.getAttribute("contador");
+			Producto p = aP.getProducto();
+			p.setStock(aP.getProducto().getStock() + aP.getCantidad());
+			pdao.modificarProducto(p);
 			misession.removeAttribute("contador");
 			misession.setAttribute("contador", contador-aP.getCantidad());
 			if(ardao.findByPedido(idPed)==null) {
