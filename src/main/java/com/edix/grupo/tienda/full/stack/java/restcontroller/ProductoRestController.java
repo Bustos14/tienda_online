@@ -16,7 +16,7 @@ import com.edix.grupo.tienda.full.stack.java.entitybeans.Producto;
 //La anotación @CrossOrigins(origins=”*”), es para permitir accesos desde aplicaciones cliente web
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("/producto")
+@RequestMapping("/api/producto")
 public class ProductoRestController {
 
 	@Autowired
@@ -30,8 +30,7 @@ public class ProductoRestController {
 	}
 	
 	@GetMapping("/productos/{tipo}")
-	public List<Producto> findByTipo(@PathVariable("tipo")String tipo){
-		
+	public List<Producto> findByTipo(@PathVariable("tipo")String tipo){		
 		return pdao.findByTipo(tipo);
 	}
 	

@@ -39,7 +39,10 @@
 		.antMatchers("/rest/demo-bcrypt/**").permitAll()
   
 		// Las vistas públicas no requieren autenticación
-		.antMatchers("/", "/login", "/logout", "/registro","/search", "/detallesProducto/**", "/recursos/**", "/img/**", "/producto/precio/**", "/producto/productos/**").permitAll()
+		.antMatchers("/", "/login", "/logout", "/registro","/search", 
+				"/detallesProducto/**", "/recursos/**", "/img/**",
+				"/producto/precio/**", "/api/producto/productos/**",
+				"/api/usuario/usuarios/**").permitAll()
 		
 		//  Las autorizaciones sobre urls para ROLES
 			.antMatchers("/destacados").hasAnyAuthority("ROLE_CLIENTE",  "ROLE_ADMIN")

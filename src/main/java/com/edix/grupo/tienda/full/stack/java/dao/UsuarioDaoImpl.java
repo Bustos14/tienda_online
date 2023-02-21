@@ -1,5 +1,6 @@
 package com.edix.grupo.tienda.full.stack.java.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,5 +68,24 @@ public class UsuarioDaoImpl implements UsuarioDao{
 		}
 		return filas;
 	}
-
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
