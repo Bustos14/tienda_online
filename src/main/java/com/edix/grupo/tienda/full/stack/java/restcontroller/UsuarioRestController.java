@@ -31,21 +31,8 @@ public class UsuarioRestController {
 	public List<Usuario> findByLocalidad(@PathVariable("localidad")String localidad){
 
 	
-		List<Direccione> dir = ddao.findByLocalidad(localidad);
 		
-		List<Usuario> mostrar = new ArrayList<>();
-		for(Direccione direcc : dir) {
-			if(direcc.getLocalidad().equals(localidad)) {
-				for(Usuario us : udao.todos()) {	
-					if(us.getDirecciones().contains(direcc)) {
-						System.out.println("Estamos aqui");
-					}
-					System.out.println("Aui no deberiamos estar");
-				} 
-			}
-		}
-		
-		return mostrar;
+		return null;
 	}
 	
 }
