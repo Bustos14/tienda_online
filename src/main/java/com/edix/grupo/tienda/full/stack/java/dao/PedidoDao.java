@@ -12,6 +12,5 @@ public interface PedidoDao {
 	boolean guardarPedido(Pedido pedido);
 	boolean efectuarCompra (Pedido pedido);
 	boolean elminarPedido(int idPedido);
-	List<Pedido> pedidoRealizado(String username);
 	Pedido buscarUno(int idPedido);
 }
