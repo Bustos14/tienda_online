@@ -107,6 +107,10 @@ public class HomeController {
         }
 
     }
+	@GetMapping("/login")
+	public String mostrarLogin() {
+		return "formLogin";
+	}
 	
 	//Método necesario para formatear fechas
 		@InitBinder
