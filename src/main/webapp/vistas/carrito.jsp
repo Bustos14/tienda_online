@@ -32,11 +32,11 @@
 				<tr>
 				<th>Imagen</th>
 				<th>Nombre</th>
-				<th>Descripción</th>
+				<th>Descripciï¿½n</th>
 				<th>Precio</th>
 				<th>Cantidad</th>
 				<th>Subtotal</th>
-				<th>Acción</th>
+				<th>Acciï¿½n</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -68,7 +68,7 @@
 			<hr class="my-3">
 			 <label>Tarjetas:</label><br>
 			 <c:if test="${tarjetas == null}">
-              <p class="card-text text-danger"> No tienes tarjetas asignadas </p> <a href="/usuario/misTarjetas/${userName}" class="btn btn-info btn-block" style="color:white; href="/usuario/misTarjetas">Añadir tarjeta <i class="fa fa-credit-card fa-inverse" aria-hidden="true"></i></a>       
+              <p class="card-text text-danger"> No tienes tarjetas asignadas </p> <a href="/usuario/misTarjetas/${userName}" class="btn btn-info btn-block" style="color:white; href="/usuario/misTarjetas">Aï¿½adir tarjeta <i class="fa fa-credit-card fa-inverse" aria-hidden="true"></i></a>       
              </c:if>
              <c:if test="${tarjetas != null}">
 			 <select class="select form-control">
@@ -78,15 +78,15 @@
   			</c:if>
 			 </select>
 			<hr class="my-3">
-			<label>Dirección:</label>
+			<label>Direcciï¿½n:</label>
 			 <c:if test="${direcciones == null}">
-              <p class="card-text text-danger">No tienes ninguna dirección</p>   
-              <a href="/usuario/misDirecciones/${userName}" class="btn btn-info btn-block" style="color:white;">Añadir dirección <i class="fa fa-compass fa-inverse" aria-hidden="true"></i></a>       
+              <p class="card-text text-danger">No tienes ninguna direcciï¿½n</p>   
+              <a href="/usuario/misDirecciones/${userName}" class="btn btn-info btn-block" style="color:white;">Aï¿½adir direcciï¿½n <i class="fa fa-compass fa-inverse" aria-hidden="true"></i></a>       
              </c:if>
              <c:if test="${direcciones != null}">
 			<select class="select form-control">
 			 <c:forEach var="ele" items="${direcciones}">
-          	<option selected="true" value="${ele.idDireccion}">Calle: ${ele.calle}, Nº${ele.numero}, Piso: ${ele.piso}, Letra:  ${ele.letra}</option>
+          	<option selected="true" value="${ele.idDireccion}">Calle: ${ele.calle}, Nï¿½${ele.numero}, Piso: ${ele.piso}, Letra:  ${ele.letra}</option>
         	</c:forEach>
         	</c:if>
 			</select>
@@ -96,9 +96,7 @@
 			<div class="card-footer">
 			 <c:if test="${direcciones != null}">
 			 <c:if test="${tarjetas != null}">
-			 <c:if test="${carrito != null}">
-				<a href="efectuarCompra" class="btn btn-info btn-block" style="color:white;">Realizar pago</a>
-				</c:if>
+				<a class="btn btn-info btn-block" style="color:white;" href="efectuarCompra">Realizar pago</a>
 			</c:if>
 			</c:if>
 			<a class="btn btn-danger btn-block" href="/">Seguir comprando</a>
