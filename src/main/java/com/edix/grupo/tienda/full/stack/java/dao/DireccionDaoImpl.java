@@ -62,5 +62,10 @@ public class DireccionDaoImpl implements DireccionDao {
 		return drepo.findAll();
 	}
 
+	@Override
+	public List<Direccione> findByLocalidad(String localidad) {
+		return drepo.findByLocalidad(localidad);
+	}
+
 
 }
