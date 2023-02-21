@@ -8,6 +8,7 @@ import javax.persistence.*;
  * The persistent class for the direcciones database table.
  * 
  */
+
 @Entity
 @Table(name="direcciones")
 @NamedQuery(name="Direccione.findAll", query="SELECT d FROM Direccione d")

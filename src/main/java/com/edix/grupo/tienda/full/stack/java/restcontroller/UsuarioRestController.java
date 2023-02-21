@@ -26,13 +26,26 @@ public class UsuarioRestController {
 	
 	@Autowired
 	private DireccionDaoImpl ddao;
-	
+/*	
 	@GetMapping("/usuarios/{localidad}")
 	public List<Usuario> findByLocalidad(@PathVariable("localidad")String localidad){
 
-	
+		List<Usuario> milista = udao.buscarUsuariosPorLocalidad(localidad);
 		
+		List<Usuario> aMostrar = new ArrayList<>();
+		
+		for(Usuario ele : milista) {
+			System.out.println(ele.getDirecciones());
+			for(Direccione dir : ele.getDirecciones()) {
+				System.out.println(dir.getLocalidad());
+				var comparar = dir.getLocalidad();
+				if(comparar.equals(localidad)) {
+					aMostrar.add(ele);
+					System.out.println(aMostrar.toString());
+				}
+			}
+		}
 		return null;
 	}
-	
+*/
 }
