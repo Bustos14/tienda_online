@@ -49,7 +49,9 @@ public class PedidoController {
 		AticulosPedido ap = null;
 		List<AticulosPedido>apList = new ArrayList<>();
 		if(pe==null) {
-			pe = new Pedido(0, "En el carrito", new Date(), new BigDecimal(0), u);
+			Direccione dir = null;
+			TarjetasBancaria tb = null;
+			pe = new Pedido(0, "En el carrito", new Date(), new BigDecimal(0), u, dir, tb);
 			pedao.guardarPedido(pe);
 			p.setStock(p.getStock() -1);
 			pdao.modificarProducto(p);
