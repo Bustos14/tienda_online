@@ -51,6 +51,8 @@ public class PedidoController {
 		if(pe==null) {
 			pe = new Pedido(0, "En el carrito", new Date(), new BigDecimal(0), u);
 			pedao.guardarPedido(pe);
+			p.setStock(p.getStock() -1);
+			pdao.modificarProducto(p);
 		}else {
 			 apList = ardao.findByPedido(pe.getIdPedido());
 			 for (AticulosPedido atp : apList) {
@@ -131,8 +133,8 @@ public class PedidoController {
 	@GetMapping("/delete/{id}/{id2}")
 	public String procDeletePedido(Model model, Authentication aut, @PathVariable("id") int idPed, @PathVariable("id2") int idProd, HttpSession misession) {
 		AticulosPedido aP = ardao.findByPedidoProdcuto(idPed, idProd);
-		if(ardao.delArPe(aP)==true) {
-			model.addAttribute("mensaje", "Pedido eliminado correctamente");
+		if(ardao.delArPe(aP)==true) { 
+			model.addAttribute("mensaje", "Pedido eliminado");
 			int contador = (Integer) misession.getAttribute("contador");
 			Producto p = aP.getProducto();
 			p.setStock(aP.getProducto().getStock() + aP.getCantidad());

@@ -59,6 +59,7 @@
 	<div class="col-sm-4">
 		<div class="card">
 			<div class="card-header">
+			<h2>Prueba</h2>
 				<h3>Generar compra</h3>
 			</div>
 			<div class="card-body">
@@ -67,7 +68,7 @@
 			<hr class="my-3">
 			 <label>Tarjetas:</label><br>
 			 <c:if test="${tarjetas == null}">
-              <p class="card-text text-danger">No tienes tarjetas asignadas</p> <a href="/usuario/misTarjetas/${userName}" class="btn btn-info btn-block" style="color:white; href="/usuario/misTarjetas">Añadir tarjeta <i class="fa fa-credit-card fa-inverse" aria-hidden="true"></i></a>       
+              <p class="card-text text-danger"> No tienes tarjetas asignadas </p> <a href="/usuario/misTarjetas/${userName}" class="btn btn-info btn-block" style="color:white; href="/usuario/misTarjetas">Añadir tarjeta <i class="fa fa-credit-card fa-inverse" aria-hidden="true"></i></a>       
              </c:if>
              <c:if test="${tarjetas != null}">
 			 <select class="select form-control">
