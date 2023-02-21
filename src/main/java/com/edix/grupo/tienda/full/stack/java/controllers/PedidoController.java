@@ -19,11 +19,13 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.edix.grupo.tienda.full.stack.java.dao.ArticuloPedidoDao;
 import com.edix.grupo.tienda.full.stack.java.dao.PedidoDao;
 import com.edix.grupo.tienda.full.stack.java.dao.ProductoDao;
+import com.edix.grupo.tienda.full.stack.java.dao.RolDao;
 import com.edix.grupo.tienda.full.stack.java.dao.UsuarioDao;
 import com.edix.grupo.tienda.full.stack.java.entitybeans.AticulosPedido;
 import com.edix.grupo.tienda.full.stack.java.entitybeans.Direccione;
 import com.edix.grupo.tienda.full.stack.java.entitybeans.Pedido;
 import com.edix.grupo.tienda.full.stack.java.entitybeans.Producto;
+import com.edix.grupo.tienda.full.stack.java.entitybeans.Role;
 import com.edix.grupo.tienda.full.stack.java.entitybeans.TarjetasBancaria;
 import com.edix.grupo.tienda.full.stack.java.entitybeans.Usuario;
 
@@ -40,14 +42,20 @@ public class PedidoController {
 	PedidoDao pedao;
 	@Autowired 
 	ArticuloPedidoDao ardao;
+	@Autowired
+	RolDao rdao;
 	
 	@GetMapping("/modCarrito/{id}")
 	public String procCarrito(Model model, @PathVariable("id") int idProd, Authentication aut, HttpSession sesion) {
 		Usuario u = null;
 		if(aut == null) {
 			 u = udao.findById("anonymus");
-			 u.setDirecciones(null);
-			 u.setTarjetasBancarias(null);
+			 if(u==null) {
+				 Role rol = rdao.buscarRol(3);
+				 u = new Usuario("anonymus", "anonymus", "anonymus",true,new Date(), new Date(), "anonymus"); 
+				 u.addRol(rol);
+				 udao.registro(u);
+			 }
 			 sesion.setAttribute("invitado", u);
 		}else {
 			 u = udao.findById(aut.getName());
