@@ -37,7 +37,7 @@
                     <a class="nav-link" href="/usuario/usuarios">Usuarios</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="producto/altaProducto">Nuevo producto</a>
+                    <a class="nav-link" href="/producto/altaProducto">Nuevo producto</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/rol/roles">Roles</a>
