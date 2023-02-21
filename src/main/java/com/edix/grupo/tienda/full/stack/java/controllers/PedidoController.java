@@ -67,10 +67,30 @@ public class PedidoController {
 	}
 	
 	@GetMapping("/efectuarCompra")
-	public String procCompra() {
+	public String procCompra(Authentication aut, HttpSession misession, Model model) {
+		Usuario u = udao.findById(aut.getName());
+		Pedido pe = pedao.obtenerCarrito(u.getUsername());
+		List<AticulosPedido>apList =  ardao.findByPedido(pe.getIdPedido());
+		double cantidadTotal = 0;
+		for (AticulosPedido aticulosPedido : apList) {
+			int cambioStock = aticulosPedido.getProducto().getStock() - aticulosPedido.getCantidad();
+			if(cambioStock<0) {
+				model.addAttribute("mensaje", "Stock insuficiente");
+				return "redirect:/pedidos/carrito";
+			}
+			aticulosPedido.getProducto().setStock(cambioStock);
+			pdao.modificarProducto(aticulosPedido.getProducto());
+			cantidadTotal = (aticulosPedido.getCantidad() * aticulosPedido.getProducto().getPrice()) + cantidadTotal;
+		}
+		pe.setEstado("Comprado");
+		pe.setPrecioTotal(new BigDecimal(cantidadTotal));
+		if(pedao.guardarPedido(pe)) {
+			misession.removeAttribute("contador");
+			return "redirect:/pedidos/carrito";	
+		}else {
+			return "redirect:/pedidos/carrito";	
+		}
 		
-		
-		return "carrito";	
 	}
 	@GetMapping("/carrito")
 	public String getCarrito(Model model, Authentication aut) {
@@ -95,6 +115,18 @@ public class PedidoController {
 			model.addAttribute("userName", usu.getUsername());
 			model.addAttribute("total", cantidadTotal);
 			model.addAttribute("carrito", apList);
+		}else {
+			if(usu.getDirecciones() != null) {
+				List<Direccione> lDir = usu.getDirecciones();
+				if(lDir.size()!=0) {
+					model.addAttribute("direcciones", lDir);
+				}
+			}
+			List<TarjetasBancaria> lTar = usu.getTarjetasBancarias();
+			if(lTar.size()!=0) {
+				model.addAttribute("tarjetas", lTar);
+			}
+			model.addAttribute("userName", usu.getUsername());
 		}
 		return "carrito";
 	}

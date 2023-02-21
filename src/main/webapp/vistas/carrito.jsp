@@ -95,7 +95,9 @@
 			<div class="card-footer">
 			 <c:if test="${direcciones != null}">
 			 <c:if test="${tarjetas != null}">
-				<a class="btn btn-info btn-block" style="color:white;">Realizar pago</a>
+			 <c:if test="${carrito != null}">
+				<a href="efectuarCompra" class="btn btn-info btn-block" style="color:white;">Realizar pago</a>
+				</c:if>
 			</c:if>
 			</c:if>
 			<a class="btn btn-danger btn-block" href="/">Seguir comprando</a>

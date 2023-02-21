@@ -15,4 +15,5 @@ public interface ProductoDao {
 	List<Producto> lBusquedaProduc(String nombre);
 	double findPrecioById(int idProducto);
 	List<Producto> findByTipo(String tipo);
+	Producto findById(int idProducto);
 }

@@ -76,4 +76,9 @@ public class ProductoDaoImpl implements ProductoDao{
 		return prepo.findByTipo(tipo);
 	}
 
+	@Override
+	public Producto findById(int idProducto) {
+		return prepo.findById(idProducto).orElse(null);
+	}
+
 }
