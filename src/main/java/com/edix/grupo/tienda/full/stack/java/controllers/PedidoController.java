@@ -151,6 +151,14 @@ public class PedidoController {
 		}
 	}
 	
-	
+	@GetMapping("/verPedido/{idPedido}")
+	public String verDetallePedido(@PathVariable("idPedido") int idPedido, Model model) {
+		
+		Pedido detallePedido = pedao.buscarUno(idPedido);
+		
+		model.addAttribute("pedido", detallePedido);
+		
+		return "detallePedido";
+	}
 	
 }

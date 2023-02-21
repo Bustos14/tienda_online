@@ -41,7 +41,7 @@
           <td>${ele.idPedido}</td>
           <td>${ele.fechaRealizacion}</td>			
           <td>${ele.precioTotal}</td>		
-          <td><a href="/direccion/verDireccion/${ele.idPedido}" class="btn btn-success btn-sm">Detalle</a></td>
+          <td><a href="/pedidos/verPedido/${ele.idPedido}" class="btn btn-success btn-sm">Detalle</a></td>
         </tr>
       </c:forEach>
     </tbody>

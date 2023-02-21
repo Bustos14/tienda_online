@@ -61,4 +61,9 @@ public class PedidoDaoImpl implements PedidoDao{
 		
 	}
 
+	@Override
+	public Pedido buscarUno(int idPedido) {
+		return perepo.findById(idPedido).orElse(null);
+	}
+
 }
