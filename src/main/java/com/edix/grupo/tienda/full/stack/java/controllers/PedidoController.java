@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpSession;
@@ -113,12 +114,19 @@ public class PedidoController {
 	}
 	@GetMapping("/carrito")
 	public String getCarrito(Model model, Authentication aut, HttpSession session) {
-		Usuario usu = null;
-		if(aut==null) {
-			usu = (Usuario) session.getAttribute("invitado");
-		}else {
-			usu = udao.findById(aut.getName());
-		}
+		Usuario usu = new Usuario();
+		
+		String userName = aut != null ? aut.getName() : (String) session.getAttribute("invitado");
+	    if (userName != null) {
+	        usu = udao.findById(userName);
+	    } else {
+	        // Si el nombre de usuario del invitado no está en la sesión, crea uno aleatorio.
+	        String nombreInvitado = "invitado_" + UUID.randomUUID().toString();
+	        usu.setNombre(nombreInvitado);
+	        session.setAttribute("invitado", nombreInvitado);
+	    }
+		
+		
 		Pedido pe = pedao.obtenerCarrito(usu.getUsername());
 		if(pe!=null) {
 			List<AticulosPedido>apList =  ardao.findByPedido(pe.getIdPedido());
