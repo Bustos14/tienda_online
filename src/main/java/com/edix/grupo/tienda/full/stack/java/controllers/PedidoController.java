@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpSession;
 
@@ -154,13 +155,34 @@ public class PedidoController {
 	}
 	
 	@GetMapping("/verPedido/{idPedido}")
-	public String verDetallePedido(@PathVariable("idPedido") int idPedido, Model model) {
-		
+	public String verDetallePedido(@PathVariable("idPedido") int idPedido, Model model, Authentication aut) {
+
 		Pedido detallePedido = pedao.buscarUno(idPedido);
-		
 		model.addAttribute("pedido", detallePedido);
+		
+		
+		
+		List<Producto> productosDelPedido = new ArrayList<>();
+		
+		for(AticulosPedido articulos: ardao.listadoPedidos(idPedido)) {
+			if(articulos.getProducto() != null) {
+				System.out.println(articulos.getProducto());
+				
+				int idArticulo = articulos.getId_pedArticulo();
+				System.out.println(idArticulo);
+				
+				Producto añadirLista = pdao.findById(idArticulo);
+				productosDelPedido.add(añadirLista);
+				System.out.println(añadirLista);
+				System.out.println(productosDelPedido);
+			}
+		}
+		
+		model.addAttribute("articulos", productosDelPedido);
 		
 		return "detallePedido";
 	}
+	
+	
 	
 }

@@ -33,6 +33,7 @@
         <th>Id del pedido</th>
         <th>Fecha de realización</th>
         <th>Precio total del pedido</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>

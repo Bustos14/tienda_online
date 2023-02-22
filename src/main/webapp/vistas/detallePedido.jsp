@@ -39,6 +39,25 @@
 				name="nombreTitular" value="${pedido.precioTotal}" readonly>
 		</div>
 		<a href="/" class="btn btn-primary"> Volver</a>
+		<table class="table table-striped">
+		<br><br>
+    <thead>
+        <tr>
+            <th>Artículo</th>
+            <th>Cantidad</th>
+            <th>Precio unitario</th>
+        </tr>
+    </thead>
+    <tbody>
+        <c:forEach items="${articulos}" var="art">
+		  <tr>
+		    <td>${art.nombre}</td>
+		    <td>${art.cantidad}</td>
+		    <td>${art.price}</td>
+		  </tr>
+		</c:forEach>
+    </tbody>
+</table>
 	</form>
 </div>
 		<jsp:include page="footer.jsp"></jsp:include>
