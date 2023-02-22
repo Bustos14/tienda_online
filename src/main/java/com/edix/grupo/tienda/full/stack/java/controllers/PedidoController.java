@@ -52,10 +52,14 @@ public class PedidoController {
 		Usuario u = null;
 		if(aut == null) {
 			 u = udao.findById("anonymus");
+			 u.setDirecciones(null);
+			 u.setTarjetasBancarias(null);
 			 if(u==null) {
 				 Role rol = rdao.buscarRol(3);
 				 u = new Usuario("anonymus", "anonymus", "anonymus",true,new Date(), new Date(), "anonymus"); 
 				 u.addRol(rol);
+				 u.setDirecciones(null);
+				 u.setTarjetasBancarias(null);
 				 udao.registro(u);
 			 }
 			 sesion.setAttribute("invitado", u);
@@ -140,7 +144,7 @@ public class PedidoController {
 					model.addAttribute("direcciones", lDir);
 				}
 			}
-			if(usu.getDirecciones() !=null) {
+			if(usu.getTarjetasBancarias() !=null) {
 				List<TarjetasBancaria> lTar = usu.getTarjetasBancarias();
 				if(lTar.size()!=0) {
 					model.addAttribute("tarjetas", lTar);
@@ -156,7 +160,7 @@ public class PedidoController {
 					model.addAttribute("direcciones", lDir);
 				}
 			}
-			if(usu.getDirecciones() !=null) {
+			if(usu.getTarjetasBancarias() !=null) {
 			List<TarjetasBancaria> lTar = usu.getTarjetasBancarias();
 			if(lTar.size()!=0) {
 				model.addAttribute("tarjetas", lTar);

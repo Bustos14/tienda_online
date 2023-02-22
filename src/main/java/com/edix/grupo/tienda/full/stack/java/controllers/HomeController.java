@@ -51,18 +51,29 @@ public class HomeController {
 	@GetMapping("/")
 	public String inicio(Model model, HttpSession misesion, Authentication aut, HttpSession misession) {
 		List<Producto> listproductos= pdao.listadoProducto();
+		int contador = 0;
 		if(aut != null) {
 			Pedido p = pedao.obtenerCarrito(aut.getName());
 			if(p!=null) {
-			int contador = 0;
+			
 			List<AticulosPedido> lArp = apdao.findByPedido(p.getIdPedido());
 			for (AticulosPedido aticulosPedido : lArp) {
 				contador = aticulosPedido.getCantidad() + contador;
 			}
 			misession.setAttribute("contador", contador);
 			model.addAttribute("productos", listproductos);
+			return "index";
 		}
 		}
+		Pedido p = pedao.obtenerCarrito("anonymus");
+		if(p!=null) {	
+		contador = 0;
+		List<AticulosPedido> lArp = apdao.findByPedido(p.getIdPedido());
+		for (AticulosPedido aticulosPedido : lArp) {
+			contador = aticulosPedido.getCantidad() + contador;
+			}
+		}
+		misession.setAttribute("contador", contador);
 		model.addAttribute("productos", listproductos);
 		return "index";
 		
@@ -118,11 +129,17 @@ public class HomeController {
 	@PostMapping("/login")
     public String login(@RequestParam("username") String username,
                         @RequestParam("password") String password,
-                        RedirectAttributes redirectAttributes) {
+                        RedirectAttributes redirectAttributes, HttpSession misession) {
         if (username.equals("usuario") && password.equals("clave")) {
 
-            SecurityContextHolder.getContext().setAuthentication(
-                    new UsernamePasswordAuthenticationToken(username, password, new ArrayList<>()));
+            SecurityContextHolder.getContext().setAuthentication(new UsernamePasswordAuthenticationToken(username, password, new ArrayList<>()));
+            Usuario uSession = (Usuario) misession.getAttribute("invitado");
+            if(uSession!=null) {
+            	Pedido pe = (Pedido) pedao.obtenerPorUsername(uSession.getUsername()); 
+            	Usuario u = udao.findById(username);
+            	pe.setUsuario(u);
+            	pedao.guardarPedido(pe);
+            }
             return "redirect:/";
         } else {
 
