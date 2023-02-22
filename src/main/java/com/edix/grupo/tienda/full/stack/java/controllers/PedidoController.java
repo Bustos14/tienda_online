@@ -182,29 +182,40 @@ public class PedidoController {
 	@GetMapping("/verPedido/{idPedido}")
 	public String verDetallePedido(@PathVariable("idPedido") int idPedido, Model model, Authentication aut) {
 
-		Pedido detallePedido = pedao.buscarUno(idPedido);
-		model.addAttribute("pedido", detallePedido);
+		Pedido pedidoBuscado = pedao.buscarUno(idPedido);
 		
+		List<AticulosPedido> mostrar = new ArrayList<>();
 		
-		
-		List<Producto> productosDelPedido = new ArrayList<>();
-		
-		for(AticulosPedido articulos: ardao.listadoPedidos(idPedido)) {
-			if(articulos.getProducto() != null) {
-				System.out.println(articulos.getProducto());
-				
-				int idArticulo = articulos.getId_pedArticulo();
-				System.out.println(idArticulo);
-				
-				Producto añadirLista = pdao.findById(idArticulo);
-				productosDelPedido.add(añadirLista);
-				System.out.println(añadirLista);
-				System.out.println(productosDelPedido);
-			}
+		for(AticulosPedido art : pedidoBuscado.getAticulosPedidos()) {			
+			
+			Producto añadirP = new Producto();
+			añadirP.setNombre(art.getProducto().getNombre());
+			añadirP.setPrice(art.getProducto().getPrice());
+			
+			AticulosPedido añadir = new AticulosPedido();
+			añadir.setProducto(añadirP);
+			añadir.setCantidad(art.getCantidad());		
+			
+			mostrar.add(añadir);
+			
+			
 		}
 		
-		model.addAttribute("articulos", productosDelPedido);
+		for(AticulosPedido ele: mostrar) {
+			System.out.println("______________________");
+			System.out.println("| en ForEach | " + ele.getProducto().getNombre());
+			System.out.println("| en ForEach | " + ele.getCantidad());
+			System.out.println("| en ForEach | " + ele.getProducto().getPrice());
+			System.out.println("______________________");
+		}
 		
+		model.addAttribute("articulosPedido", mostrar);
+		model.addAttribute("pedido", pedidoBuscado);
+		
+		if (mostrar == null || mostrar.isEmpty()) {
+		    model.addAttribute("error", "No se encontraron artículos para el pedido.");
+		}
+
 		return "detallePedido";
 	}
 	

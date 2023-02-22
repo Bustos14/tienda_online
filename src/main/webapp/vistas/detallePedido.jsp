@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,24 +42,30 @@
 				name="nombreTitular" value="${pedido.precioTotal}" readonly>
 		</div>
 		<a href="/" class="btn btn-primary"> Volver</a>
-		<table class="table table-striped">
+	<table class="table table-striped">
 		<br><br>
-    <thead>
-        <tr>
-            <th>Artículo</th>
-            <th>Cantidad</th>
-            <th>Precio unitario</th>
-        </tr>
-    </thead>
-    <tbody>
-        <c:forEach items="${articulos}" var="art">
-		  <tr>
-		    <td>${art.nombre}</td>
-		    <td>${art.cantidad}</td>
-		    <td>${art.price}</td>
-		  </tr>
-		</c:forEach>
-    </tbody>
+		<h1>Los articulos del Pedido</h1>
+	    <thead>
+	        <tr>
+	            <th>Artículo</th>
+	            <th>Cantidad</th>
+	            <th>Precio unitario</th>
+	        </tr>
+	    </thead>
+	    <tbody>
+		    <c:forEach var="ele" items="${articulosPedido}">
+		      <tr>
+		        <td>${ele.producto.nombre}</td>
+		        <td>${ele.cantidad}</td>
+		        <td>${ele.producto.price}</td>
+		      </tr>
+	   		</c:forEach>
+		    <c:if test="${not empty error}">
+		        <tr>
+		            <p style="text-align:center; color:red;">${error}</p>
+		        </tr>
+		    </c:if>
+		</tbody>
 </table>
 	</form>
 </div>
