@@ -1,12 +1,15 @@
 package com.edix.grupo.tienda.full.stack.java.controllers;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -16,6 +19,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.edix.grupo.tienda.full.stack.java.dao.ArticuloPedidoDao;
@@ -107,7 +111,25 @@ public class HomeController {
         }
 
     }
-	
+	@GetMapping("/login")
+	public String mostrarLogin() {
+		return "formLogin";
+	}
+	@PostMapping("/login")
+    public String login(@RequestParam("username") String username,
+                        @RequestParam("password") String password,
+                        RedirectAttributes redirectAttributes) {
+        if (username.equals("usuario") && password.equals("clave")) {
+
+            SecurityContextHolder.getContext().setAuthentication(
+                    new UsernamePasswordAuthenticationToken(username, password, new ArrayList<>()));
+            return "redirect:/";
+        } else {
+
+            redirectAttributes.addFlashAttribute("error", "Nombre de usuario o contraseña incorrectos.");
+            return "redirect:/login";
+        }
+    }
 	//Método necesario para formatear fechas
 		@InitBinder
 		public void initBinder(WebDataBinder webdataBinder) {

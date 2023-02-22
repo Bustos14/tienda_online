@@ -42,7 +42,7 @@
 		.antMatchers("/", "/login", "/logout", "/registro","/search", 
 				"/detallesProducto/**", "/recursos/**", "/img/**",
 				"/producto/precio/**", "/api/producto/productos/**",
-				"/api/usuario/usuarios/**").permitAll()
+				"/api/usuario/usuarios/**", "/pedidos/modCarrito/**","/pedidos/carrito" ).permitAll()
 		
 		//  Las autorizaciones sobre urls para ROLES
 			.antMatchers("/destacados").hasAnyAuthority("ROLE_CLIENTE",  "ROLE_ADMIN")
@@ -67,7 +67,7 @@
   
 	  // Todas las demás URLs de la Aplicación requieren autenticación
 	  .anyRequest().authenticated()
-	  .and().formLogin().permitAll()  
+	  .and().formLogin().loginPage("/login").permitAll()  
 	  .and().logout().permitAll();
 	  
   }

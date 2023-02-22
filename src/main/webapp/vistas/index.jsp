@@ -88,13 +88,13 @@ body {
 						</p>
 
 						<div class="d-flex">
-							<sec:authorize access="isAuthenticated()">
+						
 								<div class="p-2">
 									<a href="pedidos/modCarrito/${ele.idProducto}"
 										class="btn btn-success btn-sm">Añadir carrito</a>
 								</div>
 								<div></div>
-							</sec:authorize>
+
 							<div class="p-2">
 								<a href="/producto/detallesProducto/${ele.idProducto}"
 									class="btn btn-success btn-sm">Detalle</a>

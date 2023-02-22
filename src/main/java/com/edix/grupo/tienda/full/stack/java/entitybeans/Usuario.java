@@ -81,6 +81,22 @@ public class Usuario implements Serializable {
 	public Usuario() {
 	}
 
+	
+
+	public Usuario(String username, String apellidos, String contrasena, boolean enabled, Date fechaNacimiento,
+			Date fechaRegistro, String nombre) {
+		super();
+		this.username = username;
+		this.apellidos = apellidos;
+		this.contrasena = contrasena;
+		this.enabled = enabled;
+		this.fechaNacimiento = fechaNacimiento;
+		this.fechaRegistro = fechaRegistro;
+		this.nombre = nombre;
+	}
+
+
+
 	public String getUsername() {
 		return this.username;
 	}
