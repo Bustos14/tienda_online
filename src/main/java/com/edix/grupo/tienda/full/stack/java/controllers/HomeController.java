@@ -69,15 +69,6 @@ public class HomeController {
 			return "index";
 		}
 		}
-		Pedido p = pedao.obtenerCarrito("anonymus");
-		if(p!=null) {	
-		contador = 0;
-		List<AticulosPedido> lArp = apdao.findByPedido(p.getIdPedido());
-		for (AticulosPedido aticulosPedido : lArp) {
-			contador = aticulosPedido.getCantidad() + contador;
-			}
-		}
-		misession.setAttribute("contador", contador);
 		model.addAttribute("productos", listproductos);
 		return "index";
 		
@@ -99,6 +90,7 @@ public class HomeController {
 		}else {
 			usuario.addRol(r);
 		}
+
 		usuario.setEnabled(true);
 		usuario.setFechaRegistro(new Date());
 		usuario.setContrasena(passwordEncoder.encode(usuario.getContrasena()));

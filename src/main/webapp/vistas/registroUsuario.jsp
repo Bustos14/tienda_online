@@ -43,7 +43,7 @@
 	  	<sec:authorize access="hasAnyAuthority('ROLE_ADMIN')">
 	  	<div class="form-group">
 	  	<label for="rol">Selecciona un rol:</label>
-	  	<select  name ="rol" id="rol">
+	  	<select  name="rol" id="rol">
 		 <c:forEach var="ele" items="${roles}">		 
 		  <option value="${ele.idRol}">${ele.nombre}</option>
         </c:forEach>
