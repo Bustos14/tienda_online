@@ -18,6 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -26,10 +27,13 @@ import com.edix.grupo.tienda.full.stack.java.dao.ArticuloPedidoDao;
 import com.edix.grupo.tienda.full.stack.java.dao.PedidoDao;
 import com.edix.grupo.tienda.full.stack.java.dao.ProductoDao;
 import com.edix.grupo.tienda.full.stack.java.dao.RolDao;
+import com.edix.grupo.tienda.full.stack.java.dao.TipoDao;
 import com.edix.grupo.tienda.full.stack.java.dao.UsuarioDao;
 import com.edix.grupo.tienda.full.stack.java.entitybeans.AticulosPedido;
 import com.edix.grupo.tienda.full.stack.java.entitybeans.Pedido;
 import com.edix.grupo.tienda.full.stack.java.entitybeans.Producto;
+import com.edix.grupo.tienda.full.stack.java.entitybeans.Role;
+import com.edix.grupo.tienda.full.stack.java.entitybeans.Tipo;
 import com.edix.grupo.tienda.full.stack.java.entitybeans.Usuario;
 
 @Controller
@@ -80,14 +84,23 @@ public class HomeController {
 	}
 	
 	@GetMapping("/registro")
-	public String registro() {
+	public String registro(Model model) {
+		List<Role> lRoles = rdao.todos();
+		model.addAttribute("roles", lRoles );
 		return "/registroUsuario";
 	}
 	@PostMapping("/registro")
-	public String proregistrar(Model model, Usuario usuario, RedirectAttributes ratt) {
+	public String proregistrar(@RequestParam("rol") String rol, Model model, Usuario usuario, RedirectAttributes ratt) {
+		System.out.println(rol);
+		int idRol = Integer.parseInt(rol);
+		Role r = rdao.buscarRol(idRol);
+		if(r == null) {
+			usuario.addRol(rdao.buscarRol(1));
+		}else {
+			usuario.addRol(r);
+		}
 		usuario.setEnabled(true);
 		usuario.setFechaRegistro(new Date());
-		usuario.addRol(rdao.buscarRol(1));
 		usuario.setContrasena(passwordEncoder.encode(usuario.getContrasena()));
 		if(!mayorEdad(usuario.getFechaNacimiento())) {
 			model.addAttribute("mensaje", "Debes ser mayor de edad, para registrarte");
