@@ -11,4 +11,5 @@ public interface DireccionRepository extends JpaRepository<Direccione, Integer>{
 	
 	@Query("SELECT d FROM Direccione d WHERE d.localidad = ?1")
 	public List<Direccione> findByLocalidad(String localidad);
+	
 }

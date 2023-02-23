@@ -1,3 +1,6 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="com.fasterxml.jackson.databind.module.SimpleAbstractTypeResolver"%>
+<%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -135,7 +138,12 @@ body {
   <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
     <div class="modal-content">
       <div class="modal-body">
-        <a class="btn btn-primary" href="/pedidos/pedidosPorDia">Pedidos de hoy</a>
+      <%
+      	Date fechaHoy = new Date();
+      	SimpleDateFormat formateador = new SimpleDateFormat("yyyy-MM-dd");
+      	String fechaHoyStr = formateador.format(fechaHoy);
+      %>
+        <a class="btn btn-primary" href="/pedidos/pedidosPorDia?fecha=<%= fechaHoyStr %>">Pedidos de hoy</a>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>

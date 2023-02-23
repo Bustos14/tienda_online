@@ -39,6 +39,10 @@ public class Producto implements Serializable {
 	public Producto() {
 	}
 
+	public Producto(String nombreProducto, Tipo tipoProducto, Double precioProducto) {
+		// TODO Auto-generated constructor stub
+	}
+
 	public int getIdProducto() {
 		return this.idProducto;
 	}

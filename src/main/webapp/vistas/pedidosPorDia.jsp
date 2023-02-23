@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Detalle de tu tarjeta</title>
+<title>Pedidos para mandar hoy</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <style type="text/css">
 	body {
@@ -23,31 +23,46 @@
 
 <jsp:include page="inicio.jsp"></jsp:include>
 
-    <h1>Pedidos realizados el ${fecha}</h1>
-	<table>
-	  <thead>
-	    <tr>
-	      <th>ID Pedido</th>
-	      <th>Username</th>
-	      <th>Artículos</th>
-	    </tr>
-	  </thead>
-	  <tbody>
-	    <c:forEach var="pedido" items="${pedidos}">
-	     <tr>
-	       <td>${pedido.idPedido}</td>
-	       <td>${pedido.username}</td>
-	       <td>
-	         <ul>
-	           <c:forEach var="articulo" items="${pedido.articulos}">
-	             <li>${articulo.nombre} - ${articulo.tipo} - ${articulo.precio}</li>
-	           </c:forEach>
-	         </ul>
-	       </td>
-	     </tr>
-	   </c:forEach>
-	  </tbody>
-	</table>
-		<jsp:include page="footer.jsp"></jsp:include>
+<div class="container mt-5" style="background-color: rgba(51, 51, 51, 0.6); color: white; border-radius: 25px">
+    <h1 class="text-center mb-5">Pedidos realizados el ${fecha}</h1>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID Pedido</th>
+          <th>Username</th>
+          <th>Direccion</th>
+          <th>Nombre</th>
+          <th>Tipo</th>
+          <th>Precio</th>
+        </tr>
+      </thead>
+      <tbody>
+        <c:forEach var="pedido" items="${pedidos}">
+          <tr>
+            <td>${pedido.idPedido}</td>
+            <td>${pedido.usuario.username}</td>
+            <td>
+              <c:forEach var="articulo" items="${pedidosNombres}">
+                ${articulo.nombre}<br>
+              </c:forEach>
+            </td>
+            <td>
+              <c:forEach var="articulo" items="${pedidosNombres}">
+                ${articulo.tipo.nombreTipo}<br>
+              </c:forEach>
+            </td>
+            <td>
+              <c:forEach var="articulo" items="${pedidosNombres}">
+                ${articulo.price}<br>
+              </c:forEach>
+            </td>
+          </tr>
+        </c:forEach>
+      </tbody>
+    </table>
+</div>
+
+
+<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>

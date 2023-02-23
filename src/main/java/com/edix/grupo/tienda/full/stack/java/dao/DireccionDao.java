@@ -12,5 +12,4 @@ public interface DireccionDao {
 	Direccione buscarUna(int idDireccion);
 	List<Direccione> todas();
 	public List<Direccione> findByLocalidad(String localidad);
-
 }

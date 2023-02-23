@@ -24,6 +24,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.edix.grupo.tienda.full.stack.java.dao.ArticuloPedidoDao;
+import com.edix.grupo.tienda.full.stack.java.dao.DireccionDao;
+import com.edix.grupo.tienda.full.stack.java.dao.DireccionDaoImpl;
 import com.edix.grupo.tienda.full.stack.java.dao.PedidoDao;
 import com.edix.grupo.tienda.full.stack.java.dao.ProductoDao;
 import com.edix.grupo.tienda.full.stack.java.dao.RolDao;
@@ -283,25 +285,42 @@ public class PedidoController {
         List<Pedido> pedidosHoy = pedao.porFechaRealizacion(fecha);
         
         
-        model.addAttribute("pedidos", pedidosHoy);
         
+        model.addAttribute("pedidos", pedidosHoy);
+
+		List<Producto> listaHoy = new ArrayList<>();
+
         for(Pedido ele: pedidosHoy) {
         	for(AticulosPedido at: ele.getAticulosPedidos()) {
-        		List<Producto> listaHoy = new ArrayList<>();
+        		Producto p = new Producto();
         		String nombreProducto = at.getProducto().getNombre();
         		Tipo tipoProducto = at.getProducto().getTipo();
         		Double precioProducto = at.getProducto().getPrice();
-        		Producto p = new Producto();
+        		
         		p.setNombre(nombreProducto);
         		p.setTipo(tipoProducto);
         		p.setPrice(precioProducto);
         		
+        		
         		listaHoy.add(p);
         		
-        		model.addAttribute("pedido.articulo", p);
+        	
+        		
         	}
         }
-		
+        for(Pedido ele: pedidosHoy) {
+        	System.out.println("Id del pedido: "+ ele.getIdPedido());
+        	System.out.println("Username: "+ele.getUsuario().getUsername());
+        	
+        }
+        for(Producto prod: listaHoy) {
+    		System.out.println("Nombre: "+prod.getNombre());
+    		System.out.println("Tipo: "+prod.getTipo().getNombreTipo());
+    		System.out.println("Precio: "+prod.getPrice());
+    	}
+        
+
+        model.addAttribute("pedidosNombres", listaHoy);
 	    return "pedidosPorDia";
 	}
 
