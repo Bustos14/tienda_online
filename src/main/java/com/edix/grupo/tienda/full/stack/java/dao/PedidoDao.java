@@ -14,4 +14,5 @@ public interface PedidoDao {
 	boolean efectuarCompra (Pedido pedido);
 	boolean elminarPedido(int idPedido);
 	Pedido buscarUno(int idPedido);
+	List<Pedido> porFechaRealizacion(Date fechaRealizacion);
 }

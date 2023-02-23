@@ -64,11 +64,16 @@ body {
 		</div>
 	</div>
 	<div class="container">
+	<sec:authorize access="hasAnyAuthority('ROLE_ADMIN')">
+			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+			  Veamos los pedidos para hoy
+			</button>
+		</sec:authorize>
 		<h1 class="text-primary" id="productos">Catálogo</h1>
 		<sec:authorize access="hasAnyAuthority('ROLE_ADMIN')">
 			<a href="producto/altaProducto" class="btn btn-primary btn-sm">Nuevo
 				Producto</a>
-			</td>
+			</td><!-- Agrega el botón que abrirá la ventana modal flotante -->
 		</sec:authorize>
 
 		<div class="row justify-content-center">
@@ -123,7 +128,21 @@ body {
 					</div>
 				</div>
 			</c:forEach>
+			
 		</div>
+		
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <a class="btn btn-primary" href="/pedidos/pedidosPorDia">Pedidos de hoy</a>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 		<jsp:include page="footer.jsp"></jsp:include>

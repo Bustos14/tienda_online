@@ -67,5 +67,10 @@ public class PedidoDaoImpl implements PedidoDao{
 		return perepo.findById(idPedido).orElse(null);
 	}
 
+	@Override
+	public List<Pedido> porFechaRealizacion(Date fechaRealizacion) {
+		return perepo.findByFechaRealizacion(fechaRealizacion);
+	}
+
 
 }

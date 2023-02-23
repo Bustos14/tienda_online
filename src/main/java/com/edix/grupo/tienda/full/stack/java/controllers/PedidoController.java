@@ -2,6 +2,8 @@ package com.edix.grupo.tienda.full.stack.java.controllers;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -32,6 +34,7 @@ import com.edix.grupo.tienda.full.stack.java.entitybeans.Pedido;
 import com.edix.grupo.tienda.full.stack.java.entitybeans.Producto;
 import com.edix.grupo.tienda.full.stack.java.entitybeans.Role;
 import com.edix.grupo.tienda.full.stack.java.entitybeans.TarjetasBancaria;
+import com.edix.grupo.tienda.full.stack.java.entitybeans.Tipo;
 import com.edix.grupo.tienda.full.stack.java.entitybeans.Usuario;
 
 @Controller
@@ -271,9 +274,33 @@ public class PedidoController {
 	@GetMapping("/pedidosPorDia")
 	public String pedidosPorDia(@RequestParam("fecha") @DateTimeFormat(pattern = "yyyy-MM-dd") Date fecha, Model model) {
 	  
-		//List<Object[]> detallesPedidos = pedao.obtenerPedidosPorDia(fecha);
-	    
-		//model.addAttribute("detallesPedidos", detallesPedidos);
+		LocalDate hoy = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String fechaFormateada = hoy.format(formatter);
+        
+        model.addAttribute("fecha", fechaFormateada);
+        
+        List<Pedido> pedidosHoy = pedao.porFechaRealizacion(fecha);
+        
+        
+        model.addAttribute("pedidos", pedidosHoy);
+        
+        for(Pedido ele: pedidosHoy) {
+        	for(AticulosPedido at: ele.getAticulosPedidos()) {
+        		List<Producto> listaHoy = new ArrayList<>();
+        		String nombreProducto = at.getProducto().getNombre();
+        		Tipo tipoProducto = at.getProducto().getTipo();
+        		Double precioProducto = at.getProducto().getPrice();
+        		Producto p = new Producto();
+        		p.setNombre(nombreProducto);
+        		p.setTipo(tipoProducto);
+        		p.setPrice(precioProducto);
+        		
+        		listaHoy.add(p);
+        		
+        		model.addAttribute("pedido.articulo", p);
+        	}
+        }
 		
 	    return "pedidosPorDia";
 	}
