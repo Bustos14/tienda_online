@@ -1,6 +1,7 @@
 package com.edix.grupo.tienda.full.stack.java.controllers;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -10,12 +11,14 @@ import java.util.stream.Collectors;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.edix.grupo.tienda.full.stack.java.dao.ArticuloPedidoDao;
@@ -231,6 +234,42 @@ public class PedidoController {
 		return "detallePedido";
 	}
 	
-	
+	@GetMapping("/pedidosPorDia")
+	public String pedidosPorDia(@RequestParam("fecha") @DateTimeFormat(pattern = "yyyy-MM-dd") Date fecha, Model model) {
+	  
+		//List<Object[]> detallesPedidos = pedao.obtenerPedidosPorDia(fecha);
+	    
+		//model.addAttribute("detallesPedidos", detallesPedidos);
+		
+	    return "pedidosPorDia";
+	}
+
+
+	@GetMapping("/verTotalPedido/{username}")
+	public String verElTotalPorUsuario(@PathVariable("username") String username, Model model, Authentication auth, RedirectAttributes attr) {
+		
+		int cantidadPedidos = 0;
+		double valorDouble = 0;
+		BigDecimal precioTotalPedidos = new BigDecimal(valorDouble);
+		precioTotalPedidos = precioTotalPedidos.setScale(2, RoundingMode.HALF_UP);
+
+		if(udao.findById(username) != null) {
+			for(Pedido ped : pedao.obtenerPorUsername(username)) {
+				precioTotalPedidos = precioTotalPedidos.add(ped.getPrecioTotal());
+				cantidadPedidos++;
+				System.out.println("la cantidad va siendo:" + ped.getPrecioTotal());
+				System.out.println("El precio total va sumando = " + precioTotalPedidos);
+				System.out.println(" la cantidad de pedidos es :" + cantidadPedidos );
+			}
+			
+			model.addAttribute("cantidadPedidos", cantidadPedidos);
+			model.addAttribute("precioTotalPedidos", precioTotalPedidos);
+		} else {
+			attr.addFlashAttribute("mensaje", "El usuario no tiene pedidos");
+			return "redirect:/";
+		}
+		
+		return "totalPedidos";
+	}
 	
 }

@@ -35,6 +35,7 @@
         <th>Fecha nacimiento</th>
         <th>Fecha Registro</th>
         <th>Eliminar</th>
+        <th></th>
         
         <c:forEach var="ele" items="${todosUsuarios}">
             <tr>
@@ -44,6 +45,7 @@
                 <td>${ele.fechaNacimiento}</td>				
                 <td>${ele.fechaRegistro}</td>	
                 <td><a href="/usuario/eliminar/${ele.username}" class="btn btn-danger btn-sm">Eliminar</a></td>
+                <td><a href="/pedidos/verTotalPedido/${ele.username}" class="btn btn-primary btn-sm">Total pedidos</a></td>
             </tr>
         </c:forEach>
     </table>

@@ -50,6 +50,7 @@
 			.antMatchers("/modificarProducto/**").hasAnyAuthority("ROLE_ADMIN")
 			.antMatchers("/modificarProducto").hasAnyAuthority("ROLE_ADMIN")
 			.antMatchers("/altaProducto").hasAnyAuthority("ROLE_ADMIN")
+			.antMatchers("/pediddos/verTotalPedido/**").hasAnyAuthority("ROLE_ADMIN")			
 			.antMatchers("/tarjetas").hasAnyAuthority("ROLE_CLIENTE")
 			.antMatchers("/tarjeta/alta").hasAnyAuthority("ROLE_CLIENTE")
 			.antMatchers("/tarjeta/verTarjeta/**").hasAnyAuthority("ROLE_CLIENTE")

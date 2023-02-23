@@ -1,5 +1,6 @@
 package com.edix.grupo.tienda.full.stack.java.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import com.edix.grupo.tienda.full.stack.java.entitybeans.Pedido;
