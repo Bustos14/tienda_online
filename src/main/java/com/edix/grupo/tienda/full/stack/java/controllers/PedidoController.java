@@ -51,32 +51,31 @@ public class PedidoController {
 	RolDao rdao;
 	
 	@GetMapping("/modCarrito/{id}")
-	public String procCarrito(Model model, @PathVariable("id") int idProd, Authentication aut, HttpSession sesion) {
-		Usuario u = null;
-		if(aut == null) {
-			 u = udao.findById("anonymus");
-			 u.setDirecciones(null);
-			 u.setTarjetasBancarias(null);
-			 if(u==null) {
-				 Role rol = rdao.buscarRol(3);
-				 u = new Usuario("anonymus", "anonymus", "anonymus",true,new Date(), new Date(), "anonymus"); 
-				 u.addRol(rol);
-				 u.setDirecciones(null);
-				 u.setTarjetasBancarias(null);
-				 udao.registro(u);
-			 }
-			 sesion.setAttribute("invitado", u);
-		}else {
-			 u = udao.findById(aut.getName());
-		}
+	public String procCarrito(Model model, @PathVariable("id") int idProd, Authentication aut, HttpSession session) {
+		Usuario usu = new Usuario();
+        if (aut != null) {
+            usu = udao.findById(aut.getName());
+            if(session.getAttribute("invitado")!= null) {
+            	fusionPedidos(session,usu);
+            }
+        } else {
+        	if(session.getAttribute("invitado")==null) {
+        		usuarioRandom(usu, session);
+	    	}else {
+	    		// Si el nombre de usuario del invitado no está en la sesión, crea uno aleatorio.
+	    		String nombreInvitado = (String) session.getAttribute("invitado");
+	    		usu = udao.findById(nombreInvitado);		    
+	    	}
+        	    
+        	}
 		Producto p = pdao.detallesProdutos(idProd);
-		Pedido pe = pedao.obtenerCarrito(u.getUsername());
+		Pedido pe = pedao.obtenerCarrito(usu.getUsername());
 		AticulosPedido ap = null;
 		List<AticulosPedido>apList = new ArrayList<>();
 		if(pe==null) {
 			Direccione dir = null;
 			TarjetasBancaria tb = null;
-			pe = new Pedido(0, "En el carrito", new Date(), new BigDecimal(0), u, dir, tb);
+			pe = new Pedido(0, "En el carrito", new Date(), new BigDecimal(0), usu, dir, tb);
 			pedao.guardarPedido(pe);
 			p.setStock(p.getStock() -1);
 			pdao.modificarProducto(p);
@@ -122,18 +121,53 @@ public class PedidoController {
 	@GetMapping("/carrito")
 	public String getCarrito(Model model, Authentication aut, HttpSession session) {
 		Usuario usu = new Usuario();
-		
-		String userName = aut != null ? aut.getName() : (String) session.getAttribute("invitado");
-	    if (userName != null) {
-	        usu = udao.findById(userName);
-	    } else {
-	        // Si el nombre de usuario del invitado no está en la sesión, crea uno aleatorio.
-	        String nombreInvitado = "invitado_" + UUID.randomUUID().toString();
-	        usu.setNombre(nombreInvitado);
-	        session.setAttribute("invitado", nombreInvitado);
-	    }
-		
-		
+			  if (aut != null) {
+			        usu = udao.findById(aut.getName());
+			        if(session.getAttribute("invitado") !=null) {
+				        String username = (String) session.getAttribute("invitado");
+						Usuario usesion = udao.findById(username);
+						session.removeAttribute("invitado");
+							Pedido peSession = pedao.obtenerCarrito(usesion.getUsername());
+							Pedido pe = pedao.obtenerCarrito(usu.getUsername());
+							if(pe==null) {
+								peSession.setUsuario(usu);
+								pedao.guardarPedido(peSession);
+								Pedido aux = pedao.obtenerCarrito(usesion.getUsername());
+								pedao.elminarPedido(aux.getIdPedido());
+							}else {
+								List <AticulosPedido> lSession = ardao.findByPedido(peSession.getIdPedido());
+								List <AticulosPedido> lLog = ardao.findByPedido(pe.getIdPedido());
+								for (AticulosPedido aticulosPedido : lSession) {
+									boolean found = false;
+									for (AticulosPedido aticulosPedido2 : lLog) {
+										if(aticulosPedido.getProducto() == aticulosPedido2.getProducto()) {
+											aticulosPedido2.setCantidad(aticulosPedido.getCantidad() + aticulosPedido2.getCantidad());
+											ardao.modArPe(aticulosPedido2);
+											ardao.delArPe(aticulosPedido);
+											found = true;
+										}
+										if(found==false) {
+											aticulosPedido.setPedido(pe);
+											ardao.modArPe(aticulosPedido);
+										}
+									}						
+								}
+								Pedido aux = pedao.obtenerCarrito(usesion.getUsername());
+								pedao.elminarPedido(aux.getIdPedido());
+								udao.eliminarUsuario(username);
+								
+							}
+					}
+			    } else {
+			    	if(session.getAttribute("invitado")==null) {
+			    		usuarioRandom(usu, session);
+			    	}else {
+			    		// Si el nombre de usuario del invitado no está en la sesión, crea uno aleatorio.
+			    		String nombreInvitado = (String) session.getAttribute("invitado");
+			    		usu = udao.findById(nombreInvitado);		    
+			    	}
+			    }
+
 		Pedido pe = pedao.obtenerCarrito(usu.getUsername());
 		if(pe!=null) {
 			List<AticulosPedido>apList =  ardao.findByPedido(pe.getIdPedido());
@@ -254,6 +288,10 @@ public class PedidoController {
 		precioTotalPedidos = precioTotalPedidos.setScale(2, RoundingMode.HALF_UP);
 
 		if(udao.findById(username) != null) {
+			if(pedao.obtenerPorUsername(username).size() == 0) {
+				attr.addFlashAttribute("mensaje", "El usuario " + username + " no ha realizado ningun pedido");
+				return "redirect:/usuario/usuarios";
+			}
 			for(Pedido ped : pedao.obtenerPorUsername(username)) {
 				precioTotalPedidos = precioTotalPedidos.add(ped.getPrecioTotal());
 				cantidadPedidos++;
@@ -264,12 +302,27 @@ public class PedidoController {
 			
 			model.addAttribute("cantidadPedidos", cantidadPedidos);
 			model.addAttribute("precioTotalPedidos", precioTotalPedidos);
-		} else {
-			attr.addFlashAttribute("mensaje", "El usuario no tiene pedidos");
-			return "redirect:/";
-		}
+		} 
 		
 		return "totalPedidos";
 	}
 	
+	public void usuarioRandom(Usuario usu, HttpSession session) {
+		// Si el nombre de usuario del invitado no está en la sesión, crea uno aleatorio.
+        String nombreInvitado = "invitado_" + UUID.randomUUID().toString();
+        usu.setUsername(nombreInvitado);
+        usu.setApellidos(null);
+        usu.setContrasena(nombreInvitado);
+        usu.setNombre(nombreInvitado);
+        usu.setTarjetasBancarias(null);
+        usu.setDirecciones(null);
+        session.setAttribute("invitado", nombreInvitado);
+        if(udao.registro(usu))
+            System.out.println("Se crea el usuario: " + usu);
+        else
+            System.out.println("No se ha creado usuario: "+usu);
+	}
+	public void fusionPedidos(HttpSession session, Usuario usu) {
+		
+	}
 }
