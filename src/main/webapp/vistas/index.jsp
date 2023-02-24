@@ -156,7 +156,10 @@ body {
 											<span>Precio:</span> ${ele.price} &euro;
 										</p>
 										<p class="card-text">
-											<small><span>Stock:</span></small> ${ele.stock}
+											<small><span>Stock:</span></small> ${ele.stock}											
+										<c:if test="${ele.stock eq 0}">
+    											<p class="card-text text-danger hoverable text-center">¡¡NECESARIO REPONER STOCK!!</p>
+										</c:if>
 										</p>
 
 										<div class="d-flex">
@@ -189,9 +192,6 @@ body {
 												</div>
 											</sec:authorize>
 										</div>
-										<c:if test="${ele.stock eq 0}">
-    											<p class="card-text text-danger hoverable text-center">¡¡NECESARIO REPONER STOCK!!</p>
-										</c:if>
 
 									</div>
 								</div>
