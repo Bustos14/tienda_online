@@ -15,13 +15,18 @@
 #footer {
 	position: static !important;
 }
+	body {
+  background-image: url("/img/fondo.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 </style>
 </head>
 <body>
 	<br>
 	<jsp:include page="inicio.jsp"></jsp:include>
 	<br>
-<div class="container mt-4">
+<div class="container mt-4" style="background-color: rgba(51, 51, 51, 0.6); color: white; border-radius: 25px">
 	<h3>Carrito</h3>
 	<div class="row ">
 	<div class="col-sm-8 mb-4">

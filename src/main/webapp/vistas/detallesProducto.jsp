@@ -8,12 +8,19 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Detalle del producto</title>
+<style type="text/css">
+	body {
+  background-image: url("/img/fondo.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+</style>
 </head>
 <body>
 
 <jsp:include page="inicio.jsp"></jsp:include>
 
-<div class="container">
+<div class="container" style="background-color: rgba(51, 51, 51, 0.6); color: white; border-radius: 25px">
 	<h1>Detalle del producto</h1>
 	<img style="width: 200px;" src="/recursos/${producto.img}" class="img-fluid" alt="${producto.img}" >
 	<form action="/" method="get">

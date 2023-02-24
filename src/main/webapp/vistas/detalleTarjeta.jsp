@@ -6,12 +6,19 @@
 <meta charset="ISO-8859-1">
 <title>Detalle de tu tarjeta</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<style type="text/css">
+	body {
+  background-image: url("/img/fondo.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+</style>
 </head>
 <body>
 
 <jsp:include page="inicio.jsp"></jsp:include>
 
-<div class="container">
+<div class="container" style="background-color: rgba(51, 51, 51, 0.6); color: white; border-radius: 25px">
 	<h1>Detalle de la tarjeta</h1>
 	<form action="/" method="get">
 		<div class="form-group">

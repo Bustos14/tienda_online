@@ -7,13 +7,20 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Editando producto</title>
+<style type="text/css">
+	body {
+  background-image: url("/img/fondo.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+</style>
 </head>
 <body>
 
 <jsp:include page="inicio.jsp"></jsp:include>
 	
+<div class="container" style="background-color: rgba(51, 51, 51, 0.6); color: white; border-radius: 25px">
 	<h1>Estas editando un producto</h1>
-<div class="container">
 <div class="col text-center">
 	<form action="/producto/modificarProducto" method="post" enctype="multipart/form-data">
 		<div class="form-group">
@@ -54,7 +61,7 @@
 		</div>
 		<div class="form-group">
       		<label for="imagen" class="text-white">Imagen:</label> 
-      		<input type="file" class="form-control" id="imagen" name="file" required>
+      		<input type="file" class="form-control" id="imagen" name="file">
    		</div>
 		<div class="col text-center">
 			<button type="submit" class="btn btn-primary" style="width: 200px;">Actualizar</button>	

@@ -79,60 +79,113 @@ body {
 			</td><!-- Agrega el botón que abrirá la ventana modal flotante -->
 		</sec:authorize>
 
-		<div class="row justify-content-center">
-			<c:forEach var="ele" items="${productos }">
-				<div
-					class="card mx-2 my-2 shadow-lg rounded border border-dark hover-3d"
-					style="background-color: rgba(51, 51, 51, 0.6); color: white;">
-					<img src="/recursos/${ele.img}" class="card-img-top border"
-						alt="${ele.img}" style="height: 200px; width: 300px;">
-					<div class="card-body">
-						<h5 class="card-title">${ele.nombre}</h5>
-						<p class="card-text">
-							<span>Precio:</span> ${ele.price} &euro;
-						</p>
-						<p class="card-text">
-							<small><span>Stock:</span></small> ${ele.stock}
-						</p>
+<div class="row justify-content-center">
+<div class="row justify-content-center">
+    <c:forEach var="ele" items="${productos }">
+        <c:choose>
+            <c:when test="${ele.stock ne 0}">
+                <div class="card mx-2 my-2 shadow-lg rounded border border-dark hover-3d"
+                    style="background-color: rgba(51, 51, 51, 0.6); color: white;">
+                    <img src="/recursos/${ele.img}" class="card-img-top border"
+                        alt="${ele.img}" style="height: 200px; width: 300px;">
+                    <div class="card-body">
+                        <h5 class="card-title">${ele.nombre}</h5>
+                        <p class="card-text">
+                            <span>Precio:</span> ${ele.price} &euro;
+                        </p>
+                        <p class="card-text">
+                            <small><span>Stock:</span></small> ${ele.stock}
+                        </p>
 
-						<div class="d-flex">
-						
-								<div class="p-2">
-									<a href="pedidos/modCarrito/${ele.idProducto}"
-										class="btn btn-success btn-sm">Añadir carrito</a>
-								</div>
-								<div></div>
+                        <div class="d-flex">
 
-							<div class="p-2">
-								<a href="/producto/detallesProducto/${ele.idProducto}"
-									class="btn btn-success btn-sm">Detalle</a>
-							</div>
-						</div>
-						<div class="d-flex p-2">
-							<sec:authorize access="hasAnyAuthority('ROLE_ADMIN')">
-								<div class="dropdown ">
-									<button class="btn btn-secondary dropdown-toggle" type="button"
-										id="dropdownMenuButton" data-toggle="dropdown"
-										aria-haspopup="true" aria-expanded="false">Acciones</button>
-									<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-										<a class="dropdown-item"
-											href="/producto/modificarProducto/${ele.idProducto}">Modificar</a>
-										<a class="dropdown-item"
-											href="/producto/eliminarProducto/${ele.idProducto}">Eliminar</a>
-									</div>
-								</div>
-							</sec:authorize>
+                            <div class="p-2">
+                                <a href="pedidos/modCarrito/${ele.idProducto}"
+                                    class="btn btn-success btn-sm">Añadir carrito</a>
+                            </div>
+                            <div></div>
 
-						</div>
-						<c:if test="${ele.stock <= 3}">
-							<p class="card-text text-danger">Solo queda ${ele.stock} en
-								stock</p>
-						</c:if>
-					</div>
-				</div>
-			</c:forEach>
-			
-		</div>
+                            <div class="p-2">
+                                <a href="/producto/detallesProducto/${ele.idProducto}"
+                                    class="btn btn-success btn-sm">Detalle</a>
+                            </div>
+                        </div>
+                        <div class="d-flex p-2">
+                            <sec:authorize access="hasAnyAuthority('ROLE_ADMIN')">
+                                <div class="dropdown ">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button"
+                                        id="dropdownMenuButton" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">Acciones</button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item"
+                                            href="/producto/modificarProducto/${ele.idProducto}">Modificar</a>
+                                        <a class="dropdown-item"
+                                            href="/producto/eliminarProducto/${ele.idProducto}">Eliminar</a>
+                                    </div>
+                                </div>
+                            </sec:authorize>
+
+                        </div>
+                        <c:if test="${ele.stock <= 3}">
+                            <p class="card-text text-danger">Solo queda ${ele.stock} en
+                                stock</p>
+                        </c:if>
+                    </div>
+                </div>
+            </c:when>
+                <c:otherwise>
+                    <sec:authorize access="hasAnyAuthority('ROLE_ADMIN')">
+                        <div class="card mx-2 my-2 shadow-lg rounded border border-dark hover-3d"
+                            style="background-color: rgba(51, 51, 51, 0.6); color: white;">
+                            <img src="/recursos/${ele.img}" class="card-img-top border"
+                                alt="${ele.img}" style="height: 200px; width: 300px;">
+                            <div class="card-body">
+                                <h5 class="card-title">${ele.nombre}</h5>
+                                <p class="card-text">
+                                    <span>Precio:</span> ${ele.price} &euro;
+                                </p>
+                                <p class="card-text">
+                                    <small><span>Stock:</span></small> ${ele.stock}
+                                </p>
+
+                                <div class="d-flex">
+
+                            <div class="p-2">
+                                <a href="pedidos/modCarrito/${ele.idProducto}"
+                                    class="btn btn-success btn-sm">Añadir carrito</a>
+                            </div>
+                            <div></div>
+
+                            <div class="p-2">
+                                <a href="/producto/detallesProducto/${ele.idProducto}"
+                                    class="btn btn-success btn-sm">Detalle</a>
+                            </div>
+                        </div>
+                        <div class="d-flex p-2">
+                            <sec:authorize access="hasAnyAuthority('ROLE_ADMIN')">
+                                <div class="dropdown ">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button"
+                                        id="dropdownMenuButton" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">Acciones</button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item"
+                                            href="/producto/modificarProducto/${ele.idProducto}">Modificar</a>
+                                        <a class="dropdown-item"
+                                            href="/producto/eliminarProducto/${ele.idProducto}">Eliminar</a>
+                                    </div>
+                                </div>
+                            </sec:authorize>
+
+                        </div>
+                            </div>
+                        </div>
+                    </sec:authorize>
+                </c:otherwise>
+            </c:choose>
+        </c:forEach>
+    </div>
+</div>
+
 		
 		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-sm" role="document">

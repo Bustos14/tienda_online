@@ -8,12 +8,19 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Registro usuario</title>
+<style type="text/css">
+	body {
+  background-image: url("/img/fondo.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+</style>
 </head>
 <body>
 
 <jsp:include page="inicio.jsp"></jsp:include>
 
-<div class="container">
+<div class="container" style="background-color: rgba(51, 51, 51, 0.6); color: white; border-radius: 25px">
 
 <form action="/registro" method="post">
 	<div class="form-group">
