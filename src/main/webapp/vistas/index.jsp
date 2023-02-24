@@ -26,6 +26,12 @@ body {
 #footer {
 	position: static !important;
 }
+
+.hoverable:hover {
+    transition: all 0.3s ease;
+    transform: scale(1.1);
+}
+
 </style>
 </head>
 <body>
@@ -184,9 +190,9 @@ body {
 											</sec:authorize>
 										</div>
 										<c:if test="${ele.stock eq 0}">
-											<p class="card-text text-danger">¡¡NECESARIO REPONER
-												STOCK!!</p>
+    											<p class="card-text text-danger hoverable text-center">¡¡NECESARIO REPONER STOCK!!</p>
 										</c:if>
+
 									</div>
 								</div>
 							</sec:authorize>
