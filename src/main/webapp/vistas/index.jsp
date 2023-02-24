@@ -1,5 +1,6 @@
 <%@page import="java.text.SimpleDateFormat"%>
-<%@page import="com.fasterxml.jackson.databind.module.SimpleAbstractTypeResolver"%>
+<%@page
+	import="com.fasterxml.jackson.databind.module.SimpleAbstractTypeResolver"%>
 <%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
@@ -67,159 +68,173 @@ body {
 		</div>
 	</div>
 	<div class="container">
-	<sec:authorize access="hasAnyAuthority('ROLE_ADMIN')">
-			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-			  Veamos los pedidos para hoy
-			</button>
+		<sec:authorize access="hasAnyAuthority('ROLE_ADMIN')">
+			<button type="button" class="btn btn-primary" data-toggle="modal"
+				data-target="#myModal">Veamos los pedidos para hoy</button>
 		</sec:authorize>
 		<h1 class="text-primary" id="productos">Catálogo</h1>
 		<sec:authorize access="hasAnyAuthority('ROLE_ADMIN')">
 			<a href="producto/altaProducto" class="btn btn-primary btn-sm">Nuevo
 				Producto</a>
-			</td><!-- Agrega el botón que abrirá la ventana modal flotante -->
+			</td>
+			<!-- Agrega el botón que abrirá la ventana modal flotante -->
 		</sec:authorize>
 
-<div class="row justify-content-center">
-<div class="row justify-content-center">
-    <c:forEach var="ele" items="${productos }">
-        <c:choose>
-            <c:when test="${ele.stock ne 0}">
-                <div class="card mx-2 my-2 shadow-lg rounded border border-dark hover-3d"
-                    style="background-color: rgba(51, 51, 51, 0.6); color: white;">
-                    <img src="/recursos/${ele.img}" class="card-img-top border"
-                        alt="${ele.img}" style="height: 200px; width: 300px;">
-                    <div class="card-body">
-                        <h5 class="card-title">${ele.nombre}</h5>
-                        <p class="card-text">
-                            <span>Precio:</span> ${ele.price} &euro;
-                        </p>
-                        <p class="card-text">
-                            <small><span>Stock:</span></small> ${ele.stock}
-                        </p>
+		<div class="row justify-content-center">
+			<div class="row justify-content-center">
+				<c:forEach var="ele" items="${productos }">
+					<c:choose>
+						<c:when test="${ele.stock ne 0}">
+							<div
+								class="card mx-2 my-2 shadow-lg rounded border border-dark hover-3d"
+								style="background-color: rgba(51, 51, 51, 0.6); color: white;">
+								<img src="/recursos/${ele.img}" class="card-img-top border"
+									alt="${ele.img}" style="height: 200px; width: 300px;">
+								<div class="card-body">
+									<h5 class="card-title">${ele.nombre}</h5>
+									<p class="card-text">
+										<span>Precio:</span> ${ele.price} &euro;
+									</p>
+									<p class="card-text">
+										<small><span>Stock:</span></small> ${ele.stock}
+									</p>
 
-                        <div class="d-flex">
+									<div class="d-flex">
 
-                            <div class="p-2">
-                                <a href="pedidos/modCarrito/${ele.idProducto}"
-                                    class="btn btn-success btn-sm">Añadir carrito</a>
-                            </div>
-                            <div></div>
+										<div class="p-2">
+											<a href="pedidos/modCarrito/${ele.idProducto}"
+												class="btn btn-success btn-sm">Añadir carrito</a>
+										</div>
+										<div></div>
 
-                            <div class="p-2">
-                                <a href="/producto/detallesProducto/${ele.idProducto}"
-                                    class="btn btn-success btn-sm">Detalle</a>
-                            </div>
-                        </div>
-                        <div class="d-flex p-2">
-                            <sec:authorize access="hasAnyAuthority('ROLE_ADMIN')">
-                                <div class="dropdown ">
-                                    <button class="btn btn-secondary dropdown-toggle" type="button"
-                                        id="dropdownMenuButton" data-toggle="dropdown"
-                                        aria-haspopup="true" aria-expanded="false">Acciones</button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item"
-                                            href="/producto/modificarProducto/${ele.idProducto}">Modificar</a>
-                                        <a class="dropdown-item"
-                                            href="/producto/eliminarProducto/${ele.idProducto}">Eliminar</a>
-                                    </div>
-                                </div>
-                            </sec:authorize>
+										<div class="p-2">
+											<a href="/producto/detallesProducto/${ele.idProducto}"
+												class="btn btn-success btn-sm">Detalle</a>
+										</div>
+									</div>
+									<div class="d-flex p-2">
+										<sec:authorize access="hasAnyAuthority('ROLE_ADMIN')">
+											<div class="dropdown ">
+												<button class="btn btn-secondary dropdown-toggle"
+													type="button" id="dropdownMenuButton"
+													data-toggle="dropdown" aria-haspopup="true"
+													aria-expanded="false">Acciones</button>
+												<div class="dropdown-menu"
+													aria-labelledby="dropdownMenuButton">
+													<a class="dropdown-item"
+														href="/producto/modificarProducto/${ele.idProducto}">Modificar</a>
+													<a class="dropdown-item"
+														href="/producto/eliminarProducto/${ele.idProducto}">Eliminar</a>
+												</div>
+											</div>
+										</sec:authorize>
 
-                        </div>
-                        <c:if test="${ele.stock <= 3}">
-                            <p class="card-text text-danger">Solo queda ${ele.stock} en
-                                stock</p>
-                        </c:if>
-                    </div>
-                </div>
-            </c:when>
-                <c:otherwise>
-                    <sec:authorize access="hasAnyAuthority('ROLE_ADMIN')">
-                        <div class="card mx-2 my-2 shadow-lg rounded border border-dark hover-3d"
-                            style="background-color: rgba(51, 51, 51, 0.6); color: white;">
-                            <img src="/recursos/${ele.img}" class="card-img-top border"
-                                alt="${ele.img}" style="height: 200px; width: 300px;">
-                            <div class="card-body">
-                                <h5 class="card-title">${ele.nombre}</h5>
-                                <p class="card-text">
-                                    <span>Precio:</span> ${ele.price} &euro;
-                                </p>
-                                <p class="card-text">
-                                    <small><span>Stock:</span></small> ${ele.stock}
-                                </p>
+									</div>
+									<c:if test="${ele.stock <= 3}">
+										<p class="card-text text-danger">Solo queda ${ele.stock}
+											en stock</p>
+									</c:if>
+								</div>
+							</div>
+						</c:when>
+						<c:otherwise>
+							<sec:authorize access="hasAnyAuthority('ROLE_ADMIN')">
+								<div
+									class="card mx-2 my-2 shadow-lg rounded border border-dark hover-3d"
+									style="background-color: rgba(51, 51, 51, 0.6); color: white;">
+									<img src="/recursos/${ele.img}" class="card-img-top border"
+										alt="${ele.img}" style="height: 200px; width: 300px;">
+									<div class="card-body">
+										<h5 class="card-title">${ele.nombre}</h5>
+										<p class="card-text">
+											<span>Precio:</span> ${ele.price} &euro;
+										</p>
+										<p class="card-text">
+											<small><span>Stock:</span></small> ${ele.stock}
+										</p>
 
-                                <div class="d-flex">
+										<div class="d-flex">
 
-                            <div class="p-2">
-                                <a href="pedidos/modCarrito/${ele.idProducto}"
-                                    class="btn btn-success btn-sm">Añadir carrito</a>
-                            </div>
-                            <div></div>
+											<div class="p-2">
+												<a href="pedidos/modCarrito/${ele.idProducto}"
+													class="btn btn-success btn-sm">Añadir carrito</a>
+											</div>
+											<div></div>
 
-                            <div class="p-2">
-                                <a href="/producto/detallesProducto/${ele.idProducto}"
-                                    class="btn btn-success btn-sm">Detalle</a>
-                            </div>
-                        </div>
-                        <div class="d-flex p-2">
-                            <sec:authorize access="hasAnyAuthority('ROLE_ADMIN')">
-                                <div class="dropdown ">
-                                    <button class="btn btn-secondary dropdown-toggle" type="button"
-                                        id="dropdownMenuButton" data-toggle="dropdown"
-                                        aria-haspopup="true" aria-expanded="false">Acciones</button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item"
-                                            href="/producto/modificarProducto/${ele.idProducto}">Modificar</a>
-                                        <a class="dropdown-item"
-                                            href="/producto/eliminarProducto/${ele.idProducto}">Eliminar</a>
-                                    </div>
-                                </div>
-                            </sec:authorize>
+											<div class="p-2">
+												<a href="/producto/detallesProducto/${ele.idProducto}"
+													class="btn btn-success btn-sm">Detalle</a>
+											</div>
+										</div>
+										<div class="d-flex p-2">
+											<sec:authorize access="hasAnyAuthority('ROLE_ADMIN')">
+												<div class="dropdown ">
+													<button class="btn btn-secondary dropdown-toggle"
+														type="button" id="dropdownMenuButton"
+														data-toggle="dropdown" aria-haspopup="true"
+														aria-expanded="false">Acciones</button>
+													<div class="dropdown-menu"
+														aria-labelledby="dropdownMenuButton">
+														<a class="dropdown-item"
+															href="/producto/modificarProducto/${ele.idProducto}">Modificar</a>
+														<a class="dropdown-item"
+															href="/producto/eliminarProducto/${ele.idProducto}">Eliminar</a>
+													</div>
+												</div>
+											</sec:authorize>
+										</div>
+										<c:if test="${ele.stock eq 0}">
+											<p class="card-text text-danger">¡¡NECESARIO REPONER
+												STOCK!!</p>
+										</c:if>
+									</div>
+								</div>
+							</sec:authorize>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+			</div>
+		</div>
+	</div>
 
-                        </div>
-                            </div>
-                        </div>
-                    </sec:authorize>
-                </c:otherwise>
-            </c:choose>
-        </c:forEach>
-    </div>
-</div>
-</div>
 
-		
-		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
-    <div class="modal-content">
-      <div class="modal-body">
-      <%
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered modal-sm"
+			role="document">
+			<div class="modal-content">
+				<div class="modal-body">
+					<%
       	Date fechaHoy = new Date();
       	SimpleDateFormat formateador = new SimpleDateFormat("yyyy-MM-dd");
       	String fechaHoyStr = formateador.format(fechaHoy);
       %>
-        <a class="btn btn-primary" href="/pedidos/pedidosPorDia?fecha=<%= fechaHoyStr %>">Pedidos de hoy</a>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
+					<a class="btn btn-primary"
+						href="/pedidos/pedidosPorDia?fecha=<%= fechaHoyStr %>">Pedidos
+						de hoy</a>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
 
-		<jsp:include page="footer.jsp"></jsp:include>
-		<script
-			src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"> </script>
-		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-			integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-			crossorigin="anonymous"></script>
-		<script
-			src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-			integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-			crossorigin="anonymous"></script>
-		<script
-			src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-			integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-			crossorigin="anonymous"></script>
+	<jsp:include page="footer.jsp"></jsp:include>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"> </script>
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+		crossorigin="anonymous"></script>
 </body>
 </html>
