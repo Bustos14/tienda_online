@@ -30,7 +30,6 @@
         <tr>
           <th>ID Pedido</th>
           <th>Username</th>
-          <th>Direccion</th>
           <th>Nombre</th>
           <th>Tipo</th>
           <th>Precio</th>
