@@ -64,14 +64,13 @@
 	<div class="col-sm-4">
 		<div class="card">
 			<div class="card-header">
-			<h2>Prueba</h2>
-				<h3>Generar compra</h3>
+				<h3 style="color:black;">Realizar pedido</h3>
 			</div>
 			<div class="card-body">
-			<label>Subtotal:</label>
+			<label style="color:black;">Subtotal:</label>
 			<input type="text" readonly="true" class="form-control" value="${total}">
 			<hr class="my-3">
-			 <label>Tarjetas:</label><br>
+			 <label style="color:black;">Tarjetas:</label><br>
 			 <c:if test="${tarjetas == null}">
               <p class="card-text text-danger"> No tienes tarjetas asignadas </p> <a href="/usuario/misTarjetas/${userName}" class="btn btn-info btn-block" style="color:white; href="/usuario/misTarjetas">Añadir tarjeta <i class="fa fa-credit-card fa-inverse" aria-hidden="true"></i></a>       
              </c:if>
@@ -83,7 +82,7 @@
   			</c:if>
 			 </select>
 			<hr class="my-3">
-			<label>Direcciónn:</label>
+			<label style="color:black;">Direcciónn:</label>
 			 <c:if test="${direcciones == null}">
               <p class="card-text text-danger">No tienes ninguna direcciónn</p>   
               <a href="/usuario/misDirecciones/${userName}" class="btn btn-info btn-block" style="color:white;">Añadir dirección <i class="fa fa-compass fa-inverse" aria-hidden="true"></i></a>       

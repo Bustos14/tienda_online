@@ -41,18 +41,18 @@
             <td>${pedido.idPedido}</td>
             <td>${pedido.usuario.username}</td>
             <td>
-              <c:forEach var="articulo" items="${pedidosNombres}">
-                ${articulo.nombre}<br>
+              <c:forEach var="articulo" items="${pedido.aticulosPedidos}">
+                ${articulo.producto.nombre}<br>
               </c:forEach>
             </td>
-            <td>
-              <c:forEach var="articulo" items="${pedidosNombres}">
-                ${articulo.tipo.nombreTipo}<br>
+             <td>
+              <c:forEach var="articulo" items="${pedido.aticulosPedidos}">
+                ${articulo.producto.tipo.nombreTipo}<br>
               </c:forEach>
             </td>
-            <td>
-              <c:forEach var="articulo" items="${pedidosNombres}">
-                ${articulo.price}<br>
+             <td>
+              <c:forEach var="articulo" items="${pedido.aticulosPedidos}">
+                ${articulo.producto.price}<br>
               </c:forEach>
             </td>
           </tr>

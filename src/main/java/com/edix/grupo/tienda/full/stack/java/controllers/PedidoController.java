@@ -283,44 +283,12 @@ public class PedidoController {
         model.addAttribute("fecha", fechaFormateada);
         
         List<Pedido> pedidosHoy = pedao.porFechaRealizacion(fecha);
-        
-        
-        
+
         model.addAttribute("pedidos", pedidosHoy);
 
 		List<Producto> listaHoy = new ArrayList<>();
 
-        for(Pedido ele: pedidosHoy) {
-        	for(AticulosPedido at: ele.getAticulosPedidos()) {
-        		Producto p = new Producto();
-        		String nombreProducto = at.getProducto().getNombre();
-        		Tipo tipoProducto = at.getProducto().getTipo();
-        		Double precioProducto = at.getProducto().getPrice();
-        		
-        		p.setNombre(nombreProducto);
-        		p.setTipo(tipoProducto);
-        		p.setPrice(precioProducto);
-        		
-        		
-        		listaHoy.add(p);
-        		
-        	
-        		
-        	}
-        }
-        for(Pedido ele: pedidosHoy) {
-        	System.out.println("Id del pedido: "+ ele.getIdPedido());
-        	System.out.println("Username: "+ele.getUsuario().getUsername());
-        	
-        }
-        for(Producto prod: listaHoy) {
-    		System.out.println("Nombre: "+prod.getNombre());
-    		System.out.println("Tipo: "+prod.getTipo().getNombreTipo());
-    		System.out.println("Precio: "+prod.getPrice());
-    	}
-        
-
-        model.addAttribute("pedidosNombres", listaHoy);
+      
 	    return "pedidosPorDia";
 	}
 
