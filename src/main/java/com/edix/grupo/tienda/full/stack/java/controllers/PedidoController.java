@@ -29,6 +29,7 @@ import com.edix.grupo.tienda.full.stack.java.dao.DireccionDaoImpl;
 import com.edix.grupo.tienda.full.stack.java.dao.PedidoDao;
 import com.edix.grupo.tienda.full.stack.java.dao.ProductoDao;
 import com.edix.grupo.tienda.full.stack.java.dao.RolDao;
+import com.edix.grupo.tienda.full.stack.java.dao.TarjetaDao;
 import com.edix.grupo.tienda.full.stack.java.dao.UsuarioDao;
 import com.edix.grupo.tienda.full.stack.java.entitybeans.AticulosPedido;
 import com.edix.grupo.tienda.full.stack.java.entitybeans.Direccione;
@@ -54,6 +55,10 @@ public class PedidoController {
 	ArticuloPedidoDao ardao;
 	@Autowired
 	RolDao rdao;
+	@Autowired
+	DireccionDao ddao;
+	@Autowired
+	TarjetaDao tdao;
 	
 	@GetMapping("/modCarrito/{id}")
 	public String procCarrito(Model model, @PathVariable("id") int idProd, Authentication aut, HttpSession session) {
@@ -102,9 +107,10 @@ public class PedidoController {
 		ardao.guardarArPe(ap);
 		return "redirect:/";	
 	}
+
 	
 	@GetMapping("/efectuarCompra")
-	public String procCompra(Authentication aut, HttpSession misession, Model model) {
+	public String procCompra(Authentication aut, HttpSession misession, Model model, @RequestParam("dir") String idDireccion, @RequestParam("tarjetas") String tarjeta) {
 		Usuario u = udao.findById(aut.getName());
 		Pedido pe = pedao.obtenerCarrito(u.getUsername());
 		List<AticulosPedido>apList =  ardao.findByPedido(pe.getIdPedido());
@@ -115,13 +121,19 @@ public class PedidoController {
 		}
 		pe.setEstado("Comprado");
 		pe.setPrecioTotal(new BigDecimal(cantidadTotal));
+		int idDireccione = Integer.parseInt(idDireccion);
+		int idTarjeta = Integer.parseInt(tarjeta);
+		Direccione d = ddao.buscarUna(idDireccione);
+		TarjetasBancaria t = tdao.buscarUna(idTarjeta);
+		pe.setTarjetasBancaria(t);
+		pe.setDireccione(d);
+
 		if(pedao.guardarPedido(pe)) {
 			misession.removeAttribute("contador");
 			return "redirect:/usuario/realizados/"+aut.getName();	
 		}else {
 			return "redirect:/pedidos/carrito";	
 		}
-		
 	}
 	@GetMapping("/carrito")
 	public String getCarrito(Model model, Authentication aut, HttpSession session) {

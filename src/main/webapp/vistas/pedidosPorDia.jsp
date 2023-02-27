@@ -33,6 +33,7 @@
           <th>Nombre</th>
           <th>Tipo</th>
           <th>Precio</th>
+          <th>Dirección</th>
         </tr>
       </thead>
       <tbody>
@@ -54,6 +55,9 @@
               <c:forEach var="articulo" items="${pedido.aticulosPedidos}">
                 ${articulo.producto.price}<br>
               </c:forEach>
+            </td>
+            <td>
+            Calle: ${pedido.direccione.calle}, Nº${pedido.direccione.numero}, Piso: ${pedido.direccione.piso}, Letra:  ${pedido.direccione.letra}
             </td>
           </tr>
         </c:forEach>
