@@ -23,11 +23,19 @@ public class ProductoRestController {
 	private ProductoDaoImpl pdao;
 	
 	@GetMapping("/precio/{idProducto}")
-	public ResponseEntity<String> findPrecioById(@PathVariable("idProducto") int idProducto) {
-		double precio = pdao.findPrecioById(idProducto);
-		String mensaje = "El precio del producto con ID " + idProducto + " es: €" + precio;
-	    return ResponseEntity.ok(mensaje);
+	public ResponseEntity<String> findPrecioById(@PathVariable("idProducto") Integer idProducto) {
+	    if (idProducto == null) {
+	        return ResponseEntity.badRequest().body("El ID del producto no puede ser nulo.");
+	    }
+	    try {
+	        double precio = pdao.findPrecioById(idProducto);
+	        String mensaje = "El precio del producto con ID " + idProducto + " es: €" + precio;
+	        return ResponseEntity.ok(mensaje);
+	    } catch (Exception e) {
+	        return ResponseEntity.notFound().build();
+	    }
 	}
+
 	
 	@GetMapping("/productos/{tipo}")
 	public List<Producto> findByTipo(@PathVariable("tipo")String tipo){		
