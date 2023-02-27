@@ -110,13 +110,13 @@ public class TarjetaController {
 			attr.addFlashAttribute("mensaje", "Error al crear la tarjeta");
 		}		
 		
-		return "redirect:/tarjeta/alta";
+		return "redirect:/usuario/misTarjetas/"+auth.getName();
 	}
 	
 	
 	
 	@PostMapping("/editar")
-	public String editarTarjeta(@ModelAttribute TarjetasBancaria tarjeta, RedirectAttributes attr) {
+	public String editarTarjeta(@ModelAttribute TarjetasBancaria tarjeta, RedirectAttributes attr, Authentication auth) {
 				
 		//Obtenemos la tarjeta existente
 		TarjetasBancaria tarjetaExistente = tdao.buscarUna(tarjeta.getIdTarjetaBancaria());
@@ -138,7 +138,7 @@ public class TarjetaController {
 		
 		}
 	
-		return "redirect:/";
+		return "redirect:/usuario/misTarjetas/"+auth.getName();
 	}
 	
 	

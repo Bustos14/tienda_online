@@ -111,17 +111,15 @@ public class DireccionController {
 			attr.addFlashAttribute("mensaje", "Error al dar de alta direcicón");
 		}
 		
-		return "redirect:/direccion/alta";
+		 return "redirect:/usuario/misDirecciones/"+auth.getName();
 	}
 	
 	@PostMapping("/editar")
-	public String editarDireccion(@ModelAttribute Direccione direccion, RedirectAttributes attr) {
+	public String editarDireccion(@ModelAttribute Direccione direccion, RedirectAttributes attr, Authentication auth) {
 		//Obtenemos la direcció existente
 		Direccione direccionExistente = ddao.buscarUna(direccion.getIdDireccion());
 		
-		
-
-			//Avtualizamos los campos necesarios
+			//Actualizamos los campos necesarios
 			direccionExistente.setCodigoPostal(direccion.getCodigoPostal());
 			direccionExistente.setLetra(direccion.getLetra());
 			direccionExistente.setLocalidad(direccion.getLocalidad());
@@ -132,12 +130,12 @@ public class DireccionController {
 			if(ddao.modificarDireccion(direccionExistente) == 1) {
 			
 			attr.addFlashAttribute("mensaje", "Direccion actualizada con éxito");
-			return "redirect:/";
+			return "redirect:/usuario/misDirecciones/"+auth.getName();
 			}
 			
 			attr.addFlashAttribute("mensaje", "Dirección imposible de actualizar");
 		
-		return "redirect:/";
+			return "redirect:/usuario/misDirecciones/"+auth.getName();
 	}
 	
 	

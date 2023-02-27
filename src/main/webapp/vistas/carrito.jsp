@@ -90,7 +90,7 @@
              <c:if test="${direcciones != null}">
 			<select class="select form-control">
 			 <c:forEach var="ele" items="${direcciones}">
-          	<option selected="true" value="${ele.idDireccion}">Calle: ${ele.calle}, Nï¿½${ele.numero}, Piso: ${ele.piso}, Letra:  ${ele.letra}</option>
+          	<option selected="true" value="${ele.idDireccion}">Calle: ${ele.calle}, Nº{ele.numero}, Piso: ${ele.piso}, Letra:  ${ele.letra}</option>
         	</c:forEach>
         	</c:if>
 			</select>
@@ -100,9 +100,11 @@
 			<div class="card-footer">
 			 <c:if test="${direcciones != null}">
 			 <c:if test="${tarjetas != null}">
+			 <c:if test="${carrito != null}">
 				<a class="btn btn-info btn-block" style="color:white;" href="efectuarCompra">Realizar pago</a>
-			</c:if>
-			</c:if>
+			 </c:if>
+			 </c:if>
+			 </c:if>
 			<a class="btn btn-danger btn-block" href="/">Seguir comprando</a>
 			</div>
 		</div>

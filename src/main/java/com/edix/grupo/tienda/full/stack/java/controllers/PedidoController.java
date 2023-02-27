@@ -117,7 +117,7 @@ public class PedidoController {
 		pe.setPrecioTotal(new BigDecimal(cantidadTotal));
 		if(pedao.guardarPedido(pe)) {
 			misession.removeAttribute("contador");
-			return "redirect:/pedidos/carrito";	
+			return "redirect:/usuario/realizados/"+aut.getName();	
 		}else {
 			return "redirect:/pedidos/carrito";	
 		}
