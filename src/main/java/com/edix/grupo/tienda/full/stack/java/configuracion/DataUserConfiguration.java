@@ -40,7 +40,7 @@
 		// Las vistas públicas no requieren autenticación
 		.antMatchers("/", "/login", "/logout", "/registro","/search", 
 				"/detallesProducto/**", "/recursos/**", "/img/**",
-				"/producto/precio/**", "/api/producto/productos/**",
+				"/api/producto/precio/**", "/api/producto/productos/**",
 				"/api/usuario/usuarios/**", "/pedidos/modCarrito/**","/pedidos/carrito" ).permitAll()
 		
 		//  Las autorizaciones sobre urls para ROLES
