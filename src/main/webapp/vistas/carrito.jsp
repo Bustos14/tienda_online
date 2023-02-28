@@ -27,6 +27,7 @@
 	<jsp:include page="inicio.jsp"></jsp:include>
 	<br>
 <div class="container mt-4" style="background-color: rgba(51, 51, 51, 0.6); color: white; border-radius: 25px">
+	<h3 class="text-danger">${mensaje }</h3>
 	<h3>Carrito</h3>
 	      <form id="cart-update-form" method="GET" action="/pedidos/efectuarCompra">
 	<div class="row ">

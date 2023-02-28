@@ -25,6 +25,7 @@
 <br>
 
 <div class="container p-5" style="background-color: rgba(51, 51, 51, 0.6); color: white; border-radius: 25px">
+	<h3 class="text-danger">${mensaje }</h3>
   <h1 class="text-primary">Lista de pedidos</h1>
   <br><br>
   <table class="table table-striped table-sm">

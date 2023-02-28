@@ -26,7 +26,7 @@
 <div class="container col-4" style="background-color: rgba(51, 51, 51, 0.6); color: white; border-radius: 25px">
 	
 	<h1>Bienvenido, ${userName}</h1>
-	<h3>${mensaje}</h3>
+	<h3 class="text-danger">${mensaje }</h3>
 	<h2>Tus datos de usuario:</h2>
 	<form action="/usuario/editar" method="post">
 		<div class="form-group">

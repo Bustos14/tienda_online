@@ -19,6 +19,7 @@
 <body>
 <jsp:include page="inicio.jsp"></jsp:include>
 <div class="container">
+	<h3 class="text-danger">${mensaje }</h3>
 	<h1 class="text-primary">Lista de productos</h1>
 	 <sec:authorize access="hasAnyAuthority('ROLE_ADMIN')">
 	<a href="/altaProducto" class="btn btn-primary btn-sm" >Nuevo Producto</a></td>

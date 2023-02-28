@@ -19,7 +19,7 @@
 	<jsp:include page="inicio.jsp"></jsp:include>
 <div class="container" style="background-color: rgba(51, 51, 51, 0.6); color: white; border-radius: 25px">
 
-	<h3>${mensaje }</h3>
+	<h3 class="text-danger">${mensaje }</h3>
 
 	<h1>Estas editando la direccion</h1>
 	<form action="/direccion/editar" method="post">

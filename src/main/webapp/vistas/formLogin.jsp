@@ -25,6 +25,7 @@
                   <img src="${pageContext.request.contextPath}/img/logo.png" 
                     style="width: 185px;" alt="logo">
                   <h4 class="mt-1 mb-5 pb-1">Bienvenido</h4>
+					<h3 class="text-danger">${mensaje }</h3>
                 </div>
 
                 <form name="form" action="/login" method="POST">

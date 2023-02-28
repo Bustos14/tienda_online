@@ -24,6 +24,7 @@
 <jsp:include page="inicio.jsp"></jsp:include>
 
 <div class="container p-3 mt-3" style="background-color: rgba(51, 51, 51, 0.6); color: white; border-radius: 25px">
+	<h3 class="text-danger">${mensaje }</h3>
 	<h1>Detalle del Pedido</h1>
 	<form action="/" method="get">
 		<div class="form-group">

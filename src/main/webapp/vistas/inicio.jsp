@@ -29,9 +29,6 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="/">Catálogo</a>
-            </li>
             <sec:authorize access="hasAnyAuthority('ROLE_ADMIN')">
                 <li class="nav-item">
                     <a class="nav-link" href="/usuario/usuarios">Usuarios</a>
