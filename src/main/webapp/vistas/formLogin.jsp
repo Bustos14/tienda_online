@@ -43,7 +43,7 @@
                   </div>
 
                   <div class="d-flex align-items-center justify-content-center pb-4">
-                    <p class="mb-0 me-2">¿No tienes cuenta aún? <a href="/registro" type="button">Regístrate </a></p>          
+                    <p class="mb-0 me-2">¿No tienes cuenta aún? <a href="/registroInvitado" type="button">Regístrate </a></p>          
                   </div>
                    <div class="d-flex align-items-center justify-content-center pb-4">
                     <p class="mb-0 me-2">O accede como <a href="/" type="button">Invitado</a></p>           
