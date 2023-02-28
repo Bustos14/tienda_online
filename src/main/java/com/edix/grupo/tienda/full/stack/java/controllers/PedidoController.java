@@ -63,7 +63,9 @@ public class PedidoController {
 	@GetMapping("/modCarrito/{id}")
 	public String procCarrito(Model model, @PathVariable("id") int idProd, Authentication aut, HttpSession session) {
 		Usuario usu = new Usuario();
+		//Comprobamos el tipo de usuario que esta realizando la acción
         if (aut != null) {
+        	//Recogemos si es un usuario autentificado y lo fusionamos con el que existia en sesión
             usu = udao.findById(aut.getName());
             if(session.getAttribute("invitado")!= null) {
             	fusionPedidos(session,usu);
@@ -75,8 +77,7 @@ public class PedidoController {
 	    		// Si el nombre de usuario del invitado no está en la sesión, crea uno aleatorio.
 	    		String nombreInvitado = (String) session.getAttribute("invitado");
 	    		usu = udao.findById(nombreInvitado);		    
-	    	}
-        	    
+	    	}    
         	}
 		Producto p = pdao.detallesProdutos(idProd);
 		Pedido pe = pedao.obtenerCarrito(usu.getUsername());
@@ -169,6 +170,11 @@ public class PedidoController {
 										}
 									}						
 								}
+								int contador = 0;
+								for (AticulosPedido aticulosPedido : lLog) {
+									contador = aticulosPedido.getCantidad() + contador;
+								}
+								session.setAttribute("contador", contador);
 								Pedido aux = pedao.obtenerCarrito(usesion.getUsername());
 								pedao.elminarPedido(aux.getIdPedido());
 								udao.eliminarUsuario(username);
@@ -236,6 +242,9 @@ public class PedidoController {
 			misession.removeAttribute("contador");
 			misession.setAttribute("contador", contador-aP.getCantidad());
 			if(ardao.findByPedido(idPed)==null) {
+				pedao.elminarPedido(idPed);
+			}
+			if(ardao.findByPedidoProdcuto(idPed, idProd)==null) {
 				pedao.elminarPedido(idPed);
 			}
 			return "redirect:/pedidos/carrito";

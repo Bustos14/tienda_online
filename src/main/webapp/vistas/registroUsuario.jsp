@@ -19,7 +19,7 @@
 <body>
 
 <jsp:include page="inicio.jsp"></jsp:include>
-
+<br>
 <div class="container" style="background-color: rgba(51, 51, 51, 0.6); color: white; border-radius: 25px">
 	<h3 class="text-danger">${mensaje }</h3>
 
@@ -63,5 +63,6 @@
 		<a href="/" class="btn btn-primary"> Volver</a>
 	</form>
 </div>
+<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>

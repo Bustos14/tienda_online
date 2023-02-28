@@ -41,7 +41,7 @@
 		.antMatchers("/", "/login", "/logout", "/registro","/search", 
 				"/detallesProducto/**", "/recursos/**", "/img/**",
 				"/api/producto/precio/**", "/api/producto/productos/**",
-				"/api/usuario/usuarios/**", "/pedidos/modCarrito/**","/pedidos/carrito" ).permitAll()
+				"/api/usuario/usuarios/**", "/pedidos/modCarrito/**","/pedidos/carrito", "/pedidos/delete/**/**" ).permitAll()
 		
 		//  Las autorizaciones sobre urls para ROLES
 			.antMatchers("/destacados").hasAnyAuthority("ROLE_CLIENTE",  "ROLE_ADMIN")
