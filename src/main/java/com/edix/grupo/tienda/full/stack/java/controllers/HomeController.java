@@ -59,6 +59,7 @@ public class HomeController {
 		if(aut != null) {
 			Pedido p = pedao.obtenerCarrito(aut.getName());
 			if(p!=null) {
+			
 			List<AticulosPedido> lArp = apdao.findByPedido(p.getIdPedido());
 			for (AticulosPedido aticulosPedido : lArp) {
 				contador = aticulosPedido.getCantidad() + contador;
@@ -66,18 +67,7 @@ public class HomeController {
 			misession.setAttribute("contador", contador);
 			model.addAttribute("productos", listproductos);
 			return "index";
-			}else{
-				if(p!=null) {
-					List<AticulosPedido> lArp = apdao.findByPedido(p.getIdPedido());
-					for (AticulosPedido aticulosPedido : lArp) {
-						contador = aticulosPedido.getCantidad() + contador;
-					}
-					misession.setAttribute("contador", contador);
-					model.addAttribute("productos", listproductos);
-					return "index";
-				}
-				
-		}
+			}
 		}else {
 			if( misession.getAttribute("invitado")!=null) {
 				String invitado = (String) misession.getAttribute("invitado");
