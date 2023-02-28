@@ -40,6 +40,7 @@
 		// Las vistas públicas no requieren autenticación
 		.antMatchers("/", "/login", "/logout", "/registro","/search", 
 				"/detallesProducto/**", "/recursos/**", "/img/**",
+				"/producto/destacados", "/producto/oferta",
 				"/api/producto/precio/**", "/api/producto/productos/**",
 				"/api/usuario/usuarios/**", "/pedidos/modCarrito/**","/pedidos/carrito", "/pedidos/delete/**/**" ).permitAll()
 		
