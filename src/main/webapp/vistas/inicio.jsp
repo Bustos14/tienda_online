@@ -42,9 +42,10 @@
             </sec:authorize>
             <sec:authorize access="!isAuthenticated()">
                 <li class="nav-item"><a class="nav-link" href="/login">Iniciar Sesión</a></li>
-                <li class="nav-item"><a class="nav-link" href="/registro">Registrarse</a></li>
+                <li class="nav-item"><a class="nav-link" href="/registroInvitado">Registrarse</a></li>
             </sec:authorize>
             <sec:authorize access="hasAuthority('ROLE_ADMIN')">
+                <li class="nav-item"><a class="nav-link" href="/registro">Registrarse</a></li>
             <li class="nav-item"><a class="nav-link" href="/registro">Registrar usuario</a></li>
             </sec:authorize>
             <sec:authorize access="isAuthenticated()">

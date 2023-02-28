@@ -42,6 +42,7 @@
 				"/detallesProducto/**", "/recursos/**", "/img/**",
 				"/producto/destacados", "/producto/oferta",
 				"/api/producto/precio/**", "/api/producto/productos/**",
+				"/registroInvitado",
 				"/api/usuario/usuarios/**", "/pedidos/modCarrito/**","/pedidos/carrito", "/pedidos/delete/**/**" ).permitAll()
 		
 		//  Las autorizaciones sobre urls para ROLES
