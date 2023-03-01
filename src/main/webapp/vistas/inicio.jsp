@@ -56,6 +56,7 @@
                     <a class="nav-link" href="/pedidos/carrito"><i class="fa fa-shopping-cart fa-inverse" aria-hidden="true">(<label style="color:orange">${contador}</label>)</i></a>
                 </li>
         </ul>
+                   
         <form class="form-inline my-2 my-lg-1 mx-auto" action="/producto/search" method="get">
             <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Buscar" name="nombre">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>

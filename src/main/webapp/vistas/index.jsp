@@ -70,7 +70,7 @@ body {
 			</a>
 			</span>
 			<h4 class="my-3" style="color: white">Ofertas</h4>
-			<p class="text-muted">¡Añade una tarjeta para tu primera compra!</p>
+			<p class="text-muted">¡Ofertas que te encantarán!</p>
 		</div>
 	</div>
 	<div class="container">
@@ -85,7 +85,18 @@ body {
 			</td>
 			<!-- Agrega el botón que abrirá la ventana modal flotante -->
 		</sec:authorize>
-
+		<div class="dropdown show">
+		  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		    ¿Qué te apetece?
+		  </a>
+		
+		  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+		    		<a class="dropdown-item" href="/producto/tipo/Cerveza">Cerveza</a>
+		    		<a class="dropdown-item" href="/producto/tipo/Vino">Vino</a>
+		    		<a class="dropdown-item" href="/producto/tipo/Embutido">Embutido</a>
+		  		</div>
+		</div>
+		
 		<div class="row justify-content-center">
 			<div class="row justify-content-center">
 				<c:forEach var="ele" items="${productos }">

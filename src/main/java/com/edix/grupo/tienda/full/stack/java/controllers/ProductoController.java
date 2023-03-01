@@ -70,6 +70,12 @@ public class ProductoController {
 		model.addAttribute("tipos", tList);
 		return "editarProducto";
 	}
+	@GetMapping("/tipo/{tipo}")
+	public String buscarPorTipo(@PathVariable ("tipo") String tipo, Model model) {
+		List<Producto> listproductos= pdao.findByTipo(tipo);
+		model.addAttribute("productos", listproductos);
+		return "productos";
+	}
 	@PostMapping("/modificarProducto")
 	public String guardarModificado( @ModelAttribute Producto productoEditable, RedirectAttributes attr, @RequestParam("file") MultipartFile image) {
 		//Obtenemos la tarjeta existente
