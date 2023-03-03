@@ -21,10 +21,11 @@
 <body>
 <jsp:include page="inicio.jsp"></jsp:include>
 
-<h3>Mensajes : ${mensaje }</h3>
+<div class="container p-5" style="background-color: rgba(51, 51, 51, 0.6); color: white; border-radius: 25px">
+
+<h3 class="text-danger">${mensaje }</h3>
 
 	<h1>Alta Producto</h1>
-<div class="container p-5" style="background-color: rgba(51, 51, 51, 0.6); color: white; border-radius: 25px">
   <h1 class="text-primary">Formulario de alta de productos</h1>
   <form action="/producto/altaProducto" method="post" enctype="multipart/form-data">
     <div class="form-group">
