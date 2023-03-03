@@ -43,11 +43,9 @@
 				"/producto/destacados", "/producto/oferta",
 				"/api/producto/precio/**", "/api/producto/productos/**",
 				"/registroInvitado",
-				"/api/usuario/usuarios/**", "/pedidos/modCarrito/**","/pedidos/carrito", "/pedidos/delete/**/**" ).permitAll()
+				"/api/usuario/usuarios/**", "/pedidos/modCarrito/**","/pedidos/carrito", "/pedidos/delete/**/**", "/producto/tipo/**", "/destacados" ,"/oferta").permitAll()
 		
 		//  Las autorizaciones sobre urls para ROLES
-			.antMatchers("/destacados").hasAnyAuthority("ROLE_CLIENTE",  "ROLE_ADMIN")
-			.antMatchers("/oferta").hasAnyAuthority("ROLE_CLIENTE","ROLE_ADMIN")
 			.antMatchers("/eliminarProducto/**").hasAnyAuthority("ROLE_ADMIN")
 			.antMatchers("/modificarProducto/**").hasAnyAuthority("ROLE_ADMIN")
 			.antMatchers("/modificarProducto").hasAnyAuthority("ROLE_ADMIN")

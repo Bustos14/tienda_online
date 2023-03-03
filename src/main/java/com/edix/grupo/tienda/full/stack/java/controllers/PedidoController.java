@@ -100,6 +100,16 @@ public class PedidoController {
 					 return "redirect:/";
 				 }
 			}
+			 AticulosPedido aux = ardao.findByPedidoProdcuto(idProd, idProd);
+			 if(aux==null) {
+				 if(p.getStock() > 0) {
+					 ap = new AticulosPedido(0, 1, pe, p);
+					 p.setStock(p.getStock() -1);
+					 pdao.modificarProducto(p);
+					 ardao.guardarArPe(ap);
+				 }
+				 return "redirect:/";
+			 }
 		}
 		ap = new AticulosPedido(0, 1, pe, p);
 		ardao.guardarArPe(ap);

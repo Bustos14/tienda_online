@@ -151,7 +151,7 @@ public class HomeController {
 		}
 		if(mayorEdad(usuario.getFechaNacimiento())) {
 			if (udao.registro(usuario)) {
-		 		return "redirect:/login";
+		 		return "/registroUsuario";
 		 	}
 		 	else {
 		 		model.addAttribute("mensaje", "ya existe como usuario");

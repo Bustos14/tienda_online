@@ -33,6 +33,7 @@
           <th>Username</th>
           <th>Nombre</th>
           <th>Tipo</th>
+          <th>Cantidad</th>
           <th>Precio</th>
           <th>Dirección</th>
         </tr>
@@ -50,6 +51,11 @@
              <td>
               <c:forEach var="articulo" items="${pedido.aticulosPedidos}">
                 ${articulo.producto.tipo.nombreTipo}<br>
+              </c:forEach>
+            </td>
+             <td>
+              <c:forEach var="articulo" items="${pedido.aticulosPedidos}">
+                ${articulo.cantidad}<br>
               </c:forEach>
             </td>
              <td>
