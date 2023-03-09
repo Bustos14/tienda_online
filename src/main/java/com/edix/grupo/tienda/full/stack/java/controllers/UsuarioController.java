@@ -27,7 +27,12 @@ import com.edix.grupo.tienda.full.stack.java.entitybeans.Direccione;
 import com.edix.grupo.tienda.full.stack.java.entitybeans.Pedido;
 import com.edix.grupo.tienda.full.stack.java.entitybeans.TarjetasBancaria;
 import com.edix.grupo.tienda.full.stack.java.entitybeans.Usuario;
-
+/**
+ * @author Raul-Alvaro
+ * 
+ * Esta clase controlador nos ayuda a hacer todo lo necesario con la entidad Usuario
+ *
+ */
 @Controller
 @RequestMapping("/usuario")
 public class UsuarioController {
@@ -44,6 +49,12 @@ public class UsuarioController {
 	@Autowired
 	private PedidoDaoImpl pdao;
 	
+	/**
+	 * Metodo que muestra la vista con todos los usuarios
+	 * 
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("usuarios")
 	public String todosUsuarios(Model model) {
 		
@@ -52,6 +63,15 @@ public class UsuarioController {
 		return "usuarios";
 	}
 	
+	/**
+	 * Método para eliminar un usuario.
+	 * 
+	 * @param auth
+	 * @param sesion
+	 * @param model
+	 * @param username
+	 * @return
+	 */
 	@GetMapping("/eliminar/{id}")
 	public String eliminarUsuario(Authentication auth, HttpSession sesion,Model model,@PathVariable("id") String username) {
 		
@@ -64,6 +84,13 @@ public class UsuarioController {
 		return "redirect:/usuario/usuarios";
 	}
 	
+	/**
+	 * Método para ir a la vista perfil
+	 * 
+	 * @param auth
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/perfil")
 	public String irPerfil(Authentication auth, Model model) {
 		
@@ -82,6 +109,13 @@ public class UsuarioController {
 		return "irPerfil";
 	}
 	
+	/**
+	 * Método para editar un usuario
+	 * 
+	 * @param usuario
+	 * @param attr
+	 * @return
+	 */
 	@PostMapping("/editar")
 	public String guardarUsuario(Usuario usuario, RedirectAttributes attr) {
 		
@@ -102,6 +136,14 @@ public class UsuarioController {
 	    return "redirect:/usuario/perfil";
 	}
 	
+	/**
+	 * Metodo para ver las tarjetas de un usuario
+	 * 
+	 * @param auth
+	 * @param model
+	 * @param username
+	 * @return
+	 */
 	@GetMapping("/misTarjetas/{username}")
 	public String misTarjetas(Authentication auth, Model model, @PathVariable("username") String username) {
 		
@@ -112,6 +154,14 @@ public class UsuarioController {
 		return "tarjetas";
 	}
 	
+	/**
+	 * Método para ver las direcciones de un usuario
+	 * 
+	 * @param auth
+	 * @param model
+	 * @param username
+	 * @return
+	 */
 	@GetMapping("/misDirecciones/{username}")
 	public String misDirecciones(Authentication auth, Model model, @PathVariable("username") String username) {
 		
@@ -127,6 +177,14 @@ public class UsuarioController {
 		return "direcciones";
 	}
 	
+	/**
+	 * Metodo para mostrar los pedidos realiados por usuario
+	 * 
+	 * @param auth
+	 * @param model
+	 * @param username
+	 * @return
+	 */
 	@GetMapping("/realizados/{username}")
 	public String pedidoRealizado(Authentication auth, Model model, @PathVariable("username") String username) {
 		

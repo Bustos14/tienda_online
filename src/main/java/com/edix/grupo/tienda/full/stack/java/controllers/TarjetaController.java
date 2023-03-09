@@ -24,7 +24,12 @@ import com.edix.grupo.tienda.full.stack.java.dao.UsuarioDaoImpl;
 import com.edix.grupo.tienda.full.stack.java.entitybeans.TarjetasBancaria;
 import com.edix.grupo.tienda.full.stack.java.entitybeans.Usuario;
 
-
+/**
+ * @author Raul-Alvaro
+ * 
+ * Esta clase controlador nos ayuda a hacer todo lo necesario con la entidad Tarjetas
+ *
+ */
 @Controller
 @RequestMapping("/tarjeta")
 public class TarjetaController {
@@ -36,6 +41,14 @@ public class TarjetaController {
 	@Autowired
 	private UsuarioDaoImpl udao;
 	
+	/**
+	 * Metodo que nos muestra la vista alta tarjeta
+	 * 
+	 * @param auth
+	 * @param sesion
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/alta")
 	public String irAltaTarjeta(Authentication auth, HttpSession sesion, Model model) {
 		
@@ -44,6 +57,12 @@ public class TarjetaController {
 	}
 	
 	
+	/**
+	 * Metodo que nos muestra todas las tarjetas que se han creado
+	 * 
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/tarjetas")
 	public String todasTarjetas(Model model) {
 		
@@ -53,6 +72,13 @@ public class TarjetaController {
 	}
 
 	
+	/**
+	 * Metodo que nos muestra la vista editar tarjeta
+	 * 
+	 * @param id
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/editar/{id}")
 	public String irEditarTarjeta(@PathVariable("id") int id, Model model) {
 		TarjetasBancaria tarjetaEditar = tdao.buscarUna(id);
@@ -74,6 +100,15 @@ public class TarjetaController {
 	
 	
 
+	/**
+	 * Metodo para eliminar una tarjeta
+	 * 
+	 * @param auth
+	 * @param sesion
+	 * @param model
+	 * @param idTarjeta
+	 * @return
+	 */
 	@GetMapping("/eliminar/{id}")
 	public String eliminar(Authentication auth, HttpSession sesion,Model model,@PathVariable("id") int idTarjeta) {
 		
@@ -94,6 +129,15 @@ public class TarjetaController {
 		return "redirect:/tarjeta/tarjetas";
 	}
 	
+	/**
+	 * Método para llevar a cabo el alta de una tarjeta
+	 * 
+	 * @param auth
+	 * @param sesion
+	 * @param tarjeta
+	 * @param attr
+	 * @return
+	 */
 	@PostMapping("/alta")
 	public String altaTarjeta(Authentication auth, HttpSession sesion,TarjetasBancaria tarjeta, RedirectAttributes attr) {
 		
@@ -115,6 +159,14 @@ public class TarjetaController {
 	
 	
 	
+	/**
+	 * Metodo para editar la tarjeta
+	 * 
+	 * @param tarjeta
+	 * @param attr
+	 * @param auth
+	 * @return
+	 */
 	@PostMapping("/editar")
 	public String editarTarjeta(@ModelAttribute TarjetasBancaria tarjeta, RedirectAttributes attr, Authentication auth) {
 				

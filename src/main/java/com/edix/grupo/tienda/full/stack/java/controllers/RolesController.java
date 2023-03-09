@@ -17,7 +17,12 @@ import com.edix.grupo.tienda.full.stack.java.dao.UsuarioDaoImpl;
 import com.edix.grupo.tienda.full.stack.java.entitybeans.Role;
 import com.edix.grupo.tienda.full.stack.java.entitybeans.TarjetasBancaria;
 import com.edix.grupo.tienda.full.stack.java.entitybeans.Usuario;
-
+/**
+ * @author Raul-Alvaro
+ * 
+ * Esta clase controlador nos ayuda a hacer todo lo necesario con la entidad Rol
+ *
+ */
 @Controller
 @RequestMapping("/rol")
 public class RolesController {
@@ -28,6 +33,14 @@ public class RolesController {
 	@Autowired 
 	private UsuarioDaoImpl udao;
 	
+	/**
+	 * Método que nos envía a la vista para dar de alta un Rol.
+	 * 
+	 * @param auth
+	 * @param sesion
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/alta")
 	public String irAlta(Authentication auth, HttpSession sesion, Model model){
 		
@@ -35,6 +48,12 @@ public class RolesController {
 		return "altaRol";
 	}
 	
+	/**
+	 * Metodo que nos muestra los roles que tenemos creados
+	 * 
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/roles")
 	public String todosRoles(Model model) {
 		
@@ -44,6 +63,15 @@ public class RolesController {
 		return "roles";
 	}
 	
+	/**
+	 * Método para eliminar un rol
+	 * 
+	 * @param auth
+	 * @param sesion
+	 * @param model
+	 * @param idRol
+	 * @return
+	 */
 	@GetMapping("/eliminar/{id}")
 	public String eliminar(Authentication auth, HttpSession sesion, Model model, @PathVariable("id") int idRol) {
 		
@@ -56,6 +84,15 @@ public class RolesController {
 		return "redirect:/rol/roles";
 	}
 	
+	/**
+	 * Metodo para realiar el alta del Rol.
+	 * 
+	 * @param auth
+	 * @param sesion
+	 * @param rol
+	 * @param attr
+	 * @return
+	 */
 	@PostMapping("/alta")
 	public String altaRol(Authentication auth, HttpSession sesion,Role rol, RedirectAttributes attr) {
 		

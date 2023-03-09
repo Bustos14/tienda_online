@@ -36,6 +36,12 @@ import com.edix.grupo.tienda.full.stack.java.entitybeans.Role;
 import com.edix.grupo.tienda.full.stack.java.entitybeans.Tipo;
 import com.edix.grupo.tienda.full.stack.java.entitybeans.Usuario;
 
+/**
+ * @author Raul-Alvaro
+ * 
+ * Esta clase Controlador se encarga de las principales acciones, como dirigir al index, registrar o iniciar sesión.
+ *
+ */
 @Controller
 public class HomeController {
 
@@ -52,6 +58,16 @@ public class HomeController {
 	private PasswordEncoder passwordEncoder;
 	@Autowired
 	private ArticuloPedidoDao apdao;
+	
+	/**
+	 * Método que nos manda al index de nuestro sitio web, y comprueba si tenemos carrito, si somos invitados y si estamos registrados.
+	 * 
+	 * @param model
+	 * @param misesion
+	 * @param aut
+	 * @param misession
+	 * @return
+	 */
 	@GetMapping("/")
 	public String inicio(Model model, HttpSession misesion, Authentication aut, HttpSession misession) {
 		List<Producto> listproductos= pdao.listadoProducto();
@@ -89,6 +105,12 @@ public class HomeController {
 		
 	}
 	
+	/**
+	 * Método que nos manda a la vista Registro usuario
+	 * 
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/registro")
 	public String registro(Model model) {
 		List<Role> lRoles = rdao.todos();
@@ -96,12 +118,26 @@ public class HomeController {
 		return "/registroUsuario";
 	}
 	
+	/**
+	 * Método para ir a la vista Registro usuario si eres invitado
+	 * 
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/registroInvitado")
 	public String registroInvitado(Model model) {
 		
 		return "/registroUsuarioInvitado";
 	}
 	
+	/**
+	 * Método usado para el registro de un usuario con rol invitado
+	 * 
+	 * @param model
+	 * @param usuario
+	 * @param ratt
+	 * @return
+	 */
 	@PostMapping("/registroInvitado")
 	public String proregistrarInvitado(Model model, Usuario usuario, RedirectAttributes ratt) {
 		
@@ -131,6 +167,15 @@ public class HomeController {
 	}
 	
 	
+	/**
+	 * Método de registrar un usuario pero sólo para usuarios que tengan el ROL Administrador
+	 * 
+	 * @param rol
+	 * @param model
+	 * @param usuario
+	 * @param ratt
+	 * @return
+	 */
 	@PostMapping("/registro")
 	public String proregistrar(@RequestParam("rol") String rol, Model model, Usuario usuario, RedirectAttributes ratt) {
 		System.out.println(rol);
@@ -165,6 +210,12 @@ public class HomeController {
 		}
 	 	
 	}
+	/**
+	 * Método para procesar el login
+	 * 
+	 * @param aut
+	 * @param misesion
+	 */
 	@GetMapping("/index")
 	public void procesarLogin(Authentication aut , HttpSession misesion ){
         System.out.println ("usuario : " + aut.getName());
@@ -178,10 +229,24 @@ public class HomeController {
         }
 
     }
+	/**
+	 * Método para ir al formulario
+	 * 
+	 * @return
+	 */
 	@GetMapping("/login")
 	public String mostrarLogin() {
 		return "formLogin";
 	}
+	/**
+	 * Método encargado de procesar el login, comprueba si existe y si es así manda a la url que estabamos buscando
+	 * 
+	 * @param username
+	 * @param password
+	 * @param redirectAttributes
+	 * @param misession
+	 * @return
+	 */
 	@PostMapping("/login")
     public String login(@RequestParam("username") String username,
                         @RequestParam("password") String password,

@@ -24,6 +24,12 @@ import com.edix.grupo.tienda.full.stack.java.dao.UsuarioDaoImpl;
 import com.edix.grupo.tienda.full.stack.java.entitybeans.Direccione;
 import com.edix.grupo.tienda.full.stack.java.entitybeans.Usuario;
 
+/**
+ * @author Raul-Alvaro
+ * 
+ * Esta clase Controlador representa todas las acciones que se llevan acabo desde la web y están relaccionadas con Direcciones
+ *
+ */
 @Controller
 @RequestMapping("/direccion")
 public class DireccionController {
@@ -34,12 +40,26 @@ public class DireccionController {
 	@Autowired
 	private UsuarioDaoImpl udao;
 	
+	/**
+	 * Muestra la vista de alta dirección
+	 * 
+	 * @param auth
+	 * @param sesion
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/alta")
 	public String irAltaDireccion(Authentication auth, HttpSession sesion, Model model) {
 		
 		return "altaDireccion";
 	}
 	
+	/**
+	 * Muestra la vista de direcciones
+	 * 
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/direcciones")
 	public String todasDirecciones(Model model) {
 		
@@ -48,6 +68,13 @@ public class DireccionController {
 		return "direcciones";
 	}
 	
+	/**
+	 * Muestra la vista para editar la dirección
+	 * 
+	 * @param id
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/editar/{id}")
 	public String irEditarDirecceion(@PathVariable("id") int id, Model model) {
 		Direccione direccionEditar = ddao.buscarUna(id);
@@ -62,6 +89,13 @@ public class DireccionController {
 		return "editarDireccion";
 	}
 	
+	/**
+	 * Muestra la vista con el detalle de una dirección
+	 * 
+	 * @param id
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/verDireccion/{id}")
 	public String irDetalleTarjeta(@PathVariable("id") int id, Model model) {
 		
@@ -74,6 +108,15 @@ public class DireccionController {
 		return "detalleDireccion";
 	}
 	
+	/**
+	 * Método que elimina una dirección, si existe.
+	 * 
+	 * @param auth
+	 * @param sesion
+	 * @param model
+	 * @param idDireccion
+	 * @return
+	 */
 	@GetMapping("/eliminar/{id}")
 	public String eliminar(Authentication auth, HttpSession sesion,Model model,@PathVariable("id") int idDireccion) {
 		
@@ -97,6 +140,15 @@ public class DireccionController {
 	}
 	
 	
+	/**
+	 * Metodo que comprueba si existe una direción, en el caso de no existir la crea
+	 * 
+	 * @param auth
+	 * @param sesion
+	 * @param direccion
+	 * @param attr
+	 * @return
+	 */
 	@PostMapping("/alta")
 	public String altaDireccion(Authentication auth, HttpSession sesion, Direccione direccion, RedirectAttributes attr) {
 		
@@ -114,6 +166,14 @@ public class DireccionController {
 		 return "redirect:/usuario/misDirecciones/"+auth.getName();
 	}
 	
+	/**
+	 * Metodo para editar una dirección
+	 * 
+	 * @param direccion
+	 * @param attr
+	 * @param auth
+	 * @return
+	 */
 	@PostMapping("/editar")
 	public String editarDireccion(@ModelAttribute Direccione direccion, RedirectAttributes attr, Authentication auth) {
 		//Obtenemos la direcció existente

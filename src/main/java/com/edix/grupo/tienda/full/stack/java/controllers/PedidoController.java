@@ -37,6 +37,12 @@ import com.edix.grupo.tienda.full.stack.java.entitybeans.Producto;
 import com.edix.grupo.tienda.full.stack.java.entitybeans.TarjetasBancaria;
 import com.edix.grupo.tienda.full.stack.java.entitybeans.Usuario;
 
+/**
+ * @author Raul-Alvaro
+ * 
+ * Esta clase controlador nos ayuda a hacer todo lo necesario con la entidad Pedidos
+ *
+ */
 @Controller
 @RequestMapping("/pedidos")
 public class PedidoController {
@@ -57,6 +63,15 @@ public class PedidoController {
 	@Autowired
 	TarjetaDao tdao;
 	
+	/**
+	 * Método para añadir al carrito un producto
+	 * 
+	 * @param model
+	 * @param idProd
+	 * @param aut
+	 * @param session
+	 * @return
+	 */
 	@GetMapping("/modCarrito/{id}")
 	public String procCarrito(Model model, @PathVariable("id") int idProd, Authentication aut, HttpSession session) {
 		Usuario usu = new Usuario();
@@ -117,6 +132,16 @@ public class PedidoController {
 	}
 
 	
+	/**
+	 * Método para efectuar la compra de los productos que tenemos en el carrito
+	 * 
+	 * @param aut
+	 * @param misession
+	 * @param model
+	 * @param idDireccion
+	 * @param tarjeta
+	 * @return
+	 */
 	@GetMapping("/efectuarCompra")
 	public String procCompra(Authentication aut, HttpSession misession, Model model, @RequestParam("dir") String idDireccion, @RequestParam("tarjetas") String tarjeta) {
 		Usuario u = udao.findById(aut.getName());
@@ -143,6 +168,14 @@ public class PedidoController {
 			return "redirect:/pedidos/carrito";	
 		}
 	}
+	/**
+	 * Método para ir al carrito
+	 * 
+	 * @param model
+	 * @param aut
+	 * @param session
+	 * @return
+	 */
 	@GetMapping("/carrito")
 	public String getCarrito(Model model, Authentication aut, HttpSession session) {
 		Usuario usu = new Usuario();
@@ -236,6 +269,16 @@ public class PedidoController {
 		}
 		return "carrito";
 	}
+	/**
+	 * Método para borrar el pedido que tenemos en curso
+	 * 
+	 * @param model
+	 * @param aut
+	 * @param idPed
+	 * @param idProd
+	 * @param misession
+	 * @return
+	 */
 	@GetMapping("/delete/{id}/{id2}")
 	public String procDeletePedido(Model model, Authentication aut, @PathVariable("id") int idPed, @PathVariable("id2") int idProd, HttpSession misession) {
 		AticulosPedido aP = ardao.findByPedidoProdcuto(idPed, idProd);
@@ -259,6 +302,14 @@ public class PedidoController {
 		return "redirect:/pedidos/carrito";
 	}
 	
+	/**
+	 * Método para ver los detalles de algun pedido
+	 * 
+	 * @param idPedido
+	 * @param model
+	 * @param aut
+	 * @return
+	 */
 	@GetMapping("/verPedido/{idPedido}")
 	public String verDetallePedido(@PathVariable("idPedido") int idPedido, Model model, Authentication aut) {
 
@@ -299,6 +350,13 @@ public class PedidoController {
 		return "detallePedido";
 	}
 	
+	/**
+	 * Método par ir a ver los pedidos que se han realizado hoy
+	 * 
+	 * @param fecha
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/pedidosPorDia")
 	public String pedidosPorDia(@RequestParam("fecha") @DateTimeFormat(pattern = "yyyy-MM-dd") Date fecha, Model model) {
 	  
@@ -319,6 +377,15 @@ public class PedidoController {
 	}
 
 
+	/**
+	 * Método que nos muestra en una vista los pedidos realizados por un usuario
+	 * 
+	 * @param username
+	 * @param model
+	 * @param auth
+	 * @param attr
+	 * @return
+	 */
 	@GetMapping("/verTotalPedido/{username}")
 	public String verElTotalPorUsuario(@PathVariable("username") String username, Model model, Authentication auth, RedirectAttributes attr) {
 		
@@ -347,6 +414,12 @@ public class PedidoController {
 		return "totalPedidos";
 	}
 	
+	/**
+	 * Este método lo usamos para crear un usuario Random, si entras como invitado
+	 * 
+	 * @param usu
+	 * @param session
+	 */
 	public void usuarioRandom(Usuario usu, HttpSession session) {
 		// Si el nombre de usuario del invitado no está en la sesión, crea uno aleatorio.
         String nombreInvitado = "invitado_" + UUID.randomUUID().toString();

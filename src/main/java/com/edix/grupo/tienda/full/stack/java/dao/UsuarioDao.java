@@ -5,7 +5,12 @@ import java.util.List;
 import com.edix.grupo.tienda.full.stack.java.entitybeans.Direccione;
 import com.edix.grupo.tienda.full.stack.java.entitybeans.TarjetasBancaria;
 import com.edix.grupo.tienda.full.stack.java.entitybeans.Usuario;
-
+/**
+ * @author Raul-Alvaro
+ * 
+ * La interfaz UsuarioDao, nos sirve para definir los métodos que vamos a utilizar
+ *
+ */
 public interface UsuarioDao {
 
 	Usuario findById(String username);

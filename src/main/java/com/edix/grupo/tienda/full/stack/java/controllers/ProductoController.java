@@ -32,12 +32,25 @@ public class ProductoController {
 	private ProductoDao pdao;
 	@Autowired
 	private TipoDao tdao;
+	/**
+	 * Método que muestra los productos que tienen en estado "Destacado".
+	 * 
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/destacados")
 	public String destacados(Model model) {
 		List<Producto> listproductos= pdao.lProductoPorEstado("Destacado");
 		model.addAttribute("productos", listproductos);
 		return "productos";
 	}
+	/** 
+	 * Método que muestra los productos que tienen en estado "Oferta".
+	 * 
+	 * @param model
+	 * @param misesion
+	 * @return
+	 */
 	@GetMapping("/oferta")
 	public String ofertas(Model model, HttpSession misesion) {
 		System.out.println(misesion.getAttribute("usuario"));
@@ -45,6 +58,13 @@ public class ProductoController {
 		model.addAttribute("productos", listproductos);
 		return "productos";
 	}
+	/**
+	 * Método que muestra los detalles de un pedido, buscado por ID.
+	 * 
+	 * @param idProd
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/detallesProducto/{id}")
 	public String detalles(@PathVariable("id") int idProd, Model model) {
 		Producto p = pdao.detallesProdutos(idProd);
@@ -52,6 +72,13 @@ public class ProductoController {
 		System.out.println(p.getNombre());
 		return "detallesProducto";
 	}
+	/**
+	 * Método que elimina un pedido
+	 * 
+	 * @param idProd
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/eliminarProducto/{id}")
 	public String eliminarProducto(@PathVariable("id") int idProd, Model model) {
 		if(pdao.eliminarProducto(idProd)==1) {
@@ -62,6 +89,13 @@ public class ProductoController {
 			return "redirect:/";
 		}
 	}
+	/**
+	 * Método que usamos para modificar un producto
+	 * 
+	 * @param idProd
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/modificarProducto/{id}")
 	public String modProducto(@PathVariable ("id") int idProd, Model model) {
 		Producto p = pdao.detallesProdutos(idProd);
@@ -70,12 +104,27 @@ public class ProductoController {
 		model.addAttribute("tipos", tList);
 		return "editarProducto";
 	}
+	/**
+	 * Método usado para buscar según el tipo de producto
+	 * 
+	 * @param tipo
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/tipo/{tipo}")
 	public String buscarPorTipo(@PathVariable ("tipo") String tipo, Model model) {
 		List<Producto> listproductos= pdao.findByTipo(tipo);
 		model.addAttribute("productos", listproductos);
 		return "productos";
 	}
+	/**
+	 * Método para hacer efectiva la modificación del producto
+	 * 
+	 * @param productoEditable
+	 * @param attr
+	 * @param image
+	 * @return
+	 */
 	@PostMapping("/modificarProducto")
 	public String guardarModificado( @ModelAttribute Producto productoEditable, RedirectAttributes attr, @RequestParam("file") MultipartFile image) {
 		//Obtenemos la tarjeta existente
@@ -108,12 +157,26 @@ public class ProductoController {
 				return "redirect:/";
 				
 	}
+	/**
+	 * Método para ir a la vista de dar alta un producto
+	 * 
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/altaProducto")
 	public String altaProducto(Model model) {
 		List<Tipo> tList = tdao.todoTipo();
 		model.addAttribute("tipos", tList);
 		return "altaProducto";
 	}
+	/**
+	 * Método para realizar el alta del producto
+	 * 
+	 * @param p
+	 * @param attr
+	 * @param image
+	 * @return
+	 */
 	@PostMapping("/altaProducto")
 	public String altaProducto(@ModelAttribute Producto p, RedirectAttributes attr, @RequestParam("file") MultipartFile image) {
 		if(!image.isEmpty()) {
@@ -139,6 +202,14 @@ public class ProductoController {
 		return "redirect:/altaProducto";
 		
 	}
+	
+	/**
+	 * Método para la busca de productos
+	 * 
+	 * @param nombre
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/search")
 	public String busqueda(@RequestParam(name="nombre") String nombre, Model model) {
 		List<Producto> listproductos=pdao.lBusquedaProduc(nombre);

@@ -3,7 +3,12 @@ package com.edix.grupo.tienda.full.stack.java.dao;
 import java.util.List;
 
 import com.edix.grupo.tienda.full.stack.java.entitybeans.Producto;
-
+/**
+ * @author Raul-Alvaro
+ * 
+ * La interfaz ProductoDao, nos sirve para definir los métodos que vamos a utilizar
+ *
+ */
 public interface ProductoDao {
 
 	int nuevoProducto(Producto producto);
