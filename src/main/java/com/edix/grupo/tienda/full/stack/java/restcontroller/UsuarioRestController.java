@@ -16,7 +16,7 @@ import com.edix.grupo.tienda.full.stack.java.dao.UsuarioDaoImpl;
 import com.edix.grupo.tienda.full.stack.java.entitybeans.Direccione;
 import com.edix.grupo.tienda.full.stack.java.entitybeans.Usuario;
 
-//La anotación @CrossOrigins(origins=”*”), es para permitir accesos desde aplicaciones cliente web
+//La anotación @CrossOrigins(origins), es para permitir accesos desde aplicaciones cliente web
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/usuario")

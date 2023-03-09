@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.edix.grupo.tienda.full.stack.java.dao.ProductoDaoImpl;
 import com.edix.grupo.tienda.full.stack.java.entitybeans.Producto;
 
-//La anotación @CrossOrigins(origins=”*”), es para permitir accesos desde aplicaciones cliente web
+//La anotación @CrossOrigins(origins), es para permitir accesos desde aplicaciones cliente web
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/producto")

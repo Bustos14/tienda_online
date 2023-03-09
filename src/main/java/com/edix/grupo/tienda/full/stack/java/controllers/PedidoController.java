@@ -319,15 +319,15 @@ public class PedidoController {
 		
 		for(AticulosPedido art : pedidoBuscado.getAticulosPedidos()) {			
 			
-			Producto añadirP = new Producto();
-			añadirP.setNombre(art.getProducto().getNombre());
-			añadirP.setPrice(art.getProducto().getPrice());
+			Producto anadirP = new Producto();
+			anadirP.setNombre(art.getProducto().getNombre());
+			anadirP.setPrice(art.getProducto().getPrice());
 			
-			AticulosPedido añadir = new AticulosPedido();
-			añadir.setProducto(añadirP);
-			añadir.setCantidad(art.getCantidad());		
+			AticulosPedido anadir = new AticulosPedido();
+			anadir.setProducto(anadirP);
+			anadir.setCantidad(art.getCantidad());		
 			
-			mostrar.add(añadir);
+			mostrar.add(anadir);
 			
 			
 		}
