@@ -10,7 +10,13 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import com.edix.grupo.tienda.full.stack.java.entitybeans.Direccione;
 import com.edix.grupo.tienda.full.stack.java.entitybeans.Usuario;
-
+/**
+ * @author Raul - Alvaro
+ * 
+ * Interfaz que hereda de JpaRepository para proporcionarnos todos los métodos
+ * para realizar el CRUD
+ *
+ */
 
 public interface UsuarioRepository extends JpaRepository<Usuario, String>{
 

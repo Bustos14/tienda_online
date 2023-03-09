@@ -17,6 +17,12 @@ import com.edix.grupo.tienda.full.stack.java.entitybeans.Direccione;
 import com.edix.grupo.tienda.full.stack.java.entitybeans.Usuario;
 
 //La anotación @CrossOrigins(origins), es para permitir accesos desde aplicaciones cliente web
+/**
+ * @author Raul - Alvaro
+ * 
+ * Esta clase RestController nos permite mostrar información al exterior sobre los usuarios
+ *
+ */
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/usuario")
@@ -26,6 +32,12 @@ public class UsuarioRestController {
 	@Autowired
 	private DireccionDaoImpl ddao;
 	
+	/**
+	 * Método que muestra las direcciones segun la localidad en la que queramos buscar
+	 * 
+	 * @param localidad
+	 * @return
+	 */
 	@GetMapping("/usuarios/{localidad}")
 	public List<Direccione> findByLocalidad(@PathVariable("localidad") String localidad) {
 		

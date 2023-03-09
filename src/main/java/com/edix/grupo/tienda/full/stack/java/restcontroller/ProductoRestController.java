@@ -14,6 +14,12 @@ import com.edix.grupo.tienda.full.stack.java.dao.ProductoDaoImpl;
 import com.edix.grupo.tienda.full.stack.java.entitybeans.Producto;
 
 //La anotación @CrossOrigins(origins), es para permitir accesos desde aplicaciones cliente web
+/**
+ * @author Raul - Alvaro
+ * 
+ * Esta clase RestController nos permite mostrar información a cualquiera que la quiera consumir
+ *
+ */
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/producto")
@@ -22,6 +28,12 @@ public class ProductoRestController {
 	@Autowired
 	private ProductoDaoImpl pdao;
 	
+	/**
+	 * Método que nos proporciona el precio de un producto, buscado por ID.
+	 * 
+	 * @param idProducto
+	 * @return
+	 */
 	@GetMapping("/precio/{idProducto}")
 	public ResponseEntity<String> findPrecioById(@PathVariable("idProducto") Integer idProducto) {
 	    if (idProducto == null) {
@@ -37,6 +49,12 @@ public class ProductoRestController {
 	}
 
 	
+	/**
+	 * Método que nos proporciona los productos filtrados por tipo.
+	 * 
+	 * @param tipo
+	 * @return
+	 */
 	@GetMapping("/productos/{tipo}")
 	public List<Producto> findByTipo(@PathVariable("tipo")String tipo){		
 		return pdao.findByTipo(tipo);
