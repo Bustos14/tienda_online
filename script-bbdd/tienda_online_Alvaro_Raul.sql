@@ -5,22 +5,26 @@ USE tienda_online;
 # Esta tabla tiene una clave primaria id_rol, que es un entero autoincrementado, 
 # y una columna nombre_rol, que contiene el nombre del rol.
 CREATE TABLE roles (
-	id_rol INT AUTO_INCREMENT PRIMARY KEY,
+	id_rol INT PRIMARY KEY,
     nombre VARCHAR(60)
 );
 
-# La restricción CHECK se escribe después del tipo de datos y asegura que el valor en el campo fecha_nacimiento 
-# cumpla con la condición especificada. La condición YEAR(fecha_nacimiento) < YEAR(CURDATE())-18 significa que 
-# el año de la fecha de nacimiento debe ser menor que el año actual menos 18 años.
 CREATE TABLE usuarios (
-    id_usuario INT AUTO_INCREMENT PRIMARY KEY,
-    nombre VARCHAR(100),
-    apellidos VARCHAR(100),
-    fecha_nacimiento DATE,
-    email VARCHAR(100) UNIQUE,
-    contrasena VARCHAR(100),
-    id_rol INT,
-    FOREIGN KEY (id_rol) REFERENCES roles(id_rol)
+  username VARCHAR(100) PRIMARY KEY,
+  nombre VARCHAR(100),
+  apellidos VARCHAR(100),
+  fecha_nacimiento DATE,
+  fecha_registro DATE,
+  contrasena VARCHAR(100),
+  enabled BOOLEAN NOT NULL DEFAULT TRUE
+);
+
+CREATE TABLE usuario_rol (
+  username varchar(100),
+  id_rol INT,
+  PRIMARY KEY (username, id_rol),
+  FOREIGN KEY (username) REFERENCES usuarios(username),
+  FOREIGN KEY (id_rol) REFERENCES roles(id_rol)
 );
 
 # Esta tabla tiene una clave primaria id_direccion, que es un entero autoincrementado,
@@ -39,10 +43,10 @@ CREATE TABLE direcciones (
 # 'usuarios' y la tabla 'direcciones', permitiendo al usuario que tenga varias direcciones y una direccion
 # esté asociada a varios usuarios.
 CREATE TABLE usuario_direccion (
-    id_usuario INT,
+    username VARCHAR(100),
     id_direccion INT,
-    PRIMARY KEY (id_usuario, id_direccion),
-    FOREIGN KEY (id_usuario) REFERENCES usuarios (id_usuario),
+    PRIMARY KEY (username, id_direccion),
+    FOREIGN KEY (username) REFERENCES usuarios (username),
     FOREIGN KEY (id_direccion) REFERENCES direcciones (id_direccion)
 );
 
@@ -53,21 +57,22 @@ CREATE TABLE tarjetas_bancarias (
   numero_tarjeta VARCHAR(255) UNIQUE,
   nombre_titular VARCHAR(50),
   fecha_caducidad DATE,
-  cvv INT,
-  id_usuario INT,
-  FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario)
+  cvv INT
 );
 
 # Creamos tabla intermedia para poder hacer una relación de muchos a muchos, por lo que una tarjeta puede
 # tener muchos usuarios y un usuario puede tener muchas tarjetas
 CREATE TABLE usuarios_tarjetas_bancarias (
-  id_usuario INT NOT NULL,
+  username VARCHAR(100) NOT NULL,
   id_tarjeta_bancaria INT NOT NULL,
-  PRIMARY KEY (id_usuario, id_tarjeta_bancaria),
-  FOREIGN KEY (id_usuario) REFERENCES usuarios (id_usuario),
+  PRIMARY KEY (username, id_tarjeta_bancaria),
+  FOREIGN KEY (username) REFERENCES usuarios (username),
   FOREIGN KEY (id_tarjeta_bancaria) REFERENCES tarjetas_bancarias (id_tarjeta_bancaria)
 );
-
+CREATE TABLE tipos(
+	id_tipo INT AUTO_INCREMENT PRIMARY KEY,
+    nombre_tipo VARCHAR(100)
+    );
 # Creamos la tabla productos
 CREATE TABLE productos (
   id_producto INT NOT NULL AUTO_INCREMENT,
@@ -76,19 +81,25 @@ CREATE TABLE productos (
   price DOUBLE NOT NULL,
   stock INT NOT NULL,
   estado ENUM('Destacado', 'Oferta', 'Normal'),
+  img VARCHAR(255),
+  id_tipo INT,
+  FOREIGN KEY (id_tipo) REFERENCES tipos(id_tipo),
   PRIMARY KEY (id_producto)
 );
 
-# Creamos la tabla pedidos con clave foranea id_usuario
+  
+# Creamos la tabla pedidos con clave foranea username
 CREATE TABLE pedidos (
   id_pedido INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   fecha_realizacion DATE,
-  id_usuario INT,
-  id_producto INT,
+  username varchar(100),
   precioTotal DECIMAL(10,2) NOT NULL,
+  id_direccion INT,
+  id_tarjeta_bancaria INT,
   estado ENUM('Comprado', 'En el carrito'),
-  FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario),
-  FOREIGN KEY (id_producto) REFERENCES productos(id_producto)
+  FOREIGN KEY (username) REFERENCES usuarios(username),
+  FOREIGN KEY (id_direccion) REFERENCES direcciones(id_direccion),  
+  FOREIGN KEY (id_tarjeta_bancaria) REFERENCES tarjetas_bancarias(id_tarjeta_bancaria)
 );
 
 CREATE TABLE aticulos_pedidos (
@@ -100,18 +111,15 @@ CREATE TABLE aticulos_pedidos (
   FOREIGN KEY (id_producto) REFERENCES productos (id_producto)
 );
 
-# Hacemos insert para rellenar las tablas con algunos campos por defecto
-INSERT INTO usuarios (id_usuario, nombre, apellidos, fecha_nacimiento, email, contrasena)
-VALUES (1, 'Juan', 'Pérez', '1997-05-10', 'juanperez@gmail.com', '123456');
-
-INSERT INTO usuarios (id_usuario, nombre, apellidos, fecha_nacimiento, email, contrasena)
-VALUES (2, 'María', 'García', '1995-02-28', 'mariagarcia@hotmail.com', '123456');
-
 INSERT INTO roles (id_rol, nombre)
 VALUES (1, 'ROLE_CLIENTE');
-
 INSERT INTO roles (id_rol, nombre)
 VALUES (2, 'ROLE_ADMIN');
+INSERT INTO roles (id_rol, nombre)
+VALUES (3, 'ROLE_INVITADO');
+INSERT INTO usuarios (username, nombre, apellidos, fecha_nacimiento, fecha_registro, contrasena, enabled)
+VALUES ('admin', 'Admin', 'Admin', '2000-01-01', CURDATE(), 'password', TRUE);
+INSERT INTO usuario_rol (username, id_rol) VALUES ('admin', 2);
 commit;
 
 #Creamos usuario y le damos permisos
